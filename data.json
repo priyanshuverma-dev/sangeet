@@ -1,0 +1,2400 @@
+{
+    "success": true,
+    "data": {
+        "total": 12035,
+        "start": -9,
+        "results": [
+            {
+                "id": "BeXBcbVK",
+                "name": "Believer",
+                "type": "song",
+                "year": "2018",
+                "releaseDate": null,
+                "duration": 202,
+                "label": "Kid Ina Korner / Interscope",
+                "explicitContent": false,
+                "playCount": 78325929,
+                "language": "english",
+                "hasLyrics": false,
+                "lyricsId": null,
+                "url": "https://www.jiosaavn.com/song/believer/Mg0zcxdSYXg",
+                "copyright": "℗ 2017 KIDinaKORNER/Interscope Records",
+                "album": {
+                    "id": "13435951",
+                    "name": "Evolve",
+                    "url": "https://www.jiosaavn.com/album/evolve/gvCWqZLfVbs_"
+                },
+                "artists": {
+                    "primary": [
+                        {
+                            "id": "599452",
+                            "name": "Imagine Dragons",
+                            "role": "primary_artists",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/imagine-dragons-songs/f0aFxsa231o_"
+                        }
+                    ],
+                    "featured": [],
+                    "all": [
+                        {
+                            "id": "599453",
+                            "name": "Dan Reynolds",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/dan-reynolds-songs/xoeLrr0aTEU_"
+                        },
+                        {
+                            "id": "599454",
+                            "name": "Wayne Sermon",
+                            "role": "music",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/wayne-sermon-songs/,WHkVDnJnD8_"
+                        },
+                        {
+                            "id": "599455",
+                            "name": "Ben Mckee",
+                            "role": "music",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/ben-mckee-songs/EA7FaJms-k8_"
+                        },
+                        {
+                            "id": "914898",
+                            "name": "Daniel Platzman",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/daniel-platzman-songs/hOWrEJ6eC9I_"
+                        },
+                        {
+                            "id": "683491",
+                            "name": "Robin Fredriksson",
+                            "role": "music",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/robin-fredriksson-songs/jRGk4sF83Ko_"
+                        },
+                        {
+                            "id": "634862",
+                            "name": "Mattias Larsson",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/mattias-larsson-songs/d6thUM5GwSE_"
+                        },
+                        {
+                            "id": "633532",
+                            "name": "Justin Tranter",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/justin-tranter-songs/MUdaah321CU_"
+                        },
+                        {
+                            "id": "599452",
+                            "name": "Imagine Dragons",
+                            "role": "singer",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/imagine-dragons-songs/f0aFxsa231o_"
+                        },
+                        {
+                            "id": "599453",
+                            "name": "Dan Reynolds",
+                            "role": "lyricist",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/dan-reynolds-songs/xoeLrr0aTEU_"
+                        },
+                        {
+                            "id": "599454",
+                            "name": "Wayne Sermon",
+                            "role": "lyricist",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/wayne-sermon-songs/,WHkVDnJnD8_"
+                        },
+                        {
+                            "id": "599455",
+                            "name": "Ben Mckee",
+                            "role": "lyricist",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/ben-mckee-songs/EA7FaJms-k8_"
+                        },
+                        {
+                            "id": "914898",
+                            "name": "Daniel Platzman",
+                            "role": "lyricist",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/daniel-platzman-songs/hOWrEJ6eC9I_"
+                        },
+                        {
+                            "id": "683491",
+                            "name": "Robin Fredriksson",
+                            "role": "lyricist",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/robin-fredriksson-songs/jRGk4sF83Ko_"
+                        },
+                        {
+                            "id": "634862",
+                            "name": "Mattias Larsson",
+                            "role": "lyricist",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/mattias-larsson-songs/d6thUM5GwSE_"
+                        },
+                        {
+                            "id": "633532",
+                            "name": "Justin Tranter",
+                            "role": "lyricist",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/justin-tranter-songs/MUdaah321CU_"
+                        }
+                    ]
+                },
+                "image": [
+                    {
+                        "quality": "50x50",
+                        "url": "https://c.saavncdn.com/248/Evolve-English-2017-20180716230950-50x50.jpg"
+                    },
+                    {
+                        "quality": "150x150",
+                        "url": "https://c.saavncdn.com/248/Evolve-English-2017-20180716230950-150x150.jpg"
+                    },
+                    {
+                        "quality": "500x500",
+                        "url": "https://c.saavncdn.com/248/Evolve-English-2017-20180716230950-500x500.jpg"
+                    }
+                ],
+                "downloadUrl": [
+                    {
+                        "quality": "12kbps",
+                        "url": "https://aac.saavncdn.com/248/a6b1b78b396245f712abda8f1daefee0_12.mp4"
+                    },
+                    {
+                        "quality": "48kbps",
+                        "url": "https://aac.saavncdn.com/248/a6b1b78b396245f712abda8f1daefee0_48.mp4"
+                    },
+                    {
+                        "quality": "96kbps",
+                        "url": "https://aac.saavncdn.com/248/a6b1b78b396245f712abda8f1daefee0_96.mp4"
+                    },
+                    {
+                        "quality": "160kbps",
+                        "url": "https://aac.saavncdn.com/248/a6b1b78b396245f712abda8f1daefee0_160.mp4"
+                    },
+                    {
+                        "quality": "320kbps",
+                        "url": "https://aac.saavncdn.com/248/a6b1b78b396245f712abda8f1daefee0_320.mp4"
+                    }
+                ]
+            },
+            {
+                "id": "SdZc6-ST",
+                "name": "Believer",
+                "type": "song",
+                "year": "2019",
+                "releaseDate": null,
+                "duration": 219,
+                "label": "Kid Ina Korner / Interscope",
+                "explicitContent": false,
+                "playCount": 4958935,
+                "language": "english",
+                "hasLyrics": false,
+                "lyricsId": null,
+                "url": "https://www.jiosaavn.com/song/believer/IwwxUkIdZGc",
+                "copyright": "℗ 2019 KIDinaKORNER/Interscope Records",
+                "album": {
+                    "id": "14799536",
+                    "name": "Believer",
+                    "url": "https://www.jiosaavn.com/album/believer/tXjhb4AnRtk_"
+                },
+                "artists": {
+                    "primary": [
+                        {
+                            "id": "599452",
+                            "name": "Imagine Dragons",
+                            "role": "primary_artists",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/imagine-dragons-songs/f0aFxsa231o_"
+                        }
+                    ],
+                    "featured": [
+                        {
+                            "id": "600822",
+                            "name": "Lil Wayne",
+                            "role": "featured_artists",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/artists/Lil_Wayne_001_20200217121534_50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/artists/Lil_Wayne_001_20200217121534_150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/artists/Lil_Wayne_001_20200217121534_500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/lil-wayne-songs/r6-9tgwrqDE_"
+                        }
+                    ],
+                    "all": [
+                        {
+                            "id": "599453",
+                            "name": "Dan Reynolds",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/dan-reynolds-songs/xoeLrr0aTEU_"
+                        },
+                        {
+                            "id": "599454",
+                            "name": "Wayne Sermon",
+                            "role": "music",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/wayne-sermon-songs/,WHkVDnJnD8_"
+                        },
+                        {
+                            "id": "599455",
+                            "name": "Ben Mckee",
+                            "role": "music",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/ben-mckee-songs/EA7FaJms-k8_"
+                        },
+                        {
+                            "id": "914898",
+                            "name": "Daniel Platzman",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/daniel-platzman-songs/hOWrEJ6eC9I_"
+                        },
+                        {
+                            "id": "683491",
+                            "name": "Robin Fredriksson",
+                            "role": "music",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/robin-fredriksson-songs/jRGk4sF83Ko_"
+                        },
+                        {
+                            "id": "634862",
+                            "name": "Mattias Larsson",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/mattias-larsson-songs/d6thUM5GwSE_"
+                        },
+                        {
+                            "id": "633532",
+                            "name": "Justin Tranter",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/justin-tranter-songs/MUdaah321CU_"
+                        },
+                        {
+                            "id": "562818",
+                            "name": "Dwayne Carter",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/113/Nep-jdu-zp-t-Czech-2019-20190524184755-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/113/Nep-jdu-zp-t-Czech-2019-20190524184755-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/113/Nep-jdu-zp-t-Czech-2019-20190524184755-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/dwayne-carter-songs/yY6srjGpiSQ_"
+                        },
+                        {
+                            "id": "599452",
+                            "name": "Imagine Dragons",
+                            "role": "singer",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/imagine-dragons-songs/f0aFxsa231o_"
+                        },
+                        {
+                            "id": "599453",
+                            "name": "Dan Reynolds",
+                            "role": "lyricist",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/dan-reynolds-songs/xoeLrr0aTEU_"
+                        },
+                        {
+                            "id": "599454",
+                            "name": "Wayne Sermon",
+                            "role": "lyricist",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/wayne-sermon-songs/,WHkVDnJnD8_"
+                        },
+                        {
+                            "id": "599455",
+                            "name": "Ben Mckee",
+                            "role": "lyricist",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/ben-mckee-songs/EA7FaJms-k8_"
+                        },
+                        {
+                            "id": "914898",
+                            "name": "Daniel Platzman",
+                            "role": "lyricist",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/daniel-platzman-songs/hOWrEJ6eC9I_"
+                        },
+                        {
+                            "id": "683491",
+                            "name": "Robin Fredriksson",
+                            "role": "lyricist",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/robin-fredriksson-songs/jRGk4sF83Ko_"
+                        },
+                        {
+                            "id": "634862",
+                            "name": "Mattias Larsson",
+                            "role": "lyricist",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/mattias-larsson-songs/d6thUM5GwSE_"
+                        },
+                        {
+                            "id": "633532",
+                            "name": "Justin Tranter",
+                            "role": "lyricist",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/justin-tranter-songs/MUdaah321CU_"
+                        },
+                        {
+                            "id": "562818",
+                            "name": "Dwayne Carter",
+                            "role": "lyricist",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/113/Nep-jdu-zp-t-Czech-2019-20190524184755-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/113/Nep-jdu-zp-t-Czech-2019-20190524184755-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/113/Nep-jdu-zp-t-Czech-2019-20190524184755-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/dwayne-carter-songs/yY6srjGpiSQ_"
+                        }
+                    ]
+                },
+                "image": [
+                    {
+                        "quality": "50x50",
+                        "url": "https://c.saavncdn.com/128/Believer-English-2018-20190107213710-50x50.jpg"
+                    },
+                    {
+                        "quality": "150x150",
+                        "url": "https://c.saavncdn.com/128/Believer-English-2018-20190107213710-150x150.jpg"
+                    },
+                    {
+                        "quality": "500x500",
+                        "url": "https://c.saavncdn.com/128/Believer-English-2018-20190107213710-500x500.jpg"
+                    }
+                ],
+                "downloadUrl": [
+                    {
+                        "quality": "12kbps",
+                        "url": "https://aac.saavncdn.com/128/4155171772fe6ca7302637fcb9384d96_12.mp4"
+                    },
+                    {
+                        "quality": "48kbps",
+                        "url": "https://aac.saavncdn.com/128/4155171772fe6ca7302637fcb9384d96_48.mp4"
+                    },
+                    {
+                        "quality": "96kbps",
+                        "url": "https://aac.saavncdn.com/128/4155171772fe6ca7302637fcb9384d96_96.mp4"
+                    },
+                    {
+                        "quality": "160kbps",
+                        "url": "https://aac.saavncdn.com/128/4155171772fe6ca7302637fcb9384d96_160.mp4"
+                    },
+                    {
+                        "quality": "320kbps",
+                        "url": "https://aac.saavncdn.com/128/4155171772fe6ca7302637fcb9384d96_320.mp4"
+                    }
+                ]
+            },
+            {
+                "id": "JaIt9ecZ",
+                "name": "Believer (Kaskade Remix)",
+                "type": "song",
+                "year": "2017",
+                "releaseDate": null,
+                "duration": 190,
+                "label": "Kid Ina Korner / Interscope",
+                "explicitContent": false,
+                "playCount": 639070,
+                "language": "english",
+                "hasLyrics": false,
+                "lyricsId": null,
+                "url": "https://www.jiosaavn.com/song/believer-kaskade-remix/OgkiRU1VVGk",
+                "copyright": "℗ 2017 KIDinaKORNER/Interscope Records",
+                "album": {
+                    "id": "10958035",
+                    "name": "Believer (Kaskade Remix)",
+                    "url": "https://www.jiosaavn.com/album/believer-kaskade-remix/HwBysb2hWiE_"
+                },
+                "artists": {
+                    "primary": [
+                        {
+                            "id": "599452",
+                            "name": "Imagine Dragons",
+                            "role": "primary_artists",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/imagine-dragons-songs/f0aFxsa231o_"
+                        },
+                        {
+                            "id": "598340",
+                            "name": "Kaskade",
+                            "role": "primary_artists",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/261/Believer-Kaskade-Remix--English-2017-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/261/Believer-Kaskade-Remix--English-2017-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/261/Believer-Kaskade-Remix--English-2017-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/kaskade-songs/w0yNbChy8Yw_"
+                        }
+                    ],
+                    "featured": [],
+                    "all": [
+                        {
+                            "id": "599453",
+                            "name": "Dan Reynolds",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/dan-reynolds-songs/xoeLrr0aTEU_"
+                        },
+                        {
+                            "id": "599454",
+                            "name": "Wayne Sermon",
+                            "role": "music",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/wayne-sermon-songs/,WHkVDnJnD8_"
+                        },
+                        {
+                            "id": "599455",
+                            "name": "Ben Mckee",
+                            "role": "music",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/ben-mckee-songs/EA7FaJms-k8_"
+                        },
+                        {
+                            "id": "914898",
+                            "name": "Daniel Platzman",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/daniel-platzman-songs/hOWrEJ6eC9I_"
+                        },
+                        {
+                            "id": "683491",
+                            "name": "Robin Fredriksson",
+                            "role": "music",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/robin-fredriksson-songs/jRGk4sF83Ko_"
+                        },
+                        {
+                            "id": "634862",
+                            "name": "Mattias Larsson",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/mattias-larsson-songs/d6thUM5GwSE_"
+                        },
+                        {
+                            "id": "633532",
+                            "name": "Justin Tranter",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/justin-tranter-songs/MUdaah321CU_"
+                        },
+                        {
+                            "id": "599452",
+                            "name": "Imagine Dragons",
+                            "role": "singer",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/imagine-dragons-songs/f0aFxsa231o_"
+                        },
+                        {
+                            "id": "598340",
+                            "name": "Kaskade",
+                            "role": "singer",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/261/Believer-Kaskade-Remix--English-2017-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/261/Believer-Kaskade-Remix--English-2017-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/261/Believer-Kaskade-Remix--English-2017-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/kaskade-songs/w0yNbChy8Yw_"
+                        },
+                        {
+                            "id": "599453",
+                            "name": "Dan Reynolds",
+                            "role": "lyricist",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/dan-reynolds-songs/xoeLrr0aTEU_"
+                        },
+                        {
+                            "id": "599454",
+                            "name": "Wayne Sermon",
+                            "role": "lyricist",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/wayne-sermon-songs/,WHkVDnJnD8_"
+                        },
+                        {
+                            "id": "599455",
+                            "name": "Ben Mckee",
+                            "role": "lyricist",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/ben-mckee-songs/EA7FaJms-k8_"
+                        },
+                        {
+                            "id": "914898",
+                            "name": "Daniel Platzman",
+                            "role": "lyricist",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/daniel-platzman-songs/hOWrEJ6eC9I_"
+                        },
+                        {
+                            "id": "683491",
+                            "name": "Robin Fredriksson",
+                            "role": "lyricist",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/robin-fredriksson-songs/jRGk4sF83Ko_"
+                        },
+                        {
+                            "id": "634862",
+                            "name": "Mattias Larsson",
+                            "role": "lyricist",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/mattias-larsson-songs/d6thUM5GwSE_"
+                        },
+                        {
+                            "id": "633532",
+                            "name": "Justin Tranter",
+                            "role": "lyricist",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/justin-tranter-songs/MUdaah321CU_"
+                        }
+                    ]
+                },
+                "image": [
+                    {
+                        "quality": "50x50",
+                        "url": "https://c.saavncdn.com/261/Believer-Kaskade-Remix--English-2017-50x50.jpg"
+                    },
+                    {
+                        "quality": "150x150",
+                        "url": "https://c.saavncdn.com/261/Believer-Kaskade-Remix--English-2017-150x150.jpg"
+                    },
+                    {
+                        "quality": "500x500",
+                        "url": "https://c.saavncdn.com/261/Believer-Kaskade-Remix--English-2017-500x500.jpg"
+                    }
+                ],
+                "downloadUrl": [
+                    {
+                        "quality": "12kbps",
+                        "url": "https://aac.saavncdn.com/261/6c79dcb1cee6dee866915e1d3e80e029_12.mp4"
+                    },
+                    {
+                        "quality": "48kbps",
+                        "url": "https://aac.saavncdn.com/261/6c79dcb1cee6dee866915e1d3e80e029_48.mp4"
+                    },
+                    {
+                        "quality": "96kbps",
+                        "url": "https://aac.saavncdn.com/261/6c79dcb1cee6dee866915e1d3e80e029_96.mp4"
+                    },
+                    {
+                        "quality": "160kbps",
+                        "url": "https://aac.saavncdn.com/261/6c79dcb1cee6dee866915e1d3e80e029_160.mp4"
+                    },
+                    {
+                        "quality": "320kbps",
+                        "url": "https://aac.saavncdn.com/261/6c79dcb1cee6dee866915e1d3e80e029_320.mp4"
+                    }
+                ]
+            },
+            {
+                "id": "VaoL3Ij1",
+                "name": "Believer (Tribute to Imagine Dragons)",
+                "type": "song",
+                "year": "2017",
+                "releaseDate": null,
+                "duration": 205,
+                "label": "Barberry Records",
+                "explicitContent": false,
+                "playCount": 99571,
+                "language": "english",
+                "hasLyrics": true,
+                "lyricsId": null,
+                "url": "https://www.jiosaavn.com/song/believer-tribute-to-imagine-dragons/JgkEfUd5XQI",
+                "copyright": "℗ 2017 Barberry Records",
+                "album": {
+                    "id": "10217739",
+                    "name": "Believer (Tribute to Imagine Dragons)",
+                    "url": "https://www.jiosaavn.com/album/believer-tribute-to-imagine-dragons/M39ksWqIIOs_"
+                },
+                "artists": {
+                    "primary": [
+                        {
+                            "id": "2660023",
+                            "name": "Barberry Records",
+                            "role": "primary_artists",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/289/Alone-Tribute-to-Marshmello--English-2017-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/289/Alone-Tribute-to-Marshmello--English-2017-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/289/Alone-Tribute-to-Marshmello--English-2017-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/barberry-records-songs/FIySPEwaHAQ_"
+                        }
+                    ],
+                    "featured": [],
+                    "all": [
+                        {
+                            "id": "2660023",
+                            "name": "Barberry Records",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/289/Alone-Tribute-to-Marshmello--English-2017-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/289/Alone-Tribute-to-Marshmello--English-2017-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/289/Alone-Tribute-to-Marshmello--English-2017-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/barberry-records-songs/FIySPEwaHAQ_"
+                        },
+                        {
+                            "id": "2660023",
+                            "name": "Barberry Records",
+                            "role": "singer",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/289/Alone-Tribute-to-Marshmello--English-2017-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/289/Alone-Tribute-to-Marshmello--English-2017-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/289/Alone-Tribute-to-Marshmello--English-2017-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/barberry-records-songs/FIySPEwaHAQ_"
+                        }
+                    ]
+                },
+                "image": [
+                    {
+                        "quality": "50x50",
+                        "url": "https://c.saavncdn.com/087/Believer-Tribute-to-Imagine-Dragons--English-2017-50x50.jpg"
+                    },
+                    {
+                        "quality": "150x150",
+                        "url": "https://c.saavncdn.com/087/Believer-Tribute-to-Imagine-Dragons--English-2017-150x150.jpg"
+                    },
+                    {
+                        "quality": "500x500",
+                        "url": "https://c.saavncdn.com/087/Believer-Tribute-to-Imagine-Dragons--English-2017-500x500.jpg"
+                    }
+                ],
+                "downloadUrl": [
+                    {
+                        "quality": "12kbps",
+                        "url": "https://aac.saavncdn.com/087/f72a1cac6748815f73d07044379ff7a8_12.mp4"
+                    },
+                    {
+                        "quality": "48kbps",
+                        "url": "https://aac.saavncdn.com/087/f72a1cac6748815f73d07044379ff7a8_48.mp4"
+                    },
+                    {
+                        "quality": "96kbps",
+                        "url": "https://aac.saavncdn.com/087/f72a1cac6748815f73d07044379ff7a8_96.mp4"
+                    },
+                    {
+                        "quality": "160kbps",
+                        "url": "https://aac.saavncdn.com/087/f72a1cac6748815f73d07044379ff7a8_160.mp4"
+                    },
+                    {
+                        "quality": "320kbps",
+                        "url": "https://aac.saavncdn.com/087/f72a1cac6748815f73d07044379ff7a8_320.mp4"
+                    }
+                ]
+            },
+            {
+                "id": "pRJjq_LX",
+                "name": "Believer (Piano Version)",
+                "type": "song",
+                "year": "2019",
+                "releaseDate": null,
+                "duration": 198,
+                "label": "Piano Popsongs",
+                "explicitContent": false,
+                "playCount": 315123,
+                "language": "unknown",
+                "hasLyrics": false,
+                "lyricsId": null,
+                "url": "https://www.jiosaavn.com/song/believer-piano-version/ADohWwVve2s",
+                "copyright": "© 2019 Piano Popsongs",
+                "album": {
+                    "id": "14806750",
+                    "name": "Believer (Piano Version)",
+                    "url": "https://www.jiosaavn.com/album/believer-piano-version/,QJlXzAh7,A_"
+                },
+                "artists": {
+                    "primary": [
+                        {
+                            "id": "828130",
+                            "name": "Believer",
+                            "role": "primary_artists",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/believer-songs/DG8b6j4gp8c_"
+                        },
+                        {
+                            "id": "5010670",
+                            "name": "Born To Be Yours",
+                            "role": "primary_artists",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/born-to-be-yours-songs/nVqdBl5wkrY_"
+                        },
+                        {
+                            "id": "1731535",
+                            "name": "Next To Me",
+                            "role": "primary_artists",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/next-to-me-songs/VeYlEpFRl9I_"
+                        }
+                    ],
+                    "featured": [],
+                    "all": [
+                        {
+                            "id": "828130",
+                            "name": "Believer",
+                            "role": "singer",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/believer-songs/DG8b6j4gp8c_"
+                        },
+                        {
+                            "id": "5010670",
+                            "name": "Born To Be Yours",
+                            "role": "singer",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/born-to-be-yours-songs/nVqdBl5wkrY_"
+                        },
+                        {
+                            "id": "1731535",
+                            "name": "Next To Me",
+                            "role": "singer",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/next-to-me-songs/VeYlEpFRl9I_"
+                        }
+                    ]
+                },
+                "image": [
+                    {
+                        "quality": "50x50",
+                        "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-50x50.jpg"
+                    },
+                    {
+                        "quality": "150x150",
+                        "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-150x150.jpg"
+                    },
+                    {
+                        "quality": "500x500",
+                        "url": "https://c.saavncdn.com/142/Believer-Piano-Version--English-2019-20190108180703-500x500.jpg"
+                    }
+                ],
+                "downloadUrl": [
+                    {
+                        "quality": "12kbps",
+                        "url": "https://aac.saavncdn.com/142/201716578d4b8fadaed690c9cee683f5_12.mp4"
+                    },
+                    {
+                        "quality": "48kbps",
+                        "url": "https://aac.saavncdn.com/142/201716578d4b8fadaed690c9cee683f5_48.mp4"
+                    },
+                    {
+                        "quality": "96kbps",
+                        "url": "https://aac.saavncdn.com/142/201716578d4b8fadaed690c9cee683f5_96.mp4"
+                    },
+                    {
+                        "quality": "160kbps",
+                        "url": "https://aac.saavncdn.com/142/201716578d4b8fadaed690c9cee683f5_160.mp4"
+                    },
+                    {
+                        "quality": "320kbps",
+                        "url": "https://aac.saavncdn.com/142/201716578d4b8fadaed690c9cee683f5_320.mp4"
+                    }
+                ]
+            },
+            {
+                "id": "owE96DIE",
+                "name": "Believers",
+                "type": "song",
+                "year": "2021",
+                "releaseDate": null,
+                "duration": 159,
+                "label": "Kreatell Music",
+                "explicitContent": false,
+                "playCount": 1281928,
+                "language": "english",
+                "hasLyrics": false,
+                "lyricsId": null,
+                "url": "https://www.jiosaavn.com/song/believers/Hx8uCEJ0fnY",
+                "copyright": "(P) 2021 Kreatell Music under exclusive license to Sony Music Entertainment Sweden AB",
+                "album": {
+                    "id": "26957312",
+                    "name": "Believers",
+                    "url": "https://www.jiosaavn.com/album/believers/e0ZNk0mmxbg_"
+                },
+                "artists": {
+                    "primary": [
+                        {
+                            "id": "1335467",
+                            "name": "Alan Walker",
+                            "role": "primary_artists",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/artists/Alan_Walker_003_20231116095443_50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/artists/Alan_Walker_003_20231116095443_150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/artists/Alan_Walker_003_20231116095443_500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/alan-walker-songs/wbWcxgUNzyo_"
+                        },
+                        {
+                            "id": "715131",
+                            "name": "Conor Maynard",
+                            "role": "primary_artists",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/310/Hate-How-Much-I-Love-You-English-2019-20190628060743-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/310/Hate-How-Much-I-Love-You-English-2019-20190628060743-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/310/Hate-How-Much-I-Love-You-English-2019-20190628060743-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/conor-maynard-songs/1OtNT7fjh8c_"
+                        }
+                    ],
+                    "featured": [],
+                    "all": [
+                        {
+                            "id": "1335467",
+                            "name": "Alan Walker",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/artists/Alan_Walker_003_20231116095443_50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/artists/Alan_Walker_003_20231116095443_150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/artists/Alan_Walker_003_20231116095443_500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/alan-walker-songs/wbWcxgUNzyo_"
+                        },
+                        {
+                            "id": "715131",
+                            "name": "Conor Maynard",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/310/Hate-How-Much-I-Love-You-English-2019-20190628060743-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/310/Hate-How-Much-I-Love-You-English-2019-20190628060743-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/310/Hate-How-Much-I-Love-You-English-2019-20190628060743-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/conor-maynard-songs/1OtNT7fjh8c_"
+                        },
+                        {
+                            "id": "1425075",
+                            "name": "Anders Frøen",
+                            "role": "music",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/anders-froen-songs/Wj4QA5E85tc_"
+                        },
+                        {
+                            "id": "1671861",
+                            "name": "Gaute Ormåsen",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/135/Kjærlighet-er-mer-enn-forelskelse-Norwegian-2016-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/135/Kjærlighet-er-mer-enn-forelskelse-Norwegian-2016-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/135/Kjærlighet-er-mer-enn-forelskelse-Norwegian-2016-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/gaute-ormasen-songs/-wVQtpu2zVE_"
+                        },
+                        {
+                            "id": "711903",
+                            "name": "Victor Thell",
+                            "role": "music",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/victor-thell-songs/q9yrVyR9euw_"
+                        },
+                        {
+                            "id": "1363566",
+                            "name": "Jonas Jurström",
+                            "role": "music",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/jonas-jurstrom-songs/wBY9IIjQhu4_"
+                        },
+                        {
+                            "id": "1584282",
+                            "name": "Fredrik Borch Olsen",
+                            "role": "music",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/fredrik-borch-olsen-songs/iq2hSfiwJTE_"
+                        },
+                        {
+                            "id": "3333917",
+                            "name": "Marcus Arnbekk",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/063/Sawarne-Lage-Tropical-House-Mix-From-Mitron--Hindi-2018-20180912142000-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/063/Sawarne-Lage-Tropical-House-Mix-From-Mitron--Hindi-2018-20180912142000-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/063/Sawarne-Lage-Tropical-House-Mix-From-Mitron--Hindi-2018-20180912142000-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/marcus-arnbekk-songs/aAij0Two6rU_"
+                        },
+                        {
+                            "id": "659013",
+                            "name": "Carl Hovind",
+                            "role": "music",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/carl-hovind-songs/h1VoDMs3MuI_"
+                        },
+                        {
+                            "id": "1584281",
+                            "name": "Øyvind Sauvik",
+                            "role": "music",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/oyvind-sauvik-songs/,PQoc6ZC7ys_"
+                        },
+                        {
+                            "id": "1625408",
+                            "name": "Gunnar Greve",
+                            "role": "music",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/gunnar-greve-songs/MYLcGokRN0w_"
+                        },
+                        {
+                            "id": "1335467",
+                            "name": "Alan Walker",
+                            "role": "singer",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/artists/Alan_Walker_003_20231116095443_50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/artists/Alan_Walker_003_20231116095443_150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/artists/Alan_Walker_003_20231116095443_500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/alan-walker-songs/wbWcxgUNzyo_"
+                        },
+                        {
+                            "id": "715131",
+                            "name": "Conor Maynard",
+                            "role": "singer",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/310/Hate-How-Much-I-Love-You-English-2019-20190628060743-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/310/Hate-How-Much-I-Love-You-English-2019-20190628060743-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/310/Hate-How-Much-I-Love-You-English-2019-20190628060743-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/conor-maynard-songs/1OtNT7fjh8c_"
+                        },
+                        {
+                            "id": "10470453",
+                            "name": "Alan Walker",
+                            "role": "singer",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/alan-walker-songs/YbM1X0EXNkw_"
+                        },
+                        {
+                            "id": "9421714",
+                            "name": "Conor Maynard",
+                            "role": "singer",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/conor-maynard-songs/T8f3T,eLaCE_"
+                        },
+                        {
+                            "id": "",
+                            "name": "Bigeyes",
+                            "role": "singer",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/bigeyes-songs/"
+                        },
+                        {
+                            "id": "1584281",
+                            "name": "Øyvind Sauvik",
+                            "role": "lyricist",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/oyvind-sauvik-songs/,PQoc6ZC7ys_"
+                        }
+                    ]
+                },
+                "image": [
+                    {
+                        "quality": "50x50",
+                        "url": "https://c.saavncdn.com/351/Believers-English-2021-20210503232242-50x50.jpg"
+                    },
+                    {
+                        "quality": "150x150",
+                        "url": "https://c.saavncdn.com/351/Believers-English-2021-20210503232242-150x150.jpg"
+                    },
+                    {
+                        "quality": "500x500",
+                        "url": "https://c.saavncdn.com/351/Believers-English-2021-20210503232242-500x500.jpg"
+                    }
+                ],
+                "downloadUrl": [
+                    {
+                        "quality": "12kbps",
+                        "url": "https://aac.saavncdn.com/351/673520a145f6c7a09987ff9a7294527d_12.mp4"
+                    },
+                    {
+                        "quality": "48kbps",
+                        "url": "https://aac.saavncdn.com/351/673520a145f6c7a09987ff9a7294527d_48.mp4"
+                    },
+                    {
+                        "quality": "96kbps",
+                        "url": "https://aac.saavncdn.com/351/673520a145f6c7a09987ff9a7294527d_96.mp4"
+                    },
+                    {
+                        "quality": "160kbps",
+                        "url": "https://aac.saavncdn.com/351/673520a145f6c7a09987ff9a7294527d_160.mp4"
+                    },
+                    {
+                        "quality": "320kbps",
+                        "url": "https://aac.saavncdn.com/351/673520a145f6c7a09987ff9a7294527d_320.mp4"
+                    }
+                ]
+            },
+            {
+                "id": "zcF1wJIM",
+                "name": "Believer",
+                "type": "song",
+                "year": "2017",
+                "releaseDate": null,
+                "duration": 196,
+                "label": "TCC Media",
+                "explicitContent": false,
+                "playCount": 95664,
+                "language": "english",
+                "hasLyrics": false,
+                "lyricsId": null,
+                "url": "https://www.jiosaavn.com/song/believer/CgstAAN6fn4",
+                "copyright": "© 2017 TCC Media",
+                "album": {
+                    "id": "10757772",
+                    "name": "You Made Me A Believer",
+                    "url": "https://www.jiosaavn.com/album/you-made-me-a-believer/5NVal9Acdz8_"
+                },
+                "artists": {
+                    "primary": [
+                        {
+                            "id": "2357217",
+                            "name": "The Cameron Collective",
+                            "role": "primary_artists",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/149/Im-Not-Just-A-Pretty-Girl-English-2017-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/149/Im-Not-Just-A-Pretty-Girl-English-2017-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/149/Im-Not-Just-A-Pretty-Girl-English-2017-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/the-cameron-collective-songs/sNVbgbpD,mQ_"
+                        }
+                    ],
+                    "featured": [],
+                    "all": [
+                        {
+                            "id": "2357217",
+                            "name": "The Cameron Collective",
+                            "role": "singer",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/149/Im-Not-Just-A-Pretty-Girl-English-2017-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/149/Im-Not-Just-A-Pretty-Girl-English-2017-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/149/Im-Not-Just-A-Pretty-Girl-English-2017-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/the-cameron-collective-songs/sNVbgbpD,mQ_"
+                        }
+                    ]
+                },
+                "image": [
+                    {
+                        "quality": "50x50",
+                        "url": "https://c.saavncdn.com/316/You-Made-Me-A-Believer-English-2017-20220211011500-50x50.jpg"
+                    },
+                    {
+                        "quality": "150x150",
+                        "url": "https://c.saavncdn.com/316/You-Made-Me-A-Believer-English-2017-20220211011500-150x150.jpg"
+                    },
+                    {
+                        "quality": "500x500",
+                        "url": "https://c.saavncdn.com/316/You-Made-Me-A-Believer-English-2017-20220211011500-500x500.jpg"
+                    }
+                ],
+                "downloadUrl": [
+                    {
+                        "quality": "12kbps",
+                        "url": "https://aac.saavncdn.com/316/7d732af710a843c0e94dba8c218e1084_12.mp4"
+                    },
+                    {
+                        "quality": "48kbps",
+                        "url": "https://aac.saavncdn.com/316/7d732af710a843c0e94dba8c218e1084_48.mp4"
+                    },
+                    {
+                        "quality": "96kbps",
+                        "url": "https://aac.saavncdn.com/316/7d732af710a843c0e94dba8c218e1084_96.mp4"
+                    },
+                    {
+                        "quality": "160kbps",
+                        "url": "https://aac.saavncdn.com/316/7d732af710a843c0e94dba8c218e1084_160.mp4"
+                    },
+                    {
+                        "quality": "320kbps",
+                        "url": "https://aac.saavncdn.com/316/7d732af710a843c0e94dba8c218e1084_320.mp4"
+                    }
+                ]
+            },
+            {
+                "id": "S4PIxSgX",
+                "name": "Believer (Live/Acoustic)",
+                "type": "song",
+                "year": "2017",
+                "releaseDate": null,
+                "duration": 234,
+                "label": "Kid Ina Korner / Interscope",
+                "explicitContent": false,
+                "playCount": 188248,
+                "language": "english",
+                "hasLyrics": false,
+                "lyricsId": null,
+                "url": "https://www.jiosaavn.com/song/believer-liveacoustic/I1w7eAxjUGs",
+                "copyright": "℗ 2017 KIDinaKORNER/Interscope Records",
+                "album": {
+                    "id": "11291205",
+                    "name": "Live At AllSaints Studios",
+                    "url": "https://www.jiosaavn.com/album/live-at-allsaints-studios/2m5Gf3XQb0Y_"
+                },
+                "artists": {
+                    "primary": [
+                        {
+                            "id": "599452",
+                            "name": "Imagine Dragons",
+                            "role": "primary_artists",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/imagine-dragons-songs/f0aFxsa231o_"
+                        }
+                    ],
+                    "featured": [],
+                    "all": [
+                        {
+                            "id": "599453",
+                            "name": "Dan Reynolds",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/dan-reynolds-songs/xoeLrr0aTEU_"
+                        },
+                        {
+                            "id": "599454",
+                            "name": "Wayne Sermon",
+                            "role": "music",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/wayne-sermon-songs/,WHkVDnJnD8_"
+                        },
+                        {
+                            "id": "599455",
+                            "name": "Ben Mckee",
+                            "role": "music",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/ben-mckee-songs/EA7FaJms-k8_"
+                        },
+                        {
+                            "id": "914898",
+                            "name": "Daniel Platzman",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/daniel-platzman-songs/hOWrEJ6eC9I_"
+                        },
+                        {
+                            "id": "683491",
+                            "name": "Robin Fredriksson",
+                            "role": "music",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/robin-fredriksson-songs/jRGk4sF83Ko_"
+                        },
+                        {
+                            "id": "634862",
+                            "name": "Mattias Larsson",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/mattias-larsson-songs/d6thUM5GwSE_"
+                        },
+                        {
+                            "id": "633532",
+                            "name": "Justin Tranter",
+                            "role": "music",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/justin-tranter-songs/MUdaah321CU_"
+                        },
+                        {
+                            "id": "599452",
+                            "name": "Imagine Dragons",
+                            "role": "singer",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/artists/Imagine_Dragons_500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/imagine-dragons-songs/f0aFxsa231o_"
+                        },
+                        {
+                            "id": "599453",
+                            "name": "Dan Reynolds",
+                            "role": "lyricist",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/048/Skipping-Stones-English-2018-20180620230710-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/dan-reynolds-songs/xoeLrr0aTEU_"
+                        },
+                        {
+                            "id": "599454",
+                            "name": "Wayne Sermon",
+                            "role": "lyricist",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/wayne-sermon-songs/,WHkVDnJnD8_"
+                        },
+                        {
+                            "id": "599455",
+                            "name": "Ben Mckee",
+                            "role": "lyricist",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/ben-mckee-songs/EA7FaJms-k8_"
+                        },
+                        {
+                            "id": "914898",
+                            "name": "Daniel Platzman",
+                            "role": "lyricist",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/883/Best-F-r-iends-Original-Motion-Picture-Soundtrack-English-2019-20190128215540-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/daniel-platzman-songs/hOWrEJ6eC9I_"
+                        },
+                        {
+                            "id": "683491",
+                            "name": "Robin Fredriksson",
+                            "role": "lyricist",
+                            "image": [],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/robin-fredriksson-songs/jRGk4sF83Ko_"
+                        },
+                        {
+                            "id": "634862",
+                            "name": "Mattias Larsson",
+                            "role": "lyricist",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/277/Kom-Swedish-2017-20171009155644-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/mattias-larsson-songs/d6thUM5GwSE_"
+                        },
+                        {
+                            "id": "633532",
+                            "name": "Justin Tranter",
+                            "role": "lyricist",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/916/The-Lego-Batman-Movie-Original-Motion-Picture-Soundtrack-English-2017-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/justin-tranter-songs/MUdaah321CU_"
+                        }
+                    ]
+                },
+                "image": [
+                    {
+                        "quality": "50x50",
+                        "url": "https://c.saavncdn.com/064/Live-At-AllSaints-Studios-English-2017-20170804030925-50x50.jpg"
+                    },
+                    {
+                        "quality": "150x150",
+                        "url": "https://c.saavncdn.com/064/Live-At-AllSaints-Studios-English-2017-20170804030925-150x150.jpg"
+                    },
+                    {
+                        "quality": "500x500",
+                        "url": "https://c.saavncdn.com/064/Live-At-AllSaints-Studios-English-2017-20170804030925-500x500.jpg"
+                    }
+                ],
+                "downloadUrl": [
+                    {
+                        "quality": "12kbps",
+                        "url": "https://aac.saavncdn.com/064/ba332b00d754e7cdf166a05f69c5ad7d_12.mp4"
+                    },
+                    {
+                        "quality": "48kbps",
+                        "url": "https://aac.saavncdn.com/064/ba332b00d754e7cdf166a05f69c5ad7d_48.mp4"
+                    },
+                    {
+                        "quality": "96kbps",
+                        "url": "https://aac.saavncdn.com/064/ba332b00d754e7cdf166a05f69c5ad7d_96.mp4"
+                    },
+                    {
+                        "quality": "160kbps",
+                        "url": "https://aac.saavncdn.com/064/ba332b00d754e7cdf166a05f69c5ad7d_160.mp4"
+                    },
+                    {
+                        "quality": "320kbps",
+                        "url": "https://aac.saavncdn.com/064/ba332b00d754e7cdf166a05f69c5ad7d_320.mp4"
+                    }
+                ]
+            },
+            {
+                "id": "9LO5eWUF",
+                "name": "Believer",
+                "type": "song",
+                "year": "2016",
+                "releaseDate": null,
+                "duration": 223,
+                "label": "SKINK",
+                "explicitContent": false,
+                "playCount": 359585,
+                "language": "english",
+                "hasLyrics": true,
+                "lyricsId": null,
+                "url": "https://www.jiosaavn.com/song/believer/SSQkBBFnYnU",
+                "copyright": "© 2016 The Music Group",
+                "album": {
+                    "id": "12590844",
+                    "name": "Believer",
+                    "url": "https://www.jiosaavn.com/album/believer/kAc65j7D9Cc_"
+                },
+                "artists": {
+                    "primary": [
+                        {
+                            "id": "609987",
+                            "name": "Major Lazer",
+                            "role": "primary_artists",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/artists/Major_Lazer_003_20191014092542_50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/artists/Major_Lazer_003_20191014092542_150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/artists/Major_Lazer_003_20191014092542_500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/major-lazer-songs/cCTZc4aUU,U_"
+                        },
+                        {
+                            "id": "677773",
+                            "name": "Showtek",
+                            "role": "primary_artists",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/391/Bad-Radio-Edit-English-2014-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/391/Bad-Radio-Edit-English-2014-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/391/Bad-Radio-Edit-English-2014-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/showtek-songs/18y5X37gLzI_"
+                        }
+                    ],
+                    "featured": [],
+                    "all": [
+                        {
+                            "id": "609987",
+                            "name": "Major Lazer",
+                            "role": "singer",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/artists/Major_Lazer_003_20191014092542_50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/artists/Major_Lazer_003_20191014092542_150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/artists/Major_Lazer_003_20191014092542_500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/major-lazer-songs/cCTZc4aUU,U_"
+                        },
+                        {
+                            "id": "677773",
+                            "name": "Showtek",
+                            "role": "singer",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/391/Bad-Radio-Edit-English-2014-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/391/Bad-Radio-Edit-English-2014-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/391/Bad-Radio-Edit-English-2014-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/showtek-songs/18y5X37gLzI_"
+                        }
+                    ]
+                },
+                "image": [
+                    {
+                        "quality": "50x50",
+                        "url": "https://c.saavncdn.com/023/Believer-English-2016-20220302155718-50x50.jpg"
+                    },
+                    {
+                        "quality": "150x150",
+                        "url": "https://c.saavncdn.com/023/Believer-English-2016-20220302155718-150x150.jpg"
+                    },
+                    {
+                        "quality": "500x500",
+                        "url": "https://c.saavncdn.com/023/Believer-English-2016-20220302155718-500x500.jpg"
+                    }
+                ],
+                "downloadUrl": [
+                    {
+                        "quality": "12kbps",
+                        "url": "https://aac.saavncdn.com/023/6b8da0b87c73dcc2359cdb53580d0174_12.mp4"
+                    },
+                    {
+                        "quality": "48kbps",
+                        "url": "https://aac.saavncdn.com/023/6b8da0b87c73dcc2359cdb53580d0174_48.mp4"
+                    },
+                    {
+                        "quality": "96kbps",
+                        "url": "https://aac.saavncdn.com/023/6b8da0b87c73dcc2359cdb53580d0174_96.mp4"
+                    },
+                    {
+                        "quality": "160kbps",
+                        "url": "https://aac.saavncdn.com/023/6b8da0b87c73dcc2359cdb53580d0174_160.mp4"
+                    },
+                    {
+                        "quality": "320kbps",
+                        "url": "https://aac.saavncdn.com/023/6b8da0b87c73dcc2359cdb53580d0174_320.mp4"
+                    }
+                ]
+            },
+            {
+                "id": "zyVPGyur",
+                "name": "Beliver",
+                "type": "song",
+                "year": "2018",
+                "releaseDate": null,
+                "duration": 64,
+                "label": "Mario Ramos",
+                "explicitContent": false,
+                "playCount": 468216,
+                "language": "unknown",
+                "hasLyrics": true,
+                "lyricsId": null,
+                "url": "https://www.jiosaavn.com/song/beliver/ChE9YTNJQkE",
+                "copyright": "© 2018 Imagine Dragons",
+                "album": {
+                    "id": "12948116",
+                    "name": "Beliver ",
+                    "url": "https://www.jiosaavn.com/album/beliver-/dL9W3D9VhLQ_"
+                },
+                "artists": {
+                    "primary": [
+                        {
+                            "id": "1230015",
+                            "name": "Mário Ramos",
+                            "role": "primary_artists",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/288/Beliver-English-2018-20180509143432-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/288/Beliver-English-2018-20180509143432-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/288/Beliver-English-2018-20180509143432-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/mario-ramos-songs/chUIa5ZbpH8_"
+                        }
+                    ],
+                    "featured": [],
+                    "all": [
+                        {
+                            "id": "1230015",
+                            "name": "Mário Ramos",
+                            "role": "singer",
+                            "image": [
+                                {
+                                    "quality": "50x50",
+                                    "url": "https://c.saavncdn.com/288/Beliver-English-2018-20180509143432-50x50.jpg"
+                                },
+                                {
+                                    "quality": "150x150",
+                                    "url": "https://c.saavncdn.com/288/Beliver-English-2018-20180509143432-150x150.jpg"
+                                },
+                                {
+                                    "quality": "500x500",
+                                    "url": "https://c.saavncdn.com/288/Beliver-English-2018-20180509143432-500x500.jpg"
+                                }
+                            ],
+                            "type": "artist",
+                            "url": "https://www.jiosaavn.com/artist/mario-ramos-songs/chUIa5ZbpH8_"
+                        }
+                    ]
+                },
+                "image": [
+                    {
+                        "quality": "50x50",
+                        "url": "https://c.saavncdn.com/288/Beliver-English-2018-20180509143432-50x50.jpg"
+                    },
+                    {
+                        "quality": "150x150",
+                        "url": "https://c.saavncdn.com/288/Beliver-English-2018-20180509143432-150x150.jpg"
+                    },
+                    {
+                        "quality": "500x500",
+                        "url": "https://c.saavncdn.com/288/Beliver-English-2018-20180509143432-500x500.jpg"
+                    }
+                ],
+                "downloadUrl": [
+                    {
+                        "quality": "12kbps",
+                        "url": "https://aac.saavncdn.com/288/e689261975553b87f6f8839e8e9d7736_12.mp4"
+                    },
+                    {
+                        "quality": "48kbps",
+                        "url": "https://aac.saavncdn.com/288/e689261975553b87f6f8839e8e9d7736_48.mp4"
+                    },
+                    {
+                        "quality": "96kbps",
+                        "url": "https://aac.saavncdn.com/288/e689261975553b87f6f8839e8e9d7736_96.mp4"
+                    },
+                    {
+                        "quality": "160kbps",
+                        "url": "https://aac.saavncdn.com/288/e689261975553b87f6f8839e8e9d7736_160.mp4"
+                    },
+                    {
+                        "quality": "320kbps",
+                        "url": "https://aac.saavncdn.com/288/e689261975553b87f6f8839e8e9d7736_320.mp4"
+                    }
+                ]
+            }
+        ]
+    }
+}
