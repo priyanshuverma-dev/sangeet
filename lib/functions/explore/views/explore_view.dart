@@ -3,14 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:savaan/core/core.dart';
 import 'package:savaan/functions/explore/controllers/explore_controller.dart';
 
-class ExploreView extends StatefulWidget {
+class ExploreView extends ConsumerStatefulWidget {
   const ExploreView({super.key});
 
   @override
-  State<ExploreView> createState() => _ExploreViewState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _ExploreViewState();
 }
 
-class _ExploreViewState extends State<ExploreView> {
+class _ExploreViewState extends ConsumerState<ExploreView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,13 +36,13 @@ class ExploreList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ref.watch(getExploreDataProvider).when(
-          data: (certificates) {
+          data: (songs) {
             return ListView.builder(
               physics: const BouncingScrollPhysics(),
               shrinkWrap: true,
-              itemCount: certificates.length,
+              itemCount: songs.length,
               itemBuilder: (context, index) {
-                return Text(certificates[index].name);
+                return Text(songs[index].name);
               },
             );
           },

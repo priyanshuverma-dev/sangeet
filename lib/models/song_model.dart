@@ -5,23 +5,24 @@ import 'package:flutter/foundation.dart';
 
 import 'package:savaan/models/helpers/download_url.dart';
 
+@immutable
 class SongModel {
-  String id;
-  String name;
-  String type;
-  String year;
-  String releaseDate;
-  int duration;
-  String label;
-  bool explicitContent;
-  int playCount;
-  String language;
-  bool hasLyrics;
-  String? lyricsId;
-  String url;
-  String copyright;
-  List<DownloadUrl> downloadUrl;
-  SongModel({
+  final String id;
+  final String name;
+  final String type;
+  final String year;
+  final String? releaseDate;
+  final int duration;
+  final String label;
+  final bool explicitContent;
+  final int playCount;
+  final String language;
+  final bool hasLyrics;
+  final String? lyricsId;
+  final String url;
+  final String copyright;
+  final List<DownloadUrl> downloadUrl;
+  const SongModel({
     required this.id,
     required this.name,
     required this.type,
@@ -97,23 +98,23 @@ class SongModel {
 
   factory SongModel.fromMap(Map<String, dynamic> map) {
     return SongModel(
-      id: map['id'] as String,
-      name: map['name'] as String,
-      type: map['type'] as String,
-      year: map['year'] as String,
-      releaseDate: map['releaseDate'] as String,
-      duration: map['duration'] as int,
-      label: map['label'] as String,
-      explicitContent: map['explicitContent'] as bool,
-      playCount: map['playCount'] as int,
-      language: map['language'] as String,
-      hasLyrics: map['hasLyrics'] as bool,
+      id: map['id'],
+      name: map['name'],
+      type: map['type'],
+      year: map['year'],
+      releaseDate: map['releaseDate'],
+      duration: map['duration'],
+      label: map['label'],
+      explicitContent: map['explicitContent'],
+      playCount: map['playCount'],
+      language: map['language'],
+      hasLyrics: map['hasLyrics'],
       lyricsId: map['lyricsId'] != null ? map['lyricsId'] as String : null,
-      url: map['url'] as String,
-      copyright: map['copyright'] as String,
+      url: map['url'],
+      copyright: map['copyright'],
       downloadUrl: List<DownloadUrl>.from(
-        (map['downloadUrl'] as List<int>).map<DownloadUrl>(
-          (x) => DownloadUrl.fromMap(x as Map<String, dynamic>),
+        (map['downloadUrl']).map<DownloadUrl>(
+          (x) => DownloadUrl.fromMap(x),
         ),
       ),
     );

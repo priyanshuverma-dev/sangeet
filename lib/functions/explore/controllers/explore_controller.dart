@@ -19,11 +19,9 @@ class ExploreController extends StateNotifier<bool> {
         super(false);
 
   Future<List<SongModel>> getExploreData() async {
-    late List<SongModel> songs;
-    state = true;
+    List<SongModel> songs = [];
     final res = await _exploreAPI.fetchInitData();
     res.fold((l) {}, (r) => songs = r);
-    state = false;
     return songs;
   }
 }

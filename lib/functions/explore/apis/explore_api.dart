@@ -28,10 +28,11 @@ class ExploreAPI extends IExploreAPI {
 
       Map<String, dynamic> jsonMap = jsonDecode(res.body);
       // Extract the list of songs from the Map
-      List<dynamic> songsObj = jsonMap['data']['songs']['results'];
-      log(songsObj.toString());
-      List<SongModel> songs =
-          songsObj.map((song) => SongModel.fromMap(song)).toList();
+      List<dynamic> songsObj = jsonMap['data']['results'];
+
+      List<SongModel> songs = songsObj.map((song) {
+        return SongModel.fromMap(song);
+      }).toList();
       return right(songs);
     } on http.ClientException catch (e, st) {
       log(e.toString());
