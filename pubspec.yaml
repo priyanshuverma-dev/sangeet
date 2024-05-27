@@ -39,6 +39,7 @@ dependencies:
   fpdart: ^1.1.0
   http: ^1.2.1
   flutter_riverpod: ^2.5.1
+  just_audio: ^0.9.37
 
 dev_dependencies:
   flutter_test:

@@ -42,7 +42,11 @@ class ExploreList extends ConsumerWidget {
               shrinkWrap: true,
               itemCount: songs.length,
               itemBuilder: (context, index) {
-                return Text(songs[index].name);
+                final song = songs[index];
+                return ListTile(
+                  title: Text(song.name),
+                  subtitle: Text("${song.label} - "),
+                );
               },
             );
           },
