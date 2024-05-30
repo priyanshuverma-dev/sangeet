@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:savaan/core/core.dart';
 import 'package:savaan/functions/explore/controllers/explore_controller.dart';
+import 'package:savaan/functions/explore/widgets/bottom_player_sheet.dart';
+import 'package:savaan/functions/player/views/player_view.dart';
 
 class ExploreView extends ConsumerStatefulWidget {
   const ExploreView({super.key});
@@ -26,6 +28,7 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
           ],
         ),
       ),
+      bottomSheet: const BottomPlayerSheet(),
     );
   }
 }
@@ -42,10 +45,17 @@ class ExploreList extends ConsumerWidget {
               shrinkWrap: true,
               itemCount: songs.length,
               itemBuilder: (context, index) {
+                // print(songs[0].image);
                 final song = songs[index];
                 return ListTile(
                   title: Text(song.name),
-                  subtitle: Text("${song.label} - "),
+                  subtitle: Text("${song.label} - ${song.year}"),
+                  leading: CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Theme.of(context).primaryColorDark,
+                    foregroundImage: NetworkImage(song.image[0].url),
+                  ),
+                  onTap: () {},
                 );
               },
             );

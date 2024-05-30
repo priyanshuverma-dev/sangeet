@@ -15,6 +15,8 @@ final exploreAPIProvider = Provider((ref) {
 abstract class IExploreAPI {
   FutureEither<List<SongModel>> fetchInitData();
   FutureEither<List<SongModel>> fetchSearchData({required String query});
+  FutureEither<List<SongModel>> fetchSongRecommedationData(
+      {required String id});
 }
 
 class ExploreAPI extends IExploreAPI {
@@ -33,6 +35,7 @@ class ExploreAPI extends IExploreAPI {
       List<SongModel> songs = songsObj.map((song) {
         return SongModel.fromMap(song);
       }).toList();
+
       return right(songs);
     } on http.ClientException catch (e, st) {
       log(e.toString());
@@ -47,6 +50,28 @@ class ExploreAPI extends IExploreAPI {
     try {
       final uri =
           Uri.https(Constants.serverUrl, 'api/search/songs', {"query": query});
+      final res = await http.get(uri);
+      if (res.statusCode != 200) throw Error();
+
+      Map<String, dynamic> jsonMap = jsonDecode(res.body);
+      // Extract the list of songs from the Map
+      List<dynamic> songsObj = jsonMap['data']['songs']['results'];
+      List<SongModel> songs =
+          songsObj.map((song) => SongModel.fromMap(song)).toList();
+      return right(songs);
+    } on http.ClientException catch (e, st) {
+      log(e.toString());
+      return left(Failure(e.message, st));
+    } catch (e, st) {
+      return left(Failure(e.toString(), st));
+    }
+  }
+
+  @override
+  FutureEither<List<SongModel>> fetchSongRecommedationData(
+      {required String id}) async {
+    try {
+      final uri = Uri.https(Constants.serverUrl, 'api/songs/$id/suggestions');
       final res = await http.get(uri);
       if (res.statusCode != 200) throw Error();
 

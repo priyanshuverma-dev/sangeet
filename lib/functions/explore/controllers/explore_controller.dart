@@ -13,14 +13,16 @@ final getExploreDataProvider = FutureProvider((ref) {
   final exploreController = ref.watch(exploreControllerProvider.notifier);
   return exploreController.getExploreData();
 });
-final getPlaylistProvider = Provider((ref) async {
+final getPlaylistProvider = Provider.family((ref, SongModel song) async {
   final exploreController = ref.watch(exploreControllerProvider.notifier);
-  final songsObjects = await exploreController.getExploreData();
+  final songsObjects =
+      await exploreController.getSongRecommendationData(song.id);
   final playlist = ConcatenatingAudioSource(
     useLazyPreparation: true,
     shuffleOrder: DefaultShuffleOrder(),
     children: [],
   );
+  songsObjects.add(song);
 
   for (var i = 0; i < songsObjects.length; i++) {
     final uri = songsObjects[i]
@@ -29,7 +31,7 @@ final getPlaylistProvider = Provider((ref) async {
         .toList()[0]
         .url;
 
-    playlist.add(AudioSource.uri(Uri.parse(uri)));
+    playlist.add(AudioSource.uri(Uri.parse(uri), tag: songsObjects[i]));
   }
   return playlist;
 });
@@ -43,6 +45,13 @@ class ExploreController extends StateNotifier<bool> {
   Future<List<SongModel>> getExploreData() async {
     List<SongModel> songs = [];
     final res = await _exploreAPI.fetchInitData();
+    res.fold((l) {}, (r) => songs = r);
+    return songs;
+  }
+
+  Future<List<SongModel>> getSongRecommendationData(String id) async {
+    List<SongModel> songs = [];
+    final res = await _exploreAPI.fetchSongRecommedationData(id: id);
     res.fold((l) {}, (r) => songs = r);
     return songs;
   }

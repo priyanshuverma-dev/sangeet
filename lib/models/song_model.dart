@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 import 'package:savaan/models/helpers/download_url.dart';
+import 'package:savaan/models/helpers/song_image.dart';
 
 @immutable
 class SongModel {
@@ -22,6 +23,7 @@ class SongModel {
   final String url;
   final String copyright;
   final List<DownloadUrl> downloadUrl;
+  final List<ImageDownloadUrl> image;
   const SongModel({
     required this.id,
     required this.name,
@@ -38,6 +40,7 @@ class SongModel {
     required this.url,
     required this.copyright,
     required this.downloadUrl,
+    required this.image,
   });
 
   SongModel copyWith({
@@ -56,6 +59,7 @@ class SongModel {
     String? url,
     String? copyright,
     List<DownloadUrl>? downloadUrl,
+    List<ImageDownloadUrl>? image,
   }) {
     return SongModel(
       id: id ?? this.id,
@@ -73,6 +77,7 @@ class SongModel {
       url: url ?? this.url,
       copyright: copyright ?? this.copyright,
       downloadUrl: downloadUrl ?? this.downloadUrl,
+      image: image ?? this.image,
     );
   }
 
@@ -93,28 +98,35 @@ class SongModel {
       'url': url,
       'copyright': copyright,
       'downloadUrl': downloadUrl.map((x) => x.toMap()).toList(),
+      'image': image.map((x) => x.toMap()).toList(),
     };
   }
 
   factory SongModel.fromMap(Map<String, dynamic> map) {
     return SongModel(
-      id: map['id'],
-      name: map['name'],
-      type: map['type'],
-      year: map['year'],
-      releaseDate: map['releaseDate'],
-      duration: map['duration'],
-      label: map['label'],
-      explicitContent: map['explicitContent'],
-      playCount: map['playCount'],
-      language: map['language'],
-      hasLyrics: map['hasLyrics'],
+      id: map['id'] as String,
+      name: map['name'] as String,
+      type: map['type'] as String,
+      year: map['year'] as String,
+      releaseDate:
+          map['releaseDate'] != null ? map['releaseDate'] as String : null,
+      duration: map['duration'] as int,
+      label: map['label'] as String,
+      explicitContent: map['explicitContent'] as bool,
+      playCount: map['playCount'] as int,
+      language: map['language'] as String,
+      hasLyrics: map['hasLyrics'] as bool,
       lyricsId: map['lyricsId'] != null ? map['lyricsId'] as String : null,
-      url: map['url'],
-      copyright: map['copyright'],
+      url: map['url'] as String,
+      copyright: map['copyright'] as String,
       downloadUrl: List<DownloadUrl>.from(
         (map['downloadUrl']).map<DownloadUrl>(
           (x) => DownloadUrl.fromMap(x),
+        ),
+      ),
+      image: List<ImageDownloadUrl>.from(
+        (map['image']).map<ImageDownloadUrl>(
+          (x) => ImageDownloadUrl.fromMap(x),
         ),
       ),
     );
@@ -127,7 +139,7 @@ class SongModel {
 
   @override
   String toString() {
-    return 'SongModel(id: $id, name: $name, type: $type, year: $year, releaseDate: $releaseDate, duration: $duration, label: $label, explicitContent: $explicitContent, playCount: $playCount, language: $language, hasLyrics: $hasLyrics, lyricsId: $lyricsId, url: $url, copyright: $copyright, downloadUrl: $downloadUrl)';
+    return 'SongModel(id: $id, name: $name, type: $type, year: $year, releaseDate: $releaseDate, duration: $duration, label: $label, explicitContent: $explicitContent, playCount: $playCount, language: $language, hasLyrics: $hasLyrics, lyricsId: $lyricsId, url: $url, copyright: $copyright, downloadUrl: $downloadUrl, image: $image)';
   }
 
   @override
@@ -148,7 +160,8 @@ class SongModel {
         other.lyricsId == lyricsId &&
         other.url == url &&
         other.copyright == copyright &&
-        listEquals(other.downloadUrl, downloadUrl);
+        listEquals(other.downloadUrl, downloadUrl) &&
+        listEquals(other.image, image);
   }
 
   @override
@@ -167,6 +180,28 @@ class SongModel {
         lyricsId.hashCode ^
         url.hashCode ^
         copyright.hashCode ^
-        downloadUrl.hashCode;
+        downloadUrl.hashCode ^
+        image.hashCode;
+  }
+
+  factory SongModel.empty() {
+    return const SongModel(
+      copyright: "",
+      downloadUrl: [],
+      duration: 0,
+      explicitContent: false,
+      hasLyrics: false,
+      id: "",
+      image: [],
+      label: "",
+      language: "",
+      name: "",
+      playCount: 0,
+      releaseDate: "",
+      type: "",
+      url: "",
+      year: "",
+      lyricsId: "",
+    );
   }
 }
