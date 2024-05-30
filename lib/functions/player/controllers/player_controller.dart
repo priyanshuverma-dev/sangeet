@@ -40,9 +40,9 @@ class PlayerController extends StateNotifier<bool> {
               position, bufferedPosition, duration ?? Duration.zero));
 
   void initializePlayer() async {
-    final session = await AudioSession.instance;
+    // final session = await AudioSession.instance;
 
-    await session.configure(const AudioSessionConfiguration.music());
+    // await session.configure(const AudioSessionConfiguration.music());
     // Listen to errors during playback.
     _player.playbackEventStream.listen((event) {},
         onError: (Object e, StackTrace stackTrace) {
@@ -71,22 +71,21 @@ class PlayerController extends StateNotifier<bool> {
     });
   }
 
-  void setSong({required SongModel song}) async {
-    final session = await AudioSession.instance;
+  void seetToNext() async {
+    await _player.seekToNext();
+  }
 
-    await session.configure(const AudioSessionConfiguration.music());
+  void setSong({required SongModel song}) async {
     // Listen to errors during playback.
     _player.playbackEventStream.listen((event) {},
         onError: (Object e, StackTrace stackTrace) {
       print('A stream error occurred: $e');
     });
     try {
-      // _playlist = await ref.read(getPlaylistProvider(SongModel.empty()));
-      // print(_player);
-      // await _player.setAudioSource(_playlist,
-      //     preload: kIsWeb || defaultTargetPlatform != TargetPlatform.linux);
       final songsObjects =
           await _exploreController.getSongRecommendationData(song.id);
+
+      print(songsObjects);
       final playlist = ConcatenatingAudioSource(
         useLazyPreparation: true,
         shuffleOrder: DefaultShuffleOrder(),
@@ -106,6 +105,8 @@ class PlayerController extends StateNotifier<bool> {
 
       await _player.setAudioSource(playlist,
           preload: kIsWeb || defaultTargetPlatform != TargetPlatform.linux);
+
+      print(_player.sequence!.length);
     } on PlayerException catch (e) {
       print("Error loading audio source: $e");
     }

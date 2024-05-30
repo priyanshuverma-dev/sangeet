@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  flutter_acrylic
   just_audio_windows
   screen_retriever
   system_theme

@@ -1,11 +1,7 @@
-import 'package:audio_session/audio_session.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:savaan/core/size_manager.dart';
-import 'package:savaan/functions/explore/controllers/explore_controller.dart';
 import 'package:savaan/functions/player/controllers/player_controller.dart';
 import 'package:savaan/functions/player/views/common.dart';
 import 'package:savaan/functions/player/views/player_view.dart';

@@ -78,12 +78,13 @@ class ExploreAPI extends IExploreAPI {
       {required String id}) async {
     try {
       final uri = Uri.https(Constants.serverUrl, 'api/songs/$id/suggestions');
+
       final res = await http.get(uri);
       if (res.statusCode != 200) throw Error();
 
       Map<String, dynamic> jsonMap = jsonDecode(res.body);
       // Extract the list of songs from the Map
-      List<dynamic> songsObj = jsonMap['data']['songs']['results'];
+      List<dynamic> songsObj = jsonMap['data'];
       List<SongModel> songs =
           songsObj.map((song) => SongModel.fromMap(song)).toList();
       return right(songs);

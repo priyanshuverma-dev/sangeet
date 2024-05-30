@@ -7,6 +7,7 @@ import 'package:savaan/core/size_manager.dart';
 import 'package:savaan/functions/explore/controllers/explore_controller.dart';
 import 'package:savaan/functions/player/controllers/player_controller.dart';
 import 'package:savaan/functions/player/views/common.dart';
+import 'package:savaan/functions/player/views/player_view.dart';
 import 'package:savaan/models/song_model.dart';
 
 class ExploreView extends ConsumerStatefulWidget {
@@ -35,93 +36,98 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
             }
             final metadata = state!.currentSource!.tag as SongModel;
 
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: CircleAvatar(
-                          backgroundColor: Theme.of(context).primaryColorDark,
-                          foregroundImage: NetworkImage(metadata.image[1].url),
+            return Container(
+              decoration: const BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(
+                color: Colors.black12,
+                width: 4,
+              ))),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CircleAvatar(
+                                backgroundColor:
+                                    Theme.of(context).primaryColorDark,
+                                foregroundImage:
+                                    NetworkImage(metadata.image[1].url),
+                              ),
+                            ),
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${metadata.name} - ${metadata.label}",
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                Text(metadata.album.name),
+                              ],
+                            ),
+                          ],
                         ),
-                      ),
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "${metadata.name} - ${metadata.label}",
-                            style: const TextStyle(
-                              fontSize: 16,
-                            ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.playlist_add_check,
                           ),
-                          Text(metadata.album.name),
-                        ],
-                      ),
-                      StreamBuilder<PositionData>(
-                        stream: ref
-                            .watch(playerControllerProvider.notifier)
-                            .positionDataStream,
-                        builder: (context, snapshot) {
-                          final positionData = snapshot.data;
-                          return Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            child: ProgressBar(
-                              progress: positionData?.position ?? Duration.zero,
-                              buffered: positionData?.bufferedPosition ??
-                                  Duration.zero,
-                              total: positionData?.duration ?? Duration.zero,
-                              progressBarColor: Colors.red,
-                              baseBarColor: Colors.white.withOpacity(0.24),
-                              bufferedBarColor: Colors.white.withOpacity(0.24),
-                              thumbColor: Colors.white,
-                              barHeight: 3.0,
-                              thumbRadius: 5.0,
-                              onSeek: (duration) {
-                                player.seek(duration);
-                              },
-                            ),
-                          );
-                          // return SeekBar(
-                          //   duration: positionData?.duration ?? Duration.zero,
-                          //   position: positionData?.position ?? Duration.zero,
-                          //   bufferedPosition:
-                          //       positionData?.bufferedPosition ?? Duration.zero,
-                          //   onChangeEnd: (newPosition) {
-                          //     player.seek(newPosition);
-                          //   },
-                          // );
-                        },
-                      ),
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                // ControlButtons(player),
-                // StreamBuilder<PositionData>(
-                //   stream: ref
-                //       .watch(playerControllerProvider.notifier)
-                //       .positionDataStream,
-                //   builder: (context, snapshot) {
-                //     final positionData = snapshot.data;
-                //     return SeekBar(
-                //       duration: positionData?.duration ?? Duration.zero,
-                //       position: positionData?.position ?? Duration.zero,
-                //       bufferedPosition:
-                //           positionData?.bufferedPosition ?? Duration.zero,
-                //       onChangeEnd: (newPosition) {
-                //         player.seek(newPosition);
-                //       },
-                //     );
-                //   },
-                // ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        StreamBuilder<PositionData>(
+                          stream: ref
+                              .watch(playerControllerProvider.notifier)
+                              .positionDataStream,
+                          builder: (context, snapshot) {
+                            final positionData = snapshot.data;
+                            return Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              child: ProgressBar(
+                                progress:
+                                    positionData?.position ?? Duration.zero,
+                                buffered: positionData?.bufferedPosition ??
+                                    Duration.zero,
+                                total: positionData?.duration ?? Duration.zero,
+                                progressBarColor: Colors.red,
+                                baseBarColor: Colors.white.withOpacity(0.24),
+                                bufferedBarColor:
+                                    Colors.white.withOpacity(0.24),
+                                thumbColor: Colors.white,
+                                barHeight: 3.0,
+                                thumbRadius: 5.0,
+                                onSeek: (duration) {
+                                  player.seek(duration);
+                                },
+                              ),
+                            );
+                          },
+                        ),
+                        ControlButtons(player),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             );
           },
         ),

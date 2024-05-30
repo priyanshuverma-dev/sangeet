@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:savaan/functions/explore/controllers/explore_controller.dart';
+import 'package:savaan/functions/player/controllers/player_controller.dart';
 import 'package:savaan/functions/player/views/common.dart';
 import 'package:savaan/models/song_model.dart';
 import 'package:rxdart/rxdart.dart';
@@ -256,13 +257,13 @@ class _PlayerViewState extends ConsumerState<PlayerView> {
 }
 
 /// Displays the play/pause button and volume/speed sliders.
-class ControlButtons extends StatelessWidget {
+class ControlButtons extends ConsumerWidget {
   final AudioPlayer player;
 
   const ControlButtons(this.player, {super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -291,30 +292,30 @@ class ControlButtons extends StatelessWidget {
                 processingState == ProcessingState.buffering) {
               return Container(
                 margin: const EdgeInsets.all(8.0),
-                width: 64.0,
-                height: 64.0,
                 child: const CircularProgressIndicator(),
               );
             } else if (playing != true) {
               return IconButton(
                 icon: const Icon(Icons.play_arrow),
-                iconSize: 64.0,
                 onPressed: player.play,
               );
             } else if (processingState != ProcessingState.completed) {
               return IconButton(
                 icon: const Icon(Icons.pause),
-                iconSize: 64.0,
                 onPressed: player.pause,
               );
             } else {
               return IconButton(
                 icon: const Icon(Icons.replay),
-                iconSize: 64.0,
                 onPressed: () => player.seek(Duration.zero),
               );
             }
           },
+        ),
+        IconButton(
+          icon: const Icon(Icons.skip_next_rounded),
+          onPressed: () =>
+              ref.watch(playerControllerProvider.notifier).seetToNext(),
         ),
         // Opens speed slider dialog
         StreamBuilder<double>(

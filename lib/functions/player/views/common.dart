@@ -24,15 +24,10 @@ class SeekBar extends StatefulWidget {
 
 class SeekBarState extends State<SeekBar> {
   double? _dragValue;
-  late SliderThemeData _sliderThemeData;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
-    _sliderThemeData = SliderTheme.of(context).copyWith(
-      trackHeight: 2.0,
-    );
   }
 
   @override

@@ -60,8 +60,14 @@ class ExploreController extends StateNotifier<bool> {
 
   Future<List<SongModel>> getSongRecommendationData(String id) async {
     List<SongModel> songs = [];
+    print('RECOMMENDED');
     final res = await _exploreAPI.fetchSongRecommedationData(id: id);
-    res.fold((l) {}, (r) => songs = r);
+    print(res);
+    res.fold((l) {
+      if (kDebugMode) {
+        print("RECOMMENDED EXPLORE DATA ERROR: ${l.message}");
+      }
+    }, (r) => songs = r);
     return songs;
   }
 }
