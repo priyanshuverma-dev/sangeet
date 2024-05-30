@@ -1,4 +1,3 @@
-import 'package:audio_session/audio_session.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
@@ -6,6 +5,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:savaan/functions/explore/controllers/explore_controller.dart';
 import 'package:savaan/functions/player/views/common.dart';
 import 'package:savaan/models/helpers/download_quality.dart';
+import 'package:savaan/models/song_metadata.dart';
 import 'package:savaan/models/song_model.dart';
 
 final playerControllerProvider =
@@ -100,7 +100,30 @@ class PlayerController extends StateNotifier<bool> {
             .toList()[0]
             .url;
 
-        playlist.add(AudioSource.uri(Uri.parse(uri), tag: songsObjects[i]));
+        playlist.add(AudioSource.uri(Uri.parse(uri),
+            tag: SongMetadata(
+              title: songsObjects[i].name,
+              album: songsObjects[i].album.name,
+              albumArtist: "Savaan",
+              artist: "Savan",
+              thumbnail: songsObjects[i].image[2].url,
+              copyright: songsObjects[i].copyright,
+              downloadUrl: songsObjects[i].downloadUrl,
+              duration: songsObjects[i].duration,
+              explicitContent: songsObjects[i].explicitContent,
+              hasLyrics: songsObjects[i].hasLyrics,
+              id: songsObjects[i].id,
+              image: songsObjects[i].image,
+              label: songsObjects[i].label,
+              language: songsObjects[i].language,
+              lyricsId: songsObjects[i].lyricsId,
+              name: songsObjects[i].name,
+              playCount: songsObjects[i].playCount,
+              releaseDate: songsObjects[i].releaseDate,
+              type: songsObjects[i].type,
+              url: songsObjects[i].url,
+              year: songsObjects[i].year,
+            )));
       }
 
       await _player.setAudioSource(playlist,

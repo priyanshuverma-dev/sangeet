@@ -8,7 +8,9 @@ import 'package:savaan/functions/explore/controllers/explore_controller.dart';
 import 'package:savaan/functions/player/controllers/player_controller.dart';
 import 'package:savaan/functions/player/views/common.dart';
 import 'package:savaan/functions/player/views/player_view.dart';
-import 'package:savaan/models/song_model.dart';
+import 'package:savaan/models/song_metadata.dart';
+// import 'package:savaan/models/song_model.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ExploreView extends ConsumerStatefulWidget {
   const ExploreView({super.key});
@@ -34,7 +36,7 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
             if (state?.sequence.isEmpty ?? true) {
               return const SizedBox();
             }
-            final metadata = state!.currentSource!.tag as SongModel;
+            final metadata = state!.currentSource!.tag as SongMetadata;
 
             return Container(
               decoration: const BoxDecoration(
@@ -73,7 +75,7 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
                                     fontSize: 16,
                                   ),
                                 ),
-                                Text(metadata.album.name),
+                                Text(metadata.album),
                               ],
                             ),
                           ],
@@ -154,6 +156,29 @@ class ExploreList extends ConsumerWidget {
 
     return ref.watch(getExploreDataProvider).when(
           data: (songs) {
+            return Skeletonizer(
+              ignoreContainers: true,
+              enabled: true,
+              child: ListView.builder(
+                itemCount: 12,
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(16),
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Card(
+                    child: ListTile(
+                      title: Text(
+                          'Item number $index And The Song Name is This loading indicator'),
+                      subtitle: const Text('Subtitle here'),
+                      trailing: const Icon(
+                        Icons.ac_unit,
+                        size: 32,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            );
             return ListView.builder(
               physics: const BouncingScrollPhysics(),
               shrinkWrap: true,
@@ -187,7 +212,28 @@ class ExploreList extends ConsumerWidget {
               error: error.toString(),
             );
           },
-          loading: () => const Loader(),
+          loading: () => Center(
+            child: Skeletonizer(
+              ignoreContainers: true,
+              enabled: true,
+              child: ListView.builder(
+                itemCount: 8,
+                padding: const EdgeInsets.all(16),
+                itemBuilder: (context, index) {
+                  return Card(
+                    child: ListTile(
+                      title: Text('Item number $index as title'),
+                      subtitle: const Text('Subtitle here'),
+                      trailing: const Icon(
+                        Icons.ac_unit,
+                        size: 32,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
         );
   }
 }

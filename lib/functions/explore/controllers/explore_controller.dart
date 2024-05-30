@@ -12,7 +12,7 @@ final exploreControllerProvider =
 
 final getExploreDataProvider = FutureProvider((ref) {
   final exploreController = ref.watch(exploreControllerProvider.notifier);
-  print("songs loading");
+
   return exploreController.getExploreData();
 });
 
@@ -60,9 +60,9 @@ class ExploreController extends StateNotifier<bool> {
 
   Future<List<SongModel>> getSongRecommendationData(String id) async {
     List<SongModel> songs = [];
-    print('RECOMMENDED');
+
     final res = await _exploreAPI.fetchSongRecommedationData(id: id);
-    print(res);
+
     res.fold((l) {
       if (kDebugMode) {
         print("RECOMMENDED EXPLORE DATA ERROR: ${l.message}");
