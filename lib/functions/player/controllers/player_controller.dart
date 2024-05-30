@@ -20,6 +20,12 @@ class PlayerController extends StateNotifier<bool> {
 
   PlayerController() : super(false);
 
+  @override
+  void initState() {
+    initializePlayer();
+    // super.initState();
+  }
+
   AudioPlayer get getPlayer => _player;
   Stream<PositionData> get positionDataStream =>
       Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
@@ -31,7 +37,7 @@ class PlayerController extends StateNotifier<bool> {
 
   void initializePlayer() async {
     final session = await AudioSession.instance;
-    await session.configure(const AudioSessionConfiguration.speech());
+    await session.configure(const AudioSessionConfiguration.music());
     // Listen to errors during playback.
     _player.playbackEventStream.listen((event) {},
         onError: (Object e, StackTrace stackTrace) {
@@ -51,7 +57,9 @@ class PlayerController extends StateNotifier<bool> {
         // _showItemFinished(discontinuity.previousEvent.currentIndex);
       }
     });
+
     _player.processingStateStream.listen((state) {
+      print("PLAYER PROCESSING STATE: $state");
       if (state == ProcessingState.completed) {
         // _showItemFinished(_player.currentIndex);
       }
@@ -69,7 +77,6 @@ class PlayerController extends StateNotifier<bool> {
       preload: kIsWeb || defaultTargetPlatform != TargetPlatform.linux,
     );
 
-    print("PLAYING SONG: ${song.name}, URL: ${song.url}");
-    await _player.play();
+    // await _player.play();
   }
 }

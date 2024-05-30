@@ -31,16 +31,6 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
       bottomSheet: const BottomPlayerSheet(),
     );
   }
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
 }
 
 class ExploreList extends ConsumerWidget {
@@ -48,6 +38,8 @@ class ExploreList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final player = ref.read(getAudioPlayer);
+
     return ref.watch(getExploreDataProvider).when(
           data: (songs) {
             return ListView.builder(
@@ -58,17 +50,24 @@ class ExploreList extends ConsumerWidget {
                 // print(songs[0].image);
                 final song = songs[index];
                 return ListTile(
-                  title: Text(song.name),
-                  subtitle: Text("${song.label} - ${song.year}"),
-                  leading: CircleAvatar(
-                    radius: 25,
-                    backgroundColor: Theme.of(context).primaryColorDark,
-                    foregroundImage: NetworkImage(song.image[0].url),
-                  ),
-                  onTap: () => ref
-                      .read(playerControllerProvider.notifier)
-                      .setSong(song: song),
-                );
+                    title: Text(song.name),
+                    subtitle: Text("${song.label} - ${song.year}"),
+                    leading: CircleAvatar(
+                      radius: 25,
+                      backgroundColor: Theme.of(context).primaryColorDark,
+                      foregroundImage: NetworkImage(song.image[0].url),
+                    ),
+                    onTap: () async {
+                      if (player.audioSource?.sequence[0].tag.id == song.id) {
+                        return;
+                      }
+
+                      ref
+                          .read(playerControllerProvider.notifier)
+                          .setSong(song: song);
+
+                      await player.play();
+                    });
               },
             );
           },
