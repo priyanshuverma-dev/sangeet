@@ -156,29 +156,6 @@ class ExploreList extends ConsumerWidget {
 
     return ref.watch(getExploreDataProvider).when(
           data: (songs) {
-            return Skeletonizer(
-              ignoreContainers: true,
-              enabled: true,
-              child: ListView.builder(
-                itemCount: 12,
-                shrinkWrap: true,
-                padding: const EdgeInsets.all(16),
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: ListTile(
-                      title: Text(
-                          'Item number $index And The Song Name is This loading indicator'),
-                      subtitle: const Text('Subtitle here'),
-                      trailing: const Icon(
-                        Icons.ac_unit,
-                        size: 32,
-                      ),
-                    ),
-                  );
-                },
-              ),
-            );
             return ListView.builder(
               physics: const BouncingScrollPhysics(),
               shrinkWrap: true,
@@ -217,12 +194,15 @@ class ExploreList extends ConsumerWidget {
               ignoreContainers: true,
               enabled: true,
               child: ListView.builder(
-                itemCount: 8,
+                itemCount: 12,
+                shrinkWrap: true,
                 padding: const EdgeInsets.all(16),
+                physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
                   return Card(
                     child: ListTile(
-                      title: Text('Item number $index as title'),
+                      title: Text(
+                          'Item number $index And The Song Name is This loading indicator'),
                       subtitle: const Text('Subtitle here'),
                       trailing: const Icon(
                         Icons.ac_unit,
