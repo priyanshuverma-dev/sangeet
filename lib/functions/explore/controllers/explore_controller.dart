@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:savaan/functions/explore/apis/explore_api.dart';
@@ -11,8 +12,10 @@ final exploreControllerProvider =
 
 final getExploreDataProvider = FutureProvider((ref) {
   final exploreController = ref.watch(exploreControllerProvider.notifier);
+  print("songs loading");
   return exploreController.getExploreData();
 });
+
 final getPlaylistProvider = Provider.family((ref, SongModel song) async {
   final exploreController = ref.watch(exploreControllerProvider.notifier);
   final songsObjects =
@@ -45,7 +48,13 @@ class ExploreController extends StateNotifier<bool> {
   Future<List<SongModel>> getExploreData() async {
     List<SongModel> songs = [];
     final res = await _exploreAPI.fetchInitData();
-    res.fold((l) {}, (r) => songs = r);
+
+    res.fold((l) {
+      if (kDebugMode) {
+        print("INIT EXPLORE DATA ERROR: ${l.message}");
+      }
+      throw Error.throwWithStackTrace(l.message, l.stackTrace);
+    }, (r) => songs = r);
     return songs;
   }
 

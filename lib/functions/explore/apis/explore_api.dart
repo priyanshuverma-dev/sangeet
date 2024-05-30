@@ -23,8 +23,11 @@ class ExploreAPI extends IExploreAPI {
   @override
   FutureEither<List<SongModel>> fetchInitData() async {
     try {
-      final uri = Uri.https(
-          Constants.serverUrl, 'api/search/songs', {"query": "Bollywood"});
+      final uri = Uri.https(Constants.serverUrl, 'api/search/songs',
+          {"query": "Bollywood", "limit": "24"});
+
+      print("URL FETCHED: $uri");
+
       final res = await http.get(uri);
       if (res.statusCode != 200) throw Error();
 
@@ -39,8 +42,11 @@ class ExploreAPI extends IExploreAPI {
       return right(songs);
     } on http.ClientException catch (e, st) {
       log(e.toString());
+
       return left(Failure(e.message, st));
     } catch (e, st) {
+      log(e.toString());
+
       return left(Failure(e.toString(), st));
     }
   }

@@ -83,22 +83,54 @@ class BottomPlayerSheetState extends ConsumerState<BottomPlayerSheet> {
                     );
                   },
                 ),
+                SizedBox(
+                  height: 240.0,
+                  child: StreamBuilder<SequenceState?>(
+                    stream: player.sequenceStateStream,
+                    builder: (context, snapshot) {
+                      final state = snapshot.data;
+                      final sequence = state?.sequence ?? [];
+                      return ReorderableListView(
+                        onReorder: (int oldIndex, int newIndex) {
+                          if (oldIndex < newIndex) newIndex--;
+                          // _playlist.move(oldIndex, newIndex);
+                        },
+                        children: [
+                          for (var i = 0; i < sequence.length; i++)
+                            Dismissible(
+                              key: ValueKey(sequence[i]),
+                              background: Container(
+                                color: Colors.redAccent,
+                                alignment: Alignment.centerRight,
+                                child: const Padding(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child:
+                                      Icon(Icons.delete, color: Colors.white),
+                                ),
+                              ),
+                              onDismissed: (dismissDirection) {
+                                // playlist.removeAt(i);
+                              },
+                              child: Material(
+                                color: i == state!.currentIndex
+                                    ? Colors.grey.shade900
+                                    : null,
+                                child: ListTile(
+                                  title: Text(sequence[i].tag.name as String),
+                                  onTap: () {
+                                    player.seek(Duration.zero, index: i);
+                                  },
+                                ),
+                              ),
+                            ),
+                        ],
+                      );
+                    },
+                  ),
+                ),
               ],
             );
           },
-        );
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(child: Image.network(metadata.image[2].url)),
-              ),
-            ),
-            Text(metadata.name, style: Theme.of(context).textTheme.titleLarge),
-            Text(metadata.label),
-          ],
         );
       },
     );

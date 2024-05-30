@@ -1,8 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 
+import 'package:savaan/models/helpers/album_submodal.dart';
 import 'package:savaan/models/helpers/download_url.dart';
 import 'package:savaan/models/helpers/song_image.dart';
 
@@ -24,6 +26,7 @@ class SongModel {
   final String copyright;
   final List<DownloadUrl> downloadUrl;
   final List<ImageDownloadUrl> image;
+  final Album album;
   const SongModel({
     required this.id,
     required this.name,
@@ -41,6 +44,7 @@ class SongModel {
     required this.copyright,
     required this.downloadUrl,
     required this.image,
+    required this.album,
   });
 
   SongModel copyWith({
@@ -60,6 +64,7 @@ class SongModel {
     String? copyright,
     List<DownloadUrl>? downloadUrl,
     List<ImageDownloadUrl>? image,
+    Album? album,
   }) {
     return SongModel(
       id: id ?? this.id,
@@ -78,6 +83,7 @@ class SongModel {
       copyright: copyright ?? this.copyright,
       downloadUrl: downloadUrl ?? this.downloadUrl,
       image: image ?? this.image,
+      album: album ?? this.album,
     );
   }
 
@@ -99,6 +105,7 @@ class SongModel {
       'copyright': copyright,
       'downloadUrl': downloadUrl.map((x) => x.toMap()).toList(),
       'image': image.map((x) => x.toMap()).toList(),
+      'album': album.toMap(),
     };
   }
 
@@ -129,6 +136,7 @@ class SongModel {
           (x) => ImageDownloadUrl.fromMap(x),
         ),
       ),
+      album: Album.fromMap(map['album']),
     );
   }
 
@@ -139,12 +147,13 @@ class SongModel {
 
   @override
   String toString() {
-    return 'SongModel(id: $id, name: $name, type: $type, year: $year, releaseDate: $releaseDate, duration: $duration, label: $label, explicitContent: $explicitContent, playCount: $playCount, language: $language, hasLyrics: $hasLyrics, lyricsId: $lyricsId, url: $url, copyright: $copyright, downloadUrl: $downloadUrl, image: $image)';
+    return 'SongModel(id: $id, name: $name, type: $type, year: $year, releaseDate: $releaseDate, duration: $duration, label: $label, explicitContent: $explicitContent, playCount: $playCount, language: $language, hasLyrics: $hasLyrics, lyricsId: $lyricsId, url: $url, copyright: $copyright, downloadUrl: $downloadUrl, image: $image, album: $album)';
   }
 
   @override
   bool operator ==(covariant SongModel other) {
     if (identical(this, other)) return true;
+    final listEquals = const DeepCollectionEquality().equals;
 
     return other.id == id &&
         other.name == name &&
@@ -161,7 +170,8 @@ class SongModel {
         other.url == url &&
         other.copyright == copyright &&
         listEquals(other.downloadUrl, downloadUrl) &&
-        listEquals(other.image, image);
+        listEquals(other.image, image) &&
+        other.album == album;
   }
 
   @override
@@ -181,18 +191,19 @@ class SongModel {
         url.hashCode ^
         copyright.hashCode ^
         downloadUrl.hashCode ^
-        image.hashCode;
+        image.hashCode ^
+        album.hashCode;
   }
 
   factory SongModel.empty() {
-    return const SongModel(
+    return SongModel(
       copyright: "",
-      downloadUrl: [],
+      downloadUrl: const [],
       duration: 0,
       explicitContent: false,
       hasLyrics: false,
       id: "",
-      image: [],
+      image: const [],
       label: "",
       language: "",
       name: "",
@@ -201,6 +212,11 @@ class SongModel {
       type: "",
       url: "",
       year: "",
+      album: Album(
+        id: "",
+        name: "",
+        url: "",
+      ),
       lyricsId: "",
     );
   }

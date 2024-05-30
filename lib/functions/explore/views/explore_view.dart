@@ -1,9 +1,13 @@
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:savaan/core/core.dart';
+import 'package:savaan/core/size_manager.dart';
 import 'package:savaan/functions/explore/controllers/explore_controller.dart';
-import 'package:savaan/functions/explore/widgets/bottom_player_sheet.dart';
 import 'package:savaan/functions/player/controllers/player_controller.dart';
+import 'package:savaan/functions/player/views/common.dart';
+import 'package:savaan/models/song_model.dart';
 
 class ExploreView extends ConsumerStatefulWidget {
   const ExploreView({super.key});
@@ -15,20 +19,122 @@ class ExploreView extends ConsumerStatefulWidget {
 class _ExploreViewState extends ConsumerState<ExploreView> {
   @override
   Widget build(BuildContext context) {
+    final player = ref.read(getAudioPlayer);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Savaan - Explore"),
-        elevation: 5,
+      appBar: PreferredSize(
+        preferredSize: Size(MediaQuery.of(context).size.width, 200),
+        child: StreamBuilder<SequenceState?>(
+          stream: player.sequenceStateStream,
+          builder: (context, snapshot) {
+            final state = snapshot.data;
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Container(height: AppSize.s0);
+            }
+            if (state?.sequence.isEmpty ?? true) {
+              return const SizedBox();
+            }
+            final metadata = state!.currentSource!.tag as SongModel;
+
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CircleAvatar(
+                          backgroundColor: Theme.of(context).primaryColorDark,
+                          foregroundImage: NetworkImage(metadata.image[1].url),
+                        ),
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "${metadata.name} - ${metadata.label}",
+                            style: const TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                          Text(metadata.album.name),
+                        ],
+                      ),
+                      StreamBuilder<PositionData>(
+                        stream: ref
+                            .watch(playerControllerProvider.notifier)
+                            .positionDataStream,
+                        builder: (context, snapshot) {
+                          final positionData = snapshot.data;
+                          return Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            child: ProgressBar(
+                              progress: positionData?.position ?? Duration.zero,
+                              buffered: positionData?.bufferedPosition ??
+                                  Duration.zero,
+                              total: positionData?.duration ?? Duration.zero,
+                              progressBarColor: Colors.red,
+                              baseBarColor: Colors.white.withOpacity(0.24),
+                              bufferedBarColor: Colors.white.withOpacity(0.24),
+                              thumbColor: Colors.white,
+                              barHeight: 3.0,
+                              thumbRadius: 5.0,
+                              onSeek: (duration) {
+                                player.seek(duration);
+                              },
+                            ),
+                          );
+                          // return SeekBar(
+                          //   duration: positionData?.duration ?? Duration.zero,
+                          //   position: positionData?.position ?? Duration.zero,
+                          //   bufferedPosition:
+                          //       positionData?.bufferedPosition ?? Duration.zero,
+                          //   onChangeEnd: (newPosition) {
+                          //     player.seek(newPosition);
+                          //   },
+                          // );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                // ControlButtons(player),
+                // StreamBuilder<PositionData>(
+                //   stream: ref
+                //       .watch(playerControllerProvider.notifier)
+                //       .positionDataStream,
+                //   builder: (context, snapshot) {
+                //     final positionData = snapshot.data;
+                //     return SeekBar(
+                //       duration: positionData?.duration ?? Duration.zero,
+                //       position: positionData?.position ?? Duration.zero,
+                //       bufferedPosition:
+                //           positionData?.bufferedPosition ?? Duration.zero,
+                //       onChangeEnd: (newPosition) {
+                //         player.seek(newPosition);
+                //       },
+                //     );
+                //   },
+                // ),
+              ],
+            );
+          },
+        ),
       ),
       body: const SingleChildScrollView(
-        physics: AlwaysScrollableScrollPhysics(),
         child: Column(
           children: [
             ExploreList(),
           ],
         ),
       ),
-      bottomSheet: const BottomPlayerSheet(),
+
+      //bottomSheet: const BottomPlayerSheet(),
     );
   }
 }
@@ -47,7 +153,6 @@ class ExploreList extends ConsumerWidget {
               shrinkWrap: true,
               itemCount: songs.length,
               itemBuilder: (context, index) {
-                // print(songs[0].image);
                 final song = songs[index];
                 return ListTile(
                     title: Text(song.name),
