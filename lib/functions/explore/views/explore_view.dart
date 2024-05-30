@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:savaan/core/core.dart';
 import 'package:savaan/functions/explore/controllers/explore_controller.dart';
 import 'package:savaan/functions/explore/widgets/bottom_player_sheet.dart';
-import 'package:savaan/functions/player/views/player_view.dart';
+import 'package:savaan/functions/player/controllers/player_controller.dart';
 
 class ExploreView extends ConsumerStatefulWidget {
   const ExploreView({super.key});
@@ -31,6 +31,16 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
       bottomSheet: const BottomPlayerSheet(),
     );
   }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
 }
 
 class ExploreList extends ConsumerWidget {
@@ -55,7 +65,9 @@ class ExploreList extends ConsumerWidget {
                     backgroundColor: Theme.of(context).primaryColorDark,
                     foregroundImage: NetworkImage(song.image[0].url),
                   ),
-                  onTap: () {},
+                  onTap: () => ref
+                      .read(playerControllerProvider.notifier)
+                      .setSong(song: song),
                 );
               },
             );

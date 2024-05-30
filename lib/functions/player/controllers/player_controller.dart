@@ -1,16 +1,26 @@
 import 'package:audio_session/audio_session.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:savaan/functions/player/views/common.dart';
+import 'package:savaan/models/helpers/download_quality.dart';
 import 'package:savaan/models/song_model.dart';
 
-class PlayerController extends StateNotifier {
+final playerControllerProvider =
+    StateNotifierProvider<PlayerController, bool>((ref) {
+  return PlayerController();
+});
+
+final getAudioPlayer = Provider.autoDispose(
+    (ref) => ref.watch(playerControllerProvider.notifier).getPlayer);
+
+class PlayerController extends StateNotifier<bool> {
   final _player = AudioPlayer();
 
   PlayerController() : super(false);
 
-  get getPlayer => _player;
+  AudioPlayer get getPlayer => _player;
   Stream<PositionData> get positionDataStream =>
       Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
           _player.positionStream,
@@ -48,13 +58,18 @@ class PlayerController extends StateNotifier {
     });
   }
 
+  void setSong({required SongModel song}) async {
+    await _player.setAudioSource(
+      AudioSource.uri(
+          Uri.parse(song.downloadUrl
+              .where((element) => element.quality == SongQualityType.high)
+              .toList()[0]
+              .url),
+          tag: song),
+      preload: kIsWeb || defaultTargetPlatform != TargetPlatform.linux,
+    );
 
-  void setSong({required SongModel song})async{
-
-    _player.setUrl(AudioSource.uri(Uri.parse(song.url)))
-
+    print("PLAYING SONG: ${song.name}, URL: ${song.url}");
+    await _player.play();
   }
-
-
-
 }
