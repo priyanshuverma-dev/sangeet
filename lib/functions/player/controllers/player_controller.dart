@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:savaan/functions/explore/controllers/explore_controller.dart';
-import 'package:savaan/functions/player/views/common.dart';
+import 'package:savaan/functions/player/widgets/common.dart';
 import 'package:savaan/models/helpers/download_quality.dart';
 import 'package:savaan/models/song_metadata.dart';
 import 'package:savaan/models/song_model.dart';
@@ -20,17 +20,13 @@ final getAudioPlayer = Provider.autoDispose(
 class PlayerController extends StateNotifier<bool> {
   final ExploreController _exploreController;
   final _player = AudioPlayer();
+
   PlayerController({required ExploreController exploreController})
       : _exploreController = exploreController,
         super(false);
 
-  // @override
-  // void initState() {
-  //   ();
-  //   // super.initState();
-  // }
-
   AudioPlayer get getPlayer => _player;
+
   Stream<PositionData> get positionDataStream =>
       Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
           _player.positionStream,
@@ -40,47 +36,20 @@ class PlayerController extends StateNotifier<bool> {
               position, bufferedPosition, duration ?? Duration.zero));
 
   void initializePlayer() async {
-    // final session = await AudioSession.instance;
-
-    // await session.configure(const AudioSessionConfiguration.music());
-    // Listen to errors during playback.
     _player.playbackEventStream.listen((event) {},
         onError: (Object e, StackTrace stackTrace) {
-      print('A stream error occurred: $e');
+      if (kDebugMode) {
+        print('A stream error occurred: $e');
+      }
     });
-    try {
-      // _playlist = await ref.read(getPlaylistProvider(SongModel.empty()));
-      // print(_player);
-      // await _player.setAudioSource(_playlist,
-      //     preload: kIsWeb || defaultTargetPlatform != TargetPlatform.linux);
-    } on PlayerException catch (e) {
-      print("Error loading audio source: $e");
+    try {} on PlayerException catch (e) {
+      if (kDebugMode) {
+        print("Error loading audio source: $e");
+      }
     }
-
-    _player.positionDiscontinuityStream.listen((discontinuity) {
-      if (discontinuity.reason == PositionDiscontinuityReason.autoAdvance) {
-        // _showItemFinished(discontinuity.previousEvent.currentIndex);
-      }
-    });
-
-    _player.processingStateStream.listen((state) {
-      print("PLAYER PROCESSING STATE: $state");
-      if (state == ProcessingState.completed) {
-        // _showItemFinished(_player.currentIndex);
-      }
-    });
-  }
-
-  void seetToNext() async {
-    await _player.seekToNext();
   }
 
   void setSong({required SongModel song}) async {
-    // Listen to errors during playback.
-    _player.playbackEventStream.listen((event) {},
-        onError: (Object e, StackTrace stackTrace) {
-      print('A stream error occurred: $e');
-    });
     try {
       final songsObjects =
           await _exploreController.getSongRecommendationData(song.id);
@@ -128,23 +97,10 @@ class PlayerController extends StateNotifier<bool> {
 
       await _player.setAudioSource(playlist,
           preload: kIsWeb || defaultTargetPlatform != TargetPlatform.linux);
-
-      print(_player.sequence!.length);
     } on PlayerException catch (e) {
-      print("Error loading audio source: $e");
+      if (kDebugMode) {
+        print("Error loading audio source: $e");
+      }
     }
-
-    _player.positionDiscontinuityStream.listen((discontinuity) {
-      if (discontinuity.reason == PositionDiscontinuityReason.autoAdvance) {
-        // _showItemFinished(discontinuity.previousEvent.currentIndex);
-      }
-    });
-
-    _player.processingStateStream.listen((state) {
-      print("PLAYER PROCESSING STATE: $state");
-      if (state == ProcessingState.completed) {
-        // _showItemFinished(_player.currentIndex);
-      }
-    });
   }
 }
