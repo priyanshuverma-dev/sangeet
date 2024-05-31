@@ -3,9 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:savaan/core/core.dart';
 import 'package:savaan/functions/explore/controllers/explore_controller.dart';
 import 'package:savaan/functions/player/controllers/player_controller.dart';
-import 'package:savaan/functions/player/widgets/base_audio_player.dart';
-
-import 'package:skeletonizer/skeletonizer.dart';
 
 class ExploreView extends ConsumerStatefulWidget {
   const ExploreView({super.key});
@@ -17,14 +14,12 @@ class ExploreView extends ConsumerStatefulWidget {
 class _ExploreViewState extends ConsumerState<ExploreView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: getBasePlayerAppbar(context),
-      body: const SingleChildScrollView(
-        child: Column(
-          children: [
-            ExploreList(),
-          ],
-        ),
+    return const SingleChildScrollView(
+      physics: AlwaysScrollableScrollPhysics(),
+      child: Column(
+        children: [
+          ExploreList(),
+        ],
       ),
     );
   }
@@ -61,8 +56,6 @@ class ExploreList extends ConsumerWidget {
                       ref
                           .read(playerControllerProvider.notifier)
                           .setSong(song: song);
-
-                      await player.play();
                     });
               },
             );

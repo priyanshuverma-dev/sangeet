@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
@@ -11,21 +13,32 @@ import 'package:savaan/models/song_model.dart';
 final playerControllerProvider =
     StateNotifierProvider<PlayerController, bool>((ref) {
   return PlayerController(
-      exploreController: ref.watch(exploreControllerProvider.notifier));
+    exploreController: ref.watch(exploreControllerProvider.notifier),
+  );
 });
 
-final getAudioPlayer = Provider.autoDispose(
-    (ref) => ref.watch(playerControllerProvider.notifier).getPlayer);
+final getAudioPlayer =
+    Provider((ref) => ref.watch(playerControllerProvider.notifier).getPlayer);
 
 class PlayerController extends StateNotifier<bool> {
   final ExploreController _exploreController;
-  final _player = AudioPlayer();
-
+  final _player = AudioPlayer(
+    handleInterruptions: false,
+    handleAudioSessionActivation: false,
+  );
+  final playlist = ConcatenatingAudioSource(
+    useLazyPreparation: true,
+    shuffleOrder: DefaultShuffleOrder(
+      random: Random(),
+    ),
+    children: [],
+  );
   PlayerController({required ExploreController exploreController})
       : _exploreController = exploreController,
         super(false);
 
   AudioPlayer get getPlayer => _player;
+  ConcatenatingAudioSource get getplaylist => playlist;
 
   Stream<PositionData> get positionDataStream =>
       Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
@@ -35,31 +48,11 @@ class PlayerController extends StateNotifier<bool> {
           (position, bufferedPosition, duration) => PositionData(
               position, bufferedPosition, duration ?? Duration.zero));
 
-  void initializePlayer() async {
-    _player.playbackEventStream.listen((event) {},
-        onError: (Object e, StackTrace stackTrace) {
-      if (kDebugMode) {
-        print('A stream error occurred: $e');
-      }
-    });
-    try {} on PlayerException catch (e) {
-      if (kDebugMode) {
-        print("Error loading audio source: $e");
-      }
-    }
-  }
-
   void setSong({required SongModel song}) async {
     try {
       final songsObjects =
           await _exploreController.getSongRecommendationData(song.id);
 
-      print(songsObjects);
-      final playlist = ConcatenatingAudioSource(
-        useLazyPreparation: true,
-        shuffleOrder: DefaultShuffleOrder(),
-        children: [],
-      );
       songsObjects.insert(0, song);
 
       for (var i = 0; i < songsObjects.length; i++) {
@@ -97,7 +90,36 @@ class PlayerController extends StateNotifier<bool> {
 
       await _player.setAudioSource(playlist,
           preload: kIsWeb || defaultTargetPlatform != TargetPlatform.linux);
+
+      await _player.play();
     } on PlayerException catch (e) {
+      // iOS/macOS: maps to NSError.code
+      // Android: maps to ExoPlayerException.type
+      // Web: maps to MediaError.code
+      print("Error code: ${e.code}");
+      // iOS/macOS: maps to NSError.localizedDescription
+      // Android: maps to ExoPlaybackException.getMessage()
+      // Web: a generic message
+      print("Error message: ${e.message}");
+    } on PlayerInterruptedException catch (e) {
+      // This call was interrupted since another audio source was loaded or the
+      // player was stopped or disposed before this audio source could complete
+      // loading.
+      print("Connection aborted: ${e.message}");
+    } catch (e) {
+      // Fallback for all errors
+      print(e);
+    }
+  }
+
+  void initializePlayer() async {
+    _player.playbackEventStream.listen((event) {},
+        onError: (Object e, StackTrace stackTrace) {
+      if (kDebugMode) {
+        print('A stream error occurred: $e');
+      }
+    });
+    try {} on PlayerException catch (e) {
       if (kDebugMode) {
         print("Error loading audio source: $e");
       }

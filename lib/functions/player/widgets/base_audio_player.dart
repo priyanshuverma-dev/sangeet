@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:savaan/frame/commons.dart';
 
 import 'package:savaan/functions/player/controllers/player_controller.dart';
 import 'package:savaan/functions/player/widgets/common.dart';
@@ -84,9 +85,24 @@ class _BaseAudioPlayerState extends ConsumerState<BaseAudioPlayer> {
                       ],
                     ),
                     IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.playlist_add_check,
+                      onPressed: () {
+                        if (ref.watch(appScreenConfigProvider) ==
+                            Screens.explore) {
+                          return ref
+                              .watch(appScreenConfigProvider.notifier)
+                              .goto(screen: Screens.playlist);
+                        }
+                        if (ref.watch(appScreenConfigProvider) ==
+                            Screens.playlist) {
+                          return ref
+                              .watch(appScreenConfigProvider.notifier)
+                              .goto(screen: Screens.explore);
+                        }
+                      },
+                      icon: Icon(
+                        ref.watch(appScreenConfigProvider) == Screens.explore
+                            ? Icons.playlist_play_rounded
+                            : Icons.playlist_add_check_rounded,
                       ),
                     ),
                   ],

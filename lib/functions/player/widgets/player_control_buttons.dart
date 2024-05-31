@@ -15,7 +15,9 @@ class PlayerControllerButtons extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         IconButton(
-          icon: const Icon(Icons.volume_up),
+          icon: const Icon(
+            Icons.volume_up,
+          ),
           onPressed: () {
             showSliderDialog(
               context: context,
@@ -29,6 +31,7 @@ class PlayerControllerButtons extends StatelessWidget {
             );
           },
         ),
+
         StreamBuilder<PlayerState>(
           stream: player.playerStateStream,
           builder: (context, snapshot) {
@@ -39,28 +42,40 @@ class PlayerControllerButtons extends StatelessWidget {
                 processingState == ProcessingState.buffering) {
               return Container(
                 margin: const EdgeInsets.all(8.0),
-                child: const CircularProgressIndicator(),
+                child: const CircularProgressIndicator(
+                  strokeCap: StrokeCap.round,
+                  strokeAlign: -4,
+                ),
               );
             } else if (playing != true) {
               return IconButton(
-                icon: const Icon(Icons.play_arrow),
+                icon: const Icon(
+                  Icons.play_arrow,
+                ),
                 onPressed: player.play,
               );
             } else if (processingState != ProcessingState.completed) {
               return IconButton(
-                icon: const Icon(Icons.pause),
+                icon: const Icon(
+                  Icons.pause,
+                ),
                 onPressed: player.pause,
               );
             } else {
               return IconButton(
-                icon: const Icon(Icons.replay),
+                icon: const Icon(
+                  Icons.replay,
+                ),
                 onPressed: () => player.seek(Duration.zero),
               );
             }
           },
         ),
+
         IconButton(
-          icon: const Icon(Icons.skip_next_rounded),
+          icon: const Icon(
+            Icons.skip_next_rounded,
+          ),
           onPressed: () => player.seekToNext(),
         ),
         // Opens speed slider dialog
@@ -68,7 +83,9 @@ class PlayerControllerButtons extends StatelessWidget {
           stream: player.speedStream,
           builder: (context, snapshot) => IconButton(
             icon: Text("${snapshot.data?.toStringAsFixed(1)}x",
-                style: const TextStyle(fontWeight: FontWeight.bold)),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                )),
             onPressed: () {
               showSliderDialog(
                 context: context,

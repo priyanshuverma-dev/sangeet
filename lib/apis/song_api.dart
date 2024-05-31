@@ -8,25 +8,23 @@ import 'package:savaan/core/core.dart';
 import 'package:savaan/models/song_model.dart';
 import 'package:http/http.dart' as http;
 
-final exploreAPIProvider = Provider((ref) {
-  return ExploreAPI();
+final songAPIProvider = Provider((ref) {
+  return SongAPI();
 });
 
-abstract class IExploreAPI {
+abstract class ISongAPI {
   FutureEither<List<SongModel>> fetchInitData();
   FutureEither<List<SongModel>> fetchSearchData({required String query});
   FutureEither<List<SongModel>> fetchSongRecommedationData(
       {required String id});
 }
 
-class ExploreAPI extends IExploreAPI {
+class SongAPI extends ISongAPI {
   @override
   FutureEither<List<SongModel>> fetchInitData() async {
     try {
       final uri = Uri.https(Constants.serverUrl, 'api/search/songs',
           {"query": "Bollywood", "limit": "24"});
-
-      print("URL FETCHED: $uri");
 
       final res = await http.get(uri);
       if (res.statusCode != 200) throw Error();
@@ -77,7 +75,8 @@ class ExploreAPI extends IExploreAPI {
   FutureEither<List<SongModel>> fetchSongRecommedationData(
       {required String id}) async {
     try {
-      final uri = Uri.https(Constants.serverUrl, 'api/songs/$id/suggestions');
+      final uri = Uri.https(
+          Constants.serverUrl, 'api/songs/$id/suggestions', {"limit": "32"});
 
       final res = await http.get(uri);
       if (res.statusCode != 200) throw Error();
