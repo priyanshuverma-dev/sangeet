@@ -14,28 +14,31 @@ Welcome to the Saavn Music Player for Windows, an open-source desktop applicatio
 
 To install the Saavn Music Player for Windows, follow these steps:
 
-1. **Clone the Repository**:
+1. **Download the Latest Release**:
+   - Go to the [Releases](https://github.com/priyanshuverma-dev/saavn/releases) page and download the latest version for Windows.
+
+2. **Clone the Repository (optional for development)**:
    ```sh
    git clone https://github.com/priyanshuverma-dev/saavn.git
    ```
 
-2. **Navigate to the Project Directory**:
+3. **Navigate to the Project Directory (optional for development)**:
    ```sh
    cd saavn
    ```
 
-3. **Install Dependencies**:
+4. **Install Dependencies (optional for development)**:
    Make sure you have Flutter installed. Then, run:
    ```sh
    flutter pub get
    ```
 
-4. **Build the Application**:
+5. **Build the Application (optional for development)**:
    ```sh
    flutter build windows
    ```
 
-5. **Run the Application**:
+6. **Run the Application (optional for development)**:
    ```sh
    flutter run -d windows
    ```
@@ -46,34 +49,7 @@ Once installed, you can start using the music player to search for songs, create
 
 ## Contributing
 
-We welcome contributions to the Saavn Music Player project! To contribute:
-
-1. **Fork the Repository**:
-   Click on the "Fork" button at the top right of this repository's page to create a copy of the repository under your own GitHub account.
-
-2. **Clone Your Fork**:
-   ```sh
-   git clone https://github.com/YOUR_GITHUB_USERNAME/saavn.git
-   ```
-
-3. **Create a Branch**:
-   ```sh
-   git checkout -b feature/your-feature-name
-   ```
-
-4. **Make Your Changes**: Implement your feature or fix a bug.
-
-5. **Commit Your Changes**:
-   ```sh
-   git commit -m "Add feature/fix bug"
-   ```
-
-6. **Push to Your Branch**:
-   ```sh
-   git push origin feature/your-feature-name
-   ```
-
-7. **Create a Pull Request**: Go to the original repository and click on "New Pull Request" to submit your changes for review.
+We welcome contributions to the Saavn Music Player project! To contribute, please read the [Contributing Guide](CONTRIBUTING.md).
 
 ## License
 
