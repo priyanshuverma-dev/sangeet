@@ -1,11 +1,17 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:savaan/apis/artist_api.dart';
 import 'package:savaan/apis/song_api.dart';
+import 'package:savaan/models/artists/sub_artist_model.dart';
+import 'package:savaan/models/explore_model.dart';
 import 'package:savaan/models/song_model.dart';
 
 final exploreControllerProvider =
     StateNotifierProvider<ExploreController, bool>((ref) {
-  return ExploreController(songAPI: ref.watch(songAPIProvider));
+  return ExploreController(
+    songAPI: ref.watch(songAPIProvider),
+    artistAPI: ref.watch(artistAPIProvider),
+  );
 });
 
 final getExploreDataProvider = FutureProvider((ref) {
@@ -15,21 +21,32 @@ final getExploreDataProvider = FutureProvider((ref) {
 
 class ExploreController extends StateNotifier<bool> {
   final SongAPI _songAPI;
-  ExploreController({required SongAPI songAPI})
+  final ArtistAPI _artistAPI;
+  ExploreController({required SongAPI songAPI, required ArtistAPI artistAPI})
       : _songAPI = songAPI,
+        _artistAPI = artistAPI,
         super(false);
 
-  Future<List<SongModel>> getExploreData() async {
+  Future<ExploreModel> getExploreData() async {
     List<SongModel> songs = [];
-    final res = await _songAPI.fetchInitData();
+    List<SubArtistModel> artists = [];
+    final fetchedsongs = await _songAPI.fetchInitData();
+    final fetchedArtists = await _artistAPI.fetchInitArtists();
 
-    res.fold((l) {
-      if (kDebugMode) {
-        print("INIT EXPLORE DATA ERROR: ${l.message}");
-      }
+    fetchedsongs.fold((l) {
       throw Error.throwWithStackTrace(l.message, l.stackTrace);
     }, (r) => songs = r);
-    return songs;
+
+    fetchedArtists.fold((l) {
+      throw Error.throwWithStackTrace(l.message, l.stackTrace);
+    }, (r) => artists = r);
+
+    final data = ExploreModel(
+      songs: songs,
+      artists: artists,
+    );
+
+    return data;
   }
 
   Future<List<SongModel>> getSongRecommendationData(String id) async {

@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:savaan/core/core.dart';
@@ -14,14 +17,7 @@ class ExploreView extends ConsumerStatefulWidget {
 class _ExploreViewState extends ConsumerState<ExploreView> {
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
-      physics: AlwaysScrollableScrollPhysics(),
-      child: Column(
-        children: [
-          ExploreList(),
-        ],
-      ),
-    );
+    return const ExploreList();
   }
 }
 
@@ -33,31 +29,127 @@ class ExploreList extends ConsumerWidget {
     final player = ref.read(getAudioPlayer);
 
     return ref.watch(getExploreDataProvider).when(
-          data: (songs) {
-            return ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: songs.length,
-              itemBuilder: (context, index) {
-                final song = songs[index];
-                return ListTile(
-                    title: Text(song.name),
-                    subtitle: Text("${song.label} - ${song.year}"),
-                    leading: CircleAvatar(
-                      radius: 25,
-                      backgroundColor: Theme.of(context).primaryColorDark,
-                      foregroundImage: NetworkImage(song.image[0].url),
+          data: (data) {
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // SONGS LIST //
+                  const Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Text(
+                      'Trending Songs.',
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    onTap: () async {
-                      if (player.audioSource?.sequence[0].tag.id == song.id) {
-                        return;
-                      }
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 10),
+                    child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      itemCount: data.songs.length,
+                      itemBuilder: (context, index) {
+                        final song = data.songs[index];
+                        return ListTile(
+                            title: Text(song.name),
+                            subtitle: Text("${song.label} - ${song.year}"),
+                            leading: CircleAvatar(
+                              radius: 25,
+                              backgroundColor:
+                                  Theme.of(context).primaryColorDark,
+                              foregroundImage: NetworkImage(song.image[0].url),
+                            ),
+                            onTap: () async {
+                              if (player.audioSource?.sequence[0].tag.id ==
+                                  song.id) {
+                                return;
+                              }
 
-                      ref
-                          .read(playerControllerProvider.notifier)
-                          .setSong(song: song);
-                    });
-              },
+                              ref
+                                  .read(playerControllerProvider.notifier)
+                                  .setSong(song: song);
+                            });
+                      },
+                    ),
+                  ),
+
+                  // ARTISTS GRID //
+
+                  const Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Text(
+                      'Trending Artists.',
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 10),
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 6,
+                        crossAxisSpacing: 4,
+                        mainAxisSpacing: 4,
+                      ),
+                      shrinkWrap: true,
+                      itemCount: data.artists.length,
+                      itemBuilder: (context, index) {
+                        final artist = data.artists[index];
+                        return InkWell(
+                          onTap: () {
+                            log("clicked");
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              CircleAvatar(
+                                radius: 40,
+                                backgroundColor:
+                                    Theme.of(context).primaryColorDark,
+                                foregroundImage:
+                                    NetworkImage(artist.image[0].url),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                artist.name,
+                                softWrap: false,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Theme.of(context)
+                                      .listTileTheme
+                                      .subtitleTextStyle
+                                      ?.color,
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                artist.role,
+                                softWrap: false,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Theme.of(context)
+                                      .listTileTheme
+                                      .subtitleTextStyle
+                                      ?.color,
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
             );
           },
           error: (error, stackTrace) {
