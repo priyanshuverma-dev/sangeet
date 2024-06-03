@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:savaan/apis/artist_api.dart';
-import 'package:savaan/apis/song_api.dart';
-import 'package:savaan/models/artists/sub_artist_model.dart';
-import 'package:savaan/models/explore_model.dart';
-import 'package:savaan/models/song_model.dart';
+import 'package:saavn/apis/artist_api.dart';
+import 'package:saavn/apis/song_api.dart';
+import 'package:saavn/models/artists/sub_artist_model.dart';
+import 'package:saavn/models/explore_model.dart';
+import 'package:saavn/models/song_model.dart';
 
 final exploreControllerProvider =
     StateNotifierProvider<ExploreController, bool>((ref) {

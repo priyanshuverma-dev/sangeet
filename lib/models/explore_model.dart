@@ -1,5 +1,5 @@
-import 'package:savaan/models/artists/sub_artist_model.dart';
-import 'package:savaan/models/song_model.dart';
+import 'package:saavn/models/artists/sub_artist_model.dart';
+import 'package:saavn/models/song_model.dart';
 
 class ExploreModel {
   final List<SongModel> songs;

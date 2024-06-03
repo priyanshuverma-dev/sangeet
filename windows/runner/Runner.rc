@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "io.github.priyanshuverma-dev" "\0"
-            VALUE "FileDescription", "savaan" "\0"
+            VALUE "FileDescription", "Saavn Music" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "savaan" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2024 io.github.priyanshuverma-dev. All rights reserved." "\0"
-            VALUE "OriginalFilename", "savaan.exe" "\0"
-            VALUE "ProductName", "savaan" "\0"
+            VALUE "InternalName", "Saavn" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 Priyanshu Verma. All rights reserved." "\0"
+            VALUE "OriginalFilename", "Saavn.exe" "\0"
+            VALUE "ProductName", "Saavn" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

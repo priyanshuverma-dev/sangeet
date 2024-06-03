@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:savaan/functions/explore/views/explore_view.dart';
-import 'package:savaan/functions/player/views/playlist_view.dart';
+import 'package:saavn/functions/explore/views/explore_view.dart';
+import 'package:saavn/functions/player/views/playlist_view.dart';
 
 final appScreenConfigProvider =
     StateNotifierProvider<AppScreenConfig, Screens>((ref) {

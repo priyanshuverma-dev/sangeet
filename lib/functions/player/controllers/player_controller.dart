@@ -4,10 +4,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:savaan/functions/explore/controllers/explore_controller.dart';
-import 'package:savaan/functions/player/widgets/common.dart';
-import 'package:savaan/models/helpers/download_quality.dart';
-import 'package:savaan/models/song_model.dart';
+import 'package:saavn/functions/explore/controllers/explore_controller.dart';
+import 'package:saavn/functions/player/widgets/common.dart';
+import 'package:saavn/models/helpers/download_quality.dart';
+import 'package:saavn/models/song_model.dart';
 
 final playerControllerProvider =
     StateNotifierProvider<PlayerController, bool>((ref) {
@@ -72,19 +72,25 @@ class PlayerController extends StateNotifier<bool> {
       // iOS/macOS: maps to NSError.code
       // Android: maps to ExoPlayerException.type
       // Web: maps to MediaError.code
-      print("Error code: ${e.code}");
-      // iOS/macOS: maps to NSError.localizedDescription
-      // Android: maps to ExoPlaybackException.getMessage()
-      // Web: a generic message
-      print("Error message: ${e.message}");
+      if (kDebugMode) {
+        print("Error code: ${e.code}");
+        // iOS/macOS: maps to NSError.localizedDescription
+        // Android: maps to ExoPlaybackException.getMessage()
+        // Web: a generic message
+        print("Error message: ${e.message}");
+      }
     } on PlayerInterruptedException catch (e) {
       // This call was interrupted since another audio source was loaded or the
       // player was stopped or disposed before this audio source could complete
       // loading.
-      print("Connection aborted: ${e.message}");
+      if (kDebugMode) {
+        print("Connection aborted: ${e.message}");
+      }
     } catch (e) {
       // Fallback for all errors
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 
@@ -109,19 +115,25 @@ class PlayerController extends StateNotifier<bool> {
       // iOS/macOS: maps to NSError.code
       // Android: maps to ExoPlayerException.type
       // Web: maps to MediaError.code
-      print("Error code: ${e.code}");
-      // iOS/macOS: maps to NSError.localizedDescription
-      // Android: maps to ExoPlaybackException.getMessage()
-      // Web: a generic message
-      print("Error message: ${e.message}");
+      if (kDebugMode) {
+        print("Error code: ${e.code}");
+        // iOS/macOS: maps to NSError.localizedDescription
+        // Android: maps to ExoPlaybackException.getMessage()
+        // Web: a generic message
+        print("Error message: ${e.message}");
+      }
     } on PlayerInterruptedException catch (e) {
       // This call was interrupted since another audio source was loaded or the
       // player was stopped or disposed before this audio source could complete
       // loading.
-      print("Connection aborted: ${e.message}");
+      if (kDebugMode) {
+        print("Connection aborted: ${e.message}");
+      }
     } catch (e) {
       // Fallback for all errors
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 

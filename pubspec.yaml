@@ -1,5 +1,5 @@
-name: savaan
-description: "A new Flutter project."
+name: saavn
+description: "A Music App."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -61,11 +61,15 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
   flutter_launcher_icons: ^0.13.1
+
+
 flutter_launcher_icons:
   windows:
     generate: true
     image_path: "assets/music.png"
     icon_size: 48 # min:48, max:256, default: 48
+
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

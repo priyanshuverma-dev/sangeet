@@ -3,9 +3,9 @@ import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:savaan/core/constants.dart';
-import 'package:savaan/core/core.dart';
-import 'package:savaan/models/song_model.dart';
+import 'package:saavn/core/constants.dart';
+import 'package:saavn/core/core.dart';
+import 'package:saavn/models/song_model.dart';
 import 'package:http/http.dart' as http;
 
 final songAPIProvider = Provider((ref) {

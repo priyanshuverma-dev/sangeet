@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:savaan/models/helpers/song_image.dart';
+import 'package:saavn/models/helpers/song_image.dart';
 
 class SubArtistModel {
   final String id;

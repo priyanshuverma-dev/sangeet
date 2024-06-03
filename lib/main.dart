@@ -2,7 +2,7 @@ import 'package:audio_session/audio_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:savaan/frame/home.dart';
+import 'package:saavn/frame/home.dart';
 import 'package:system_theme/system_theme.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -23,7 +23,7 @@ void main() async {
 
   WindowOptions windowOptions = const WindowOptions(
     center: true,
-    title: "Savaan Music Desktop",
+    title: "Saavn Music Desktop",
   );
   windowManager.waitUntilReadyToShow(windowOptions, () async {
     await windowManager.show();
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Savaan',
+      title: 'Saavn Music',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,

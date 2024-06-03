@@ -3,8 +3,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:savaan/models/helpers/song_image.dart';
-import 'package:savaan/models/song_model.dart';
+import 'package:saavn/models/helpers/song_image.dart';
+import 'package:saavn/models/song_model.dart';
 
 class ArtistModel {
   final String id;

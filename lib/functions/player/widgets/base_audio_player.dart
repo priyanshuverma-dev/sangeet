@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:savaan/frame/commons.dart';
+import 'package:saavn/frame/commons.dart';
 
-import 'package:savaan/functions/player/controllers/player_controller.dart';
-import 'package:savaan/functions/player/widgets/common.dart';
-import 'package:savaan/functions/player/widgets/player_control_buttons.dart';
+import 'package:saavn/functions/player/controllers/player_controller.dart';
+import 'package:saavn/functions/player/widgets/common.dart';
+import 'package:saavn/functions/player/widgets/player_control_buttons.dart';
 
-import 'package:savaan/models/song_model.dart';
+import 'package:saavn/models/song_model.dart';
 
 // FOR APPBAR WIDGET
 PreferredSizeWidget getBasePlayerAppbar(BuildContext context) {

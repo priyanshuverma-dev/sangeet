@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:savaan/functions/player/controllers/player_controller.dart';
+import 'package:saavn/functions/player/controllers/player_controller.dart';
 
-import 'package:savaan/models/song_model.dart';
+import 'package:saavn/models/song_model.dart';
 
 class PlaylistView extends ConsumerStatefulWidget {
   const PlaylistView({super.key});
@@ -92,10 +92,7 @@ class _PlaylistViewState extends ConsumerState<PlaylistView> {
               final state = snapshot.data;
               final sequence = state?.sequence ?? [];
 
-              print("INDEX: #${state?.currentIndex}");
-              print("PLAYLIST: #${playlist.length}");
               if (state?.currentIndex == playlist.length - 1) {
-                print("FETCH MORE SONGS");
                 playlist.removeRange(0, 10);
                 final song = sequence[state!.currentIndex].tag as SongModel;
                 ref

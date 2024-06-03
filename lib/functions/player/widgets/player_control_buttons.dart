@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:savaan/functions/player/widgets/common.dart';
+import 'package:saavn/functions/player/widgets/common.dart';
 
 class PlayerControllerButtons extends StatelessWidget {
   final AudioPlayer player;
