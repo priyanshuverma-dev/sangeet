@@ -7,7 +7,6 @@ import 'package:rxdart/rxdart.dart';
 import 'package:savaan/functions/explore/controllers/explore_controller.dart';
 import 'package:savaan/functions/player/widgets/common.dart';
 import 'package:savaan/models/helpers/download_quality.dart';
-import 'package:savaan/models/song_metadata.dart';
 import 'package:savaan/models/song_model.dart';
 
 final playerControllerProvider =
@@ -48,7 +47,7 @@ class PlayerController extends StateNotifier<bool> {
           (position, bufferedPosition, duration) => PositionData(
               position, bufferedPosition, duration ?? Duration.zero));
 
-  void setSong({required SongModel song}) async {
+  Future<void> setSong({required SongModel song}) async {
     try {
       final songsObjects =
           await _exploreController.getSongRecommendationData(song.id);
@@ -62,30 +61,7 @@ class PlayerController extends StateNotifier<bool> {
             .toList()[0]
             .url;
 
-        playlist.add(AudioSource.uri(Uri.parse(uri),
-            tag: SongMetadata(
-              title: songsObjects[i].name,
-              album: songsObjects[i].album.name,
-              albumArtist: "Savaan",
-              artist: "Savan",
-              thumbnail: songsObjects[i].image[2].url,
-              copyright: songsObjects[i].copyright,
-              downloadUrl: songsObjects[i].downloadUrl,
-              duration: songsObjects[i].duration,
-              explicitContent: songsObjects[i].explicitContent,
-              hasLyrics: songsObjects[i].hasLyrics,
-              id: songsObjects[i].id,
-              image: songsObjects[i].image,
-              label: songsObjects[i].label,
-              language: songsObjects[i].language,
-              lyricsId: songsObjects[i].lyricsId,
-              name: songsObjects[i].name,
-              playCount: songsObjects[i].playCount,
-              releaseDate: songsObjects[i].releaseDate,
-              type: songsObjects[i].type,
-              url: songsObjects[i].url,
-              year: songsObjects[i].year,
-            )));
+        playlist.add(AudioSource.uri(Uri.parse(uri), tag: songsObjects[i]));
       }
 
       await _player.setAudioSource(playlist,
@@ -112,17 +88,46 @@ class PlayerController extends StateNotifier<bool> {
     }
   }
 
-  void initializePlayer() async {
-    _player.playbackEventStream.listen((event) {},
-        onError: (Object e, StackTrace stackTrace) {
-      if (kDebugMode) {
-        print('A stream error occurred: $e');
+  Future<void> loadMoreSongs({required SongModel song}) async {
+    try {
+      final songsObjects =
+          await _exploreController.getSongRecommendationData(song.id);
+
+      for (var i = 0; i < songsObjects.length; i++) {
+        final uri = songsObjects[i]
+            .downloadUrl
+            .where((element) => element.quality == SongQualityType.high)
+            .toList()[0]
+            .url;
+
+        playlist.add(AudioSource.uri(Uri.parse(uri), tag: songsObjects[i]));
       }
-    });
-    try {} on PlayerException catch (e) {
-      if (kDebugMode) {
-        print("Error loading audio source: $e");
-      }
+
+      // await _player.setAudioSource(playlist,
+      //     preload: kIsWeb || defaultTargetPlatform != TargetPlatform.linux);
+    } on PlayerException catch (e) {
+      // iOS/macOS: maps to NSError.code
+      // Android: maps to ExoPlayerException.type
+      // Web: maps to MediaError.code
+      print("Error code: ${e.code}");
+      // iOS/macOS: maps to NSError.localizedDescription
+      // Android: maps to ExoPlaybackException.getMessage()
+      // Web: a generic message
+      print("Error message: ${e.message}");
+    } on PlayerInterruptedException catch (e) {
+      // This call was interrupted since another audio source was loaded or the
+      // player was stopped or disposed before this audio source could complete
+      // loading.
+      print("Connection aborted: ${e.message}");
+    } catch (e) {
+      // Fallback for all errors
+      print(e);
     }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _player.dispose();
   }
 }

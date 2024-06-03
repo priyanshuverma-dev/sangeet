@@ -9,7 +9,7 @@ import 'package:savaan/functions/player/controllers/player_controller.dart';
 import 'package:savaan/functions/player/widgets/common.dart';
 import 'package:savaan/functions/player/widgets/player_control_buttons.dart';
 
-import 'package:savaan/models/song_metadata.dart';
+import 'package:savaan/models/song_model.dart';
 
 // FOR APPBAR WIDGET
 PreferredSizeWidget getBasePlayerAppbar(BuildContext context) {
@@ -41,7 +41,8 @@ class _BaseAudioPlayerState extends ConsumerState<BaseAudioPlayer> {
         if (state?.sequence.isEmpty ?? true) {
           return const SizedBox();
         }
-        final metadata = state!.currentSource!.tag as SongMetadata;
+
+        final metadata = state!.currentSource!.tag as SongModel;
 
         return Container(
           decoration: const BoxDecoration(
@@ -79,7 +80,7 @@ class _BaseAudioPlayerState extends ConsumerState<BaseAudioPlayer> {
                                 fontSize: 16,
                               ),
                             ),
-                            Text(metadata.album),
+                            Text(metadata.album.name),
                           ],
                         ),
                       ],
