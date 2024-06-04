@@ -13,11 +13,28 @@ class HomeFrame extends ConsumerStatefulWidget {
 class _HomeFrameState extends ConsumerState<HomeFrame> {
   @override
   Widget build(BuildContext context) {
-    final content = ref.watch(appScreenConfigProvider).screen;
+    final screen = ref.watch(appScreenConfigProvider).screen;
 
     return Scaffold(
-      appBar: getBasePlayerAppbar(context),
-      body: content,
+      appBar: AppBar(
+        title: Text(screen.name),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.settings),
+          ),
+        ],
+      ),
+      body: screen.view,
+      bottomSheet: BottomSheet(
+        onClosing: () {},
+        elevation: 0,
+        builder: (context) {
+          return const BaseAudioPlayer();
+        },
+      ),
     );
   }
 }
