@@ -51,9 +51,10 @@ class _PlaylistViewState extends ConsumerState<PlaylistView> {
                     return IconButton(
                       icon: icons[index],
                       onPressed: () {
-                        player.setLoopMode(cycleModes[
-                            (cycleModes.indexOf(loopMode) + 1) %
-                                cycleModes.length]);
+                        player.setLoopMode(
+                          cycleModes[(cycleModes.indexOf(loopMode) + 1) %
+                              cycleModes.length],
+                        );
                       },
                     );
                   },
@@ -122,7 +123,11 @@ class _PlaylistViewState extends ConsumerState<PlaylistView> {
                       playlist.removeAt(i);
                     },
                     child: ListTile(
-                      title: Text(song.name),
+                      tileColor: i == state!.currentIndex
+                          ? Theme.of(context).primaryColorLight.withOpacity(.4)
+                          : null,
+                      title: Text(
+                          "${song.name} ${i == state.currentIndex ? "(Playing)" : ""}"),
                       subtitle: Text("${song.label} - ${song.year}"),
                       leading: CircleAvatar(
                         radius: 25,
