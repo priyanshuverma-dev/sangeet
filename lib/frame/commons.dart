@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saavn/functions/explore/views/explore_view.dart';
 import 'package:saavn/functions/player/views/playlist_view.dart';
+import 'package:saavn/functions/settings/views/settings_view.dart';
 
 final appScreenConfigProvider =
     StateNotifierProvider<AppScreenConfig, Screens>((ref) {
@@ -19,6 +20,12 @@ enum Screens {
     AppScreen(
       name: "Playlists",
       view: PlaylistView(),
+    ),
+  ),
+  settings(
+    AppScreen(
+      name: "Settings",
+      view: SettingsView(),
     ),
   );
 

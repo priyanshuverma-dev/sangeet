@@ -11,6 +11,17 @@ class HomeFrame extends ConsumerStatefulWidget {
 }
 
 class _HomeFrameState extends ConsumerState<HomeFrame> {
+  void onPressSettings() {
+    if (ref.watch(appScreenConfigProvider) == Screens.settings) {
+      return ref
+          .watch(appScreenConfigProvider.notifier)
+          .goto(screen: Screens.explore);
+    }
+    return ref
+        .watch(appScreenConfigProvider.notifier)
+        .goto(screen: Screens.settings);
+  }
+
   @override
   Widget build(BuildContext context) {
     final screen = ref.watch(appScreenConfigProvider).screen;
@@ -21,9 +32,12 @@ class _HomeFrameState extends ConsumerState<HomeFrame> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.settings),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              onPressed: onPressSettings,
+              icon: const Icon(Icons.settings),
+            ),
           ),
         ],
       ),
