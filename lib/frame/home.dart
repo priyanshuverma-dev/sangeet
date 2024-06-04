@@ -28,13 +28,7 @@ class _HomeFrameState extends ConsumerState<HomeFrame> {
         ],
       ),
       body: screen.view,
-      bottomSheet: BottomSheet(
-        onClosing: () {},
-        elevation: 0,
-        builder: (context) {
-          return const BaseAudioPlayer();
-        },
-      ),
+      bottomNavigationBar: const BaseAudioPlayer(),
     );
   }
 }
