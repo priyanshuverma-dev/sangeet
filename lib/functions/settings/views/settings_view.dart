@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:saavn/functions/settings/widgets/widgets.dart';
 
 class SettingsView extends ConsumerWidget {
   const SettingsView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container();
+    return const Column(
+      children: [
+        PlaybackQualitySetting(),
+      ],
+    );
   }
 }
