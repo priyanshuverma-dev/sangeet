@@ -6,13 +6,14 @@ import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:saavn/functions/explore/controllers/explore_controller.dart';
 import 'package:saavn/functions/player/widgets/common.dart';
-import 'package:saavn/models/helpers/download_quality.dart';
+import 'package:saavn/functions/settings/controllers/settings_controller.dart';
 import 'package:saavn/models/song_model.dart';
 
 final playerControllerProvider =
     StateNotifierProvider<PlayerController, bool>((ref) {
   return PlayerController(
     exploreController: ref.watch(exploreControllerProvider.notifier),
+    settingsController: ref.watch(settingsControllerProvider.notifier),
   );
 });
 
@@ -21,10 +22,9 @@ final getAudioPlayer =
 
 class PlayerController extends StateNotifier<bool> {
   final ExploreController _exploreController;
-  final _player = AudioPlayer(
-    handleInterruptions: false,
-    handleAudioSessionActivation: false,
-  );
+  final SettingsController _settingsController;
+
+  final _player = AudioPlayer();
   final playlist = ConcatenatingAudioSource(
     useLazyPreparation: true,
     shuffleOrder: DefaultShuffleOrder(
@@ -32,8 +32,12 @@ class PlayerController extends StateNotifier<bool> {
     ),
     children: [],
   );
-  PlayerController({required ExploreController exploreController})
+
+  PlayerController(
+      {required ExploreController exploreController,
+      required SettingsController settingsController})
       : _exploreController = exploreController,
+        _settingsController = settingsController,
         super(false);
 
   AudioPlayer get getPlayer => _player;
@@ -49,6 +53,8 @@ class PlayerController extends StateNotifier<bool> {
 
   Future<void> setSong({required SongModel song}) async {
     try {
+      await playlist.clear();
+      final quality = await _settingsController.getSongQuality();
       final songsObjects =
           await _exploreController.getSongRecommendationData(song.id);
 
@@ -57,7 +63,7 @@ class PlayerController extends StateNotifier<bool> {
       for (var i = 0; i < songsObjects.length; i++) {
         final uri = songsObjects[i]
             .downloadUrl
-            .where((element) => element.quality == SongQualityType.high)
+            .where((element) => element.quality == quality)
             .toList()[0]
             .url;
 
@@ -96,21 +102,19 @@ class PlayerController extends StateNotifier<bool> {
 
   Future<void> loadMoreSongs({required SongModel song}) async {
     try {
+      final quality = await _settingsController.getSongQuality();
       final songsObjects =
           await _exploreController.getSongRecommendationData(song.id);
 
       for (var i = 0; i < songsObjects.length; i++) {
         final uri = songsObjects[i]
             .downloadUrl
-            .where((element) => element.quality == SongQualityType.high)
+            .where((element) => element.quality == quality)
             .toList()[0]
             .url;
 
         playlist.add(AudioSource.uri(Uri.parse(uri), tag: songsObjects[i]));
       }
-
-      // await _player.setAudioSource(playlist,
-      //     preload: kIsWeb || defaultTargetPlatform != TargetPlatform.linux);
     } on PlayerException catch (e) {
       // iOS/macOS: maps to NSError.code
       // Android: maps to ExoPlayerException.type

@@ -11,13 +11,38 @@ class HomeFrame extends ConsumerStatefulWidget {
 }
 
 class _HomeFrameState extends ConsumerState<HomeFrame> {
+  void onPressSettings() {
+    if (ref.watch(appScreenConfigProvider) == Screens.settings) {
+      return ref
+          .watch(appScreenConfigProvider.notifier)
+          .goto(screen: Screens.explore);
+    }
+    return ref
+        .watch(appScreenConfigProvider.notifier)
+        .goto(screen: Screens.settings);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final content = ref.watch(appScreenConfigProvider).screen;
+    final screen = ref.watch(appScreenConfigProvider).screen;
 
     return Scaffold(
-      appBar: getBasePlayerAppbar(context),
-      body: content,
+      appBar: AppBar(
+        title: Text(screen.name),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              onPressed: onPressSettings,
+              icon: const Icon(Icons.settings),
+            ),
+          ),
+        ],
+      ),
+      body: screen.view,
+      bottomNavigationBar: const BaseAudioPlayer(),
     );
   }
 }
