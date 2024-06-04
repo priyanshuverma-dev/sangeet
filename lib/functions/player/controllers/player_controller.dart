@@ -49,6 +49,8 @@ class PlayerController extends StateNotifier<bool> {
 
   Future<void> setSong({required SongModel song}) async {
     try {
+      await playlist.clear();
+
       final songsObjects =
           await _exploreController.getSongRecommendationData(song.id);
 
