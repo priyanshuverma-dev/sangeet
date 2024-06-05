@@ -15,6 +15,7 @@ final songAPIProvider = Provider((ref) {
 abstract class ISongAPI {
   FutureEither<List<SongModel>> fetchInitData();
   FutureEither<List<SongModel>> fetchSearchData({required String query});
+
   FutureEither<List<SongModel>> fetchSongRecommedationData(
       {required String id});
 }

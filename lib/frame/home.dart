@@ -22,6 +22,17 @@ class _HomeFrameState extends ConsumerState<HomeFrame> {
         .goto(screen: Screens.settings);
   }
 
+  void onPressSearch() {
+    if (ref.watch(appScreenConfigProvider) == Screens.search) {
+      return ref
+          .watch(appScreenConfigProvider.notifier)
+          .goto(screen: Screens.explore);
+    }
+    return ref
+        .watch(appScreenConfigProvider.notifier)
+        .goto(screen: Screens.search);
+  }
+
   @override
   Widget build(BuildContext context) {
     final screen = ref.watch(appScreenConfigProvider).screen;
@@ -32,6 +43,24 @@ class _HomeFrameState extends ConsumerState<HomeFrame> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              onPressed: onPressSearch,
+              icon: const Stack(
+                children: [
+                  Icon(Icons.search),
+                  Positioned(
+                    // draw a red marble
+                    top: 0.0,
+                    right: 0.0,
+                    child: Icon(Icons.brightness_1,
+                        size: 8.0, color: Colors.redAccent),
+                  )
+                ],
+              ),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: IconButton(
