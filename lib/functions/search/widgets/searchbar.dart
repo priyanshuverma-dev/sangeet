@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class BaseSearchBar extends StatelessWidget {
   final TextEditingController controller;
   final void Function(String)? onSubmit;
-  final void Function(String)? onChanged;
+  final void Function()? onPressed;
 
   const BaseSearchBar({
     super.key,
     required this.controller,
     required this.onSubmit,
-    required this.onChanged,
+    required this.onPressed,
   });
 
   @override
@@ -18,7 +18,7 @@ class BaseSearchBar extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           width: 2,
-          color: Theme.of(context).primaryColorDark.withOpacity(.2),
+          color: Theme.of(context).primaryColorLight.withOpacity(.2),
         ),
         borderRadius: BorderRadius.circular(25),
       ),
@@ -30,13 +30,12 @@ class BaseSearchBar extends StatelessWidget {
           border: InputBorder.none,
           contentPadding: const EdgeInsets.all(10),
           suffixIcon: IconButton(
-            onPressed: () {},
+            onPressed: onPressed,
             icon: const Icon(Icons.search),
           ),
         ),
         controller: controller,
         onSubmitted: onSubmit,
-        onChanged: onChanged,
       ),
     );
   }

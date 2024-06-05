@@ -9,6 +9,10 @@ final searchControllerProvider =
   );
 });
 
+final searchDataProvider = FutureProvider<List<SongModel>>((ref) async {
+  return ref.watch(searchControllerProvider.notifier).searchData;
+});
+
 class SearchController extends StateNotifier<bool> {
   final SongAPI _songAPI;
 
@@ -18,14 +22,17 @@ class SearchController extends StateNotifier<bool> {
 
   // ADD SEARCH METHODS
 
-  Future<List<SongModel>> searchSong({required String query}) async {
-    List<SongModel> songs = [];
+  List<SongModel> searchData = [];
+
+  Future<void> searchSong({required String query}) async {
+    state = true;
     final fetchedsongs = await _songAPI.fetchSearchData(query: query);
 
-    fetchedsongs.fold((l) {
-      throw Error.throwWithStackTrace(l.message, l.stackTrace);
-    }, (r) => songs = r);
+    fetchedsongs.fold(
+      (l) => throw Error.throwWithStackTrace(l.message, l.stackTrace),
+      (r) => searchData = r,
+    );
 
-    return songs;
+    state = false;
   }
 }
