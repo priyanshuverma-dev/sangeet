@@ -15,6 +15,7 @@ final songAPIProvider = Provider((ref) {
 abstract class ISongAPI {
   FutureEither<List<SongModel>> fetchInitData();
   FutureEither<List<SongModel>> fetchSearchData({required String query});
+
   FutureEither<List<SongModel>> fetchSongRecommedationData(
       {required String id});
 }
@@ -52,14 +53,16 @@ class SongAPI extends ISongAPI {
   @override
   FutureEither<List<SongModel>> fetchSearchData({required String query}) async {
     try {
-      final uri =
-          Uri.https(Constants.serverUrl, 'api/search/songs', {"query": query});
+      final uri = Uri.https(Constants.serverUrl, 'api/search/songs', {
+        "query": query,
+        "limit": "24",
+      });
       final res = await http.get(uri);
       if (res.statusCode != 200) throw Error();
 
       Map<String, dynamic> jsonMap = jsonDecode(res.body);
       // Extract the list of songs from the Map
-      List<dynamic> songsObj = jsonMap['data']['songs']['results'];
+      List<dynamic> songsObj = jsonMap['data']['results'];
       List<SongModel> songs =
           songsObj.map((song) => SongModel.fromMap(song)).toList();
       return right(songs);

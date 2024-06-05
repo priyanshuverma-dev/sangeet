@@ -22,7 +22,6 @@ class SettingsController extends StateNotifier<bool> {
   Future<SongQualityType> getSongQuality() async {
     final prefs = await SharedPreferences.getInstance();
     final val = prefs.getString(SharedPrefs.songQuality);
-    print("SETTED: $val");
     if (val == null) return SongQualityType.high;
     var quality = SongQualityType.values
         .where((element) => element.type == val)
