@@ -1,7 +1,9 @@
 import 'package:audio_session/audio_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart';
+import 'package:saavn/core/constants.dart';
 import 'package:system_theme/system_theme.dart';
+import 'package:tray_manager/tray_manager.dart';
 import 'package:window_manager/window_manager.dart';
 
 Future<void> initialiseAppFunctions() async {
@@ -28,5 +30,40 @@ Future<void> initWindowManager() async {
   windowManager.waitUntilReadyToShow(windowOptions, () async {
     await windowManager.show();
     await windowManager.focus();
+    await windowManager.setPreventClose(true);
+
+    await trayManager.setIcon('assets/app_icon.ico');
+
+    Menu menu = Menu(
+      items: [
+        MenuItem(
+          key: SystemTrayActions.hideShow,
+          label: 'Hide/Show Window',
+        ),
+        MenuItem.separator(),
+        MenuItem(
+          key: SystemTrayActions.prevTrack,
+          label: 'Previous Track',
+        ),
+        MenuItem(
+          key: SystemTrayActions.playPauseMusic,
+          label: 'Play/Pause Music',
+        ),
+        MenuItem(
+          key: SystemTrayActions.nextTrack,
+          label: 'Next Track',
+        ),
+        MenuItem(
+          key: SystemTrayActions.openPlaylist,
+          label: 'Open Playlist',
+        ),
+        MenuItem.separator(),
+        MenuItem(
+          key: SystemTrayActions.exit,
+          label: 'Exit',
+        ),
+      ],
+    );
+    await trayManager.setContextMenu(menu);
   });
 }

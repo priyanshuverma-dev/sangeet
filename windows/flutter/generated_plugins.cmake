@@ -7,6 +7,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   just_audio_windows
   screen_retriever
   system_theme
+  tray_manager
   window_manager
 )
 
