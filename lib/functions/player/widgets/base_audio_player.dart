@@ -87,24 +87,11 @@ class _BaseAudioPlayerState extends ConsumerState<BaseAudioPlayer> {
                     ),
                     IconButton(
                       onPressed: () {
-                        if (ref.watch(appScreenConfigProvider) ==
-                            Screens.explore) {
-                          return ref
-                              .watch(appScreenConfigProvider.notifier)
-                              .goto(screen: Screens.playlist);
-                        }
-                        if (ref.watch(appScreenConfigProvider) ==
-                            Screens.playlist) {
-                          return ref
-                              .watch(appScreenConfigProvider.notifier)
-                              .goto(screen: Screens.explore);
-                        }
+                        ref
+                            .watch(appScreenConfigProvider.notifier)
+                            .goto(screen: Screens.playlist);
                       },
-                      icon: Icon(
-                        ref.watch(appScreenConfigProvider) == Screens.explore
-                            ? Icons.playlist_play_rounded
-                            : Icons.playlist_add_check_rounded,
-                      ),
+                      icon: const Icon(Icons.playlist_play_rounded),
                     ),
                   ],
                 ),

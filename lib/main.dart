@@ -25,10 +25,10 @@ class MyApp extends StatelessWidget {
       title: 'Saavn Music',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        useMaterial3: true,
         colorSchemeSeed: SystemTheme.accentColor.accent,
       ),
-      darkTheme: ThemeData.dark(),
+      darkTheme: ThemeData.dark()
+          .copyWith(scaffoldBackgroundColor: Colors.transparent),
       themeMode: ThemeMode.dark,
       home: const HomeFrame(),
     );
