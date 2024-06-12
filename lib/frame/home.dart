@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:saavn/core/constants.dart';
 import 'package:saavn/frame/commons.dart';
 import 'package:saavn/frame/widgets/sidebar.dart';
+import 'package:saavn/functions/player/controllers/player_controller.dart';
 import 'package:saavn/functions/player/widgets/base_audio_player.dart';
 import 'package:sidebarx/sidebarx.dart';
+import 'package:tray_manager/tray_manager.dart';
+import 'package:window_manager/window_manager.dart';
 
 class HomeFrame extends ConsumerStatefulWidget {
   const HomeFrame({super.key});
@@ -12,30 +16,23 @@ class HomeFrame extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _HomeFrameState();
 }
 
-class _HomeFrameState extends ConsumerState<HomeFrame> {
+class _HomeFrameState extends ConsumerState<HomeFrame>
+    with TrayListener, WindowListener {
   final SidebarXController sidebarXController =
       SidebarXController(selectedIndex: 0);
 
-  void onPressSettings() {
-    if (ref.watch(appScreenConfigProvider) == Screens.settings) {
-      return ref
-          .watch(appScreenConfigProvider.notifier)
-          .goto(screen: Screens.explore);
-    }
-    return ref
-        .watch(appScreenConfigProvider.notifier)
-        .goto(screen: Screens.settings);
+  @override
+  void initState() {
+    super.initState();
+    trayManager.addListener(this);
+    windowManager.addListener(this);
   }
 
-  void onPressSearch() {
-    if (ref.watch(appScreenConfigProvider) == Screens.search) {
-      return ref
-          .watch(appScreenConfigProvider.notifier)
-          .goto(screen: Screens.explore);
-    }
-    return ref
-        .watch(appScreenConfigProvider.notifier)
-        .goto(screen: Screens.search);
+  @override
+  void dispose() {
+    trayManager.removeListener(this);
+    windowManager.removeListener(this);
+    super.dispose();
   }
 
   @override
@@ -83,6 +80,81 @@ class _HomeFrameState extends ConsumerState<HomeFrame> {
         ],
       ),
       bottomNavigationBar: const BaseAudioPlayer(),
+    );
+  }
+
+  @override
+  void onTrayIconRightMouseDown() async {
+    await trayManager.popUpContextMenu();
+  }
+
+  @override
+  void onTrayMenuItemClick(MenuItem menuItem) async {
+    final player = ref.watch(playerControllerProvider.notifier).getPlayer;
+    if (menuItem.key == SystemTrayActions.hideShow) {
+      if (await windowManager.isVisible()) {
+        await windowManager.hide();
+      } else {
+        await windowManager.show();
+      }
+    }
+    if (menuItem.key == SystemTrayActions.exit) {
+      await windowManager.destroy();
+    }
+    if (menuItem.key == SystemTrayActions.playPauseMusic) {
+      if (player.playing) {
+        await player.pause();
+      } else {
+        await player.play();
+      }
+    }
+    if (player.playing) {
+      if (menuItem.key == SystemTrayActions.nextTrack) {
+        await player.seekToNext();
+      }
+      if (menuItem.key == SystemTrayActions.prevTrack) {
+        await player.seekToPrevious();
+      }
+      if (menuItem.key == SystemTrayActions.openPlaylist) {
+        await windowManager.show();
+        ref
+            .watch(appScreenConfigProvider.notifier)
+            .goto(screen: Screens.playlist);
+      }
+    }
+
+    super.onTrayMenuItemClick(menuItem);
+  }
+
+  @override
+  void onWindowClose() async {
+    showDialog(
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          elevation: 0,
+          shape: ContinuousRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          title: const Text('Close this window?'),
+          content: const Text('Are you sure you want to close this window?'),
+          actions: [
+            TextButton(
+              child: const Text('No'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Minimize'),
+              onPressed: () async {
+                Navigator.of(context).pop();
+                await windowManager.hide();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

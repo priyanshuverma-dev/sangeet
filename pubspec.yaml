@@ -51,6 +51,7 @@ dependencies:
   skeletonizer: ^1.2.0
   shared_preferences: ^2.2.3
   sidebarx: ^0.17.1
+  tray_manager: ^0.2.3
 
 dev_dependencies:
   flutter_test:
