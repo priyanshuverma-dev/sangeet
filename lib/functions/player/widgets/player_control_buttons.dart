@@ -31,7 +31,12 @@ class PlayerControllerButtons extends StatelessWidget {
             );
           },
         ),
-
+        IconButton(
+          icon: const Icon(
+            Icons.skip_previous_rounded,
+          ),
+          onPressed: () => player.seekToPrevious(),
+        ),
         StreamBuilder<PlayerState>(
           stream: player.playerStateStream,
           builder: (context, snapshot) {

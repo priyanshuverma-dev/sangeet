@@ -45,12 +45,13 @@ class _BaseAudioPlayerState extends ConsumerState<BaseAudioPlayer> {
         final metadata = state!.currentSource!.tag as SongModel;
 
         return Container(
-          decoration: const BoxDecoration(
-              border: Border(
-                  bottom: BorderSide(
-            color: Colors.black12,
-            width: 4,
-          ))),
+          margin: const EdgeInsets.all(7),
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.grey,
+            ),
+            borderRadius: BorderRadius.circular(5),
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
