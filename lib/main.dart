@@ -1,12 +1,16 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hotkey_manager/hotkey_manager.dart';
 import 'package:system_theme/system_theme.dart';
 
 import 'package:saavn/frame/home.dart';
 import 'package:saavn/initialization.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await hotKeyManager.unregisterAll();
   await initialiseAppFunctions();
   runApp(
     const ProviderScope(
@@ -31,6 +35,10 @@ class MyApp extends StatelessWidget {
           .copyWith(scaffoldBackgroundColor: Colors.transparent),
       themeMode: ThemeMode.dark,
       home: const HomeFrame(),
+      builder: BotToastInit(),
+      navigatorObservers: [
+        BotToastNavigatorObserver(),
+      ],
     );
   }
 }
