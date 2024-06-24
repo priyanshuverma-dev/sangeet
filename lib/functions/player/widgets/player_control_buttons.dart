@@ -4,9 +4,11 @@ import 'package:saavn/functions/player/widgets/common.dart';
 
 class PlayerControllerButtons extends StatelessWidget {
   final AudioPlayer player;
+  final VoidCallback onPressed;
   const PlayerControllerButtons({
     super.key,
     required this.player,
+    required this.onPressed,
   });
 
   @override
@@ -76,34 +78,15 @@ class PlayerControllerButtons extends StatelessWidget {
             }
           },
         ),
-
         IconButton(
           icon: const Icon(
             Icons.skip_next_rounded,
           ),
           onPressed: () => player.seekToNext(),
         ),
-        // Opens speed slider dialog
-        StreamBuilder<double>(
-          stream: player.speedStream,
-          builder: (context, snapshot) => IconButton(
-            icon: Text("${snapshot.data?.toStringAsFixed(1)}x",
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                )),
-            onPressed: () {
-              showSliderDialog(
-                context: context,
-                title: "Adjust speed",
-                divisions: 10,
-                min: 0.5,
-                max: 1.5,
-                value: player.speed,
-                stream: player.speedStream,
-                onChanged: player.setSpeed,
-              );
-            },
-          ),
+        IconButton(
+          onPressed: onPressed,
+          icon: const Icon(Icons.playlist_play_rounded),
         ),
       ],
     );

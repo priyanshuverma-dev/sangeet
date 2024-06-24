@@ -139,6 +139,7 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
           ),
           title: const Text('Close this window?'),
           content: const Text('Are you sure you want to close this window?'),
+          actionsAlignment: MainAxisAlignment.end,
           actions: [
             TextButton(
               child: const Text('No'),
@@ -147,10 +148,17 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
               },
             ),
             TextButton(
-              child: const Text('Minimize'),
+              child: const Text('Hide'),
               onPressed: () async {
                 Navigator.of(context).pop();
                 await windowManager.hide();
+              },
+            ),
+            TextButton(
+              child: const Text('Close'),
+              onPressed: () async {
+                Navigator.of(context).pop();
+                await windowManager.destroy();
               },
             ),
           ],
