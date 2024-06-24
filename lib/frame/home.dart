@@ -1,13 +1,26 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hotkey_manager/hotkey_manager.dart';
 import 'package:saavn/core/constants.dart';
 import 'package:saavn/frame/commons.dart';
 import 'package:saavn/frame/widgets/sidebar.dart';
 import 'package:saavn/functions/player/controllers/player_controller.dart';
 import 'package:saavn/functions/player/widgets/base_audio_player.dart';
+import 'package:saavn/functions/shortcuts/actions.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:tray_manager/tray_manager.dart';
 import 'package:window_manager/window_manager.dart';
+
+class ExampleIntent extends Intent {}
+
+class ExampleAction extends Action<ExampleIntent> {
+  @override
+  void invoke(covariant ExampleIntent intent) {
+    BotToast.showText(text: 'ExampleAction invoked');
+  }
+}
 
 class HomeFrame extends ConsumerStatefulWidget {
   const HomeFrame({super.key});
@@ -38,48 +51,36 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
   @override
   Widget build(BuildContext context) {
     final screen = ref.watch(appScreenConfigProvider).screen;
-    return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(screen.name),
-      //   elevation: 0,
-      //   backgroundColor: Colors.transparent,
-      //   actions: [
-      //     Padding(
-      //       padding: const EdgeInsets.all(8.0),
-      //       child: IconButton(
-      //         onPressed: onPressSearch,
-      //         icon: const Stack(
-      //           children: [
-      //             Icon(Icons.search),
-      //             Positioned(
-      //               // draw a red marble
-      //               top: 0.0,
-      //               right: 0.0,
-      //               child: Icon(Icons.brightness_1,
-      //                   size: 8.0, color: Colors.redAccent),
-      //             )
-      //           ],
-      //         ),
-      //       ),
-      //     ),
-      //     Padding(
-      //       padding: const EdgeInsets.all(8.0),
-      //       child: IconButton(
-      //         onPressed: onPressSettings,
-      //         icon: const Icon(Icons.settings),
-      //       ),
-      //     ),
-      //   ],
-      // ),
-      body: Row(
-        children: [
-          SideBar(controller: sidebarXController),
-          Expanded(
-            child: screen.view,
+    return Actions(
+      actions: <Type, Action<Intent>>{
+        BaseIntent: SongActions(
+          audioPlayer: ref.watch(playerControllerProvider.notifier).getPlayer,
+        )
+      },
+      child: GlobalShortcuts(
+        shortcuts: const {
+          SingleActivator(LogicalKeyboardKey.keyW, alt: true): BaseIntent(
+            keyAction: KeyAction.playPauseMusic,
           ),
-        ],
+          SingleActivator(LogicalKeyboardKey.keyD, alt: true): BaseIntent(
+            keyAction: KeyAction.nextTrack,
+          ),
+          SingleActivator(LogicalKeyboardKey.keyA, alt: true): BaseIntent(
+            keyAction: KeyAction.prevTrack,
+          ),
+        },
+        child: Scaffold(
+          body: Row(
+            children: [
+              SideBar(controller: sidebarXController),
+              Expanded(
+                child: screen.view,
+              ),
+            ],
+          ),
+          bottomNavigationBar: const BaseAudioPlayer(),
+        ),
       ),
-      bottomNavigationBar: const BaseAudioPlayer(),
     );
   }
 
@@ -138,6 +139,7 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
           ),
           title: const Text('Close this window?'),
           content: const Text('Are you sure you want to close this window?'),
+          actionsAlignment: MainAxisAlignment.end,
           actions: [
             TextButton(
               child: const Text('No'),
@@ -146,10 +148,17 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
               },
             ),
             TextButton(
-              child: const Text('Minimize'),
+              child: const Text('Hide'),
               onPressed: () async {
                 Navigator.of(context).pop();
                 await windowManager.hide();
+              },
+            ),
+            TextButton(
+              child: const Text('Close'),
+              onPressed: () async {
+                Navigator.of(context).pop();
+                await windowManager.destroy();
               },
             ),
           ],

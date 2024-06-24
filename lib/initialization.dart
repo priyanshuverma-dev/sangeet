@@ -7,7 +7,6 @@ import 'package:tray_manager/tray_manager.dart';
 import 'package:window_manager/window_manager.dart';
 
 Future<void> initialiseAppFunctions() async {
-  WidgetsFlutterBinding.ensureInitialized();
   await SystemTheme.accentColor.load();
   await initWindowManager();
   final session = await AudioSession.instance;
