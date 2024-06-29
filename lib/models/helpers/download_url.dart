@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:saavn/models/helpers/download_quality.dart';
+import 'package:sangeet/models/helpers/download_quality.dart';
 
 class DownloadUrl {
   SongQualityType quality;

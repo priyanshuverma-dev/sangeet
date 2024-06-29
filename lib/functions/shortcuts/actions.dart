@@ -1,8 +1,8 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:saavn/functions/notification/song_notifications.dart';
-import 'package:saavn/models/song_model.dart';
+import 'package:sangeet/functions/notification/song_notifications.dart';
+import 'package:sangeet/models/song_model.dart';
 
 enum KeyAction {
   playPauseMusic,

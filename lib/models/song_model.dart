@@ -4,9 +4,9 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 
-import 'package:saavn/models/helpers/album_submodal.dart';
-import 'package:saavn/models/helpers/download_url.dart';
-import 'package:saavn/models/helpers/song_image.dart';
+import 'package:sangeet/models/helpers/album_submodal.dart';
+import 'package:sangeet/models/helpers/download_url.dart';
+import 'package:sangeet/models/helpers/song_image.dart';
 
 @immutable
 class SongModel {

@@ -5,8 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hotkey_manager/hotkey_manager.dart';
 import 'package:system_theme/system_theme.dart';
 
-import 'package:saavn/frame/home.dart';
-import 'package:saavn/initialization.dart';
+import 'package:sangeet/frame/home.dart';
+import 'package:sangeet/initialization.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Saavn Music',
+      title: 'Sangeet',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorSchemeSeed: SystemTheme.accentColor.accent,

@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:saavn/core/constants.dart';
-import 'package:saavn/models/helpers/download_quality.dart';
+import 'package:sangeet/core/constants.dart';
+import 'package:sangeet/models/helpers/download_quality.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final songQualityProvider = FutureProvider((ref) {

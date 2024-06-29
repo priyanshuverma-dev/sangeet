@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:saavn/functions/explore/views/explore_view.dart';
-import 'package:saavn/functions/player/views/playlist_view.dart';
-import 'package:saavn/functions/search/views/search_view.dart';
-import 'package:saavn/functions/settings/views/settings_view.dart';
+import 'package:sangeet/functions/explore/views/explore_view.dart';
+import 'package:sangeet/functions/player/views/playlist_view.dart';
+import 'package:sangeet/functions/search/views/search_view.dart';
+import 'package:sangeet/functions/settings/views/settings_view.dart';
 
 final appScreenConfigProvider =
     StateNotifierProvider<AppScreenConfig, Screens>((ref) {
@@ -13,7 +13,7 @@ final appScreenConfigProvider =
 enum Screens {
   explore(
     AppScreen(
-      name: "Explore Saavn",
+      name: "Explore Sangeet",
       view: ExploreView(),
     ),
   ),

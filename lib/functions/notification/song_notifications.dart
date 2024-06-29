@@ -1,13 +1,13 @@
 import 'dart:io';
 
-import 'package:saavn/models/song_model.dart';
+import 'package:sangeet/models/song_model.dart';
 import 'package:windows_notification/notification_message.dart';
 import 'package:windows_notification/windows_notification.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 
 class SongNotifications {
-  final _winNotifyPlugin = WindowsNotification(applicationId: "Saavn Music");
+  final _winNotifyPlugin = WindowsNotification(applicationId: "Sangeet");
 
   Future<String> getImageBytes(String url, String id) async {
     final supportDir = await getTemporaryDirectory();

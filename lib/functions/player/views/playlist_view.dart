@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:saavn/functions/player/controllers/player_controller.dart';
+import 'package:sangeet/functions/player/controllers/player_controller.dart';
 
-import 'package:saavn/models/song_model.dart';
+import 'package:sangeet/models/song_model.dart';
 
 class PlaylistView extends ConsumerStatefulWidget {
   const PlaylistView({super.key});

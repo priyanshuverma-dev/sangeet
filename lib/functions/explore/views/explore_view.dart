@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:saavn/core/core.dart';
-import 'package:saavn/functions/explore/controllers/explore_controller.dart';
-import 'package:saavn/functions/player/controllers/player_controller.dart';
+import 'package:sangeet/core/core.dart';
+import 'package:sangeet/functions/explore/controllers/explore_controller.dart';
+import 'package:sangeet/functions/player/controllers/player_controller.dart';
 
 class ExploreView extends ConsumerStatefulWidget {
   const ExploreView({super.key});

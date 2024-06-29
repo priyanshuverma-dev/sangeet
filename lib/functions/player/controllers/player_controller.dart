@@ -4,10 +4,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:saavn/functions/explore/controllers/explore_controller.dart';
-import 'package:saavn/functions/player/widgets/common.dart';
-import 'package:saavn/functions/settings/controllers/settings_controller.dart';
-import 'package:saavn/models/song_model.dart';
+import 'package:sangeet/functions/explore/controllers/explore_controller.dart';
+import 'package:sangeet/functions/player/widgets/common.dart';
+import 'package:sangeet/functions/settings/controllers/settings_controller.dart';
+import 'package:sangeet/models/song_model.dart';
 
 final playerControllerProvider =
     StateNotifierProvider<PlayerController, bool>((ref) {

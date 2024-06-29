@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:saavn/core/constants.dart';
-import 'package:saavn/functions/settings/controllers/settings_controller.dart';
-import 'package:saavn/models/helpers/download_quality.dart';
+import 'package:sangeet/core/constants.dart';
+import 'package:sangeet/functions/settings/controllers/settings_controller.dart';
+import 'package:sangeet/models/helpers/download_quality.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PlaybackQualitySetting extends ConsumerStatefulWidget {

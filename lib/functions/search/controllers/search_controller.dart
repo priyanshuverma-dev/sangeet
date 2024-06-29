@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:saavn/apis/song_api.dart';
-import 'package:saavn/models/song_model.dart';
+import 'package:sangeet/apis/song_api.dart';
+import 'package:sangeet/models/song_model.dart';
 
 final searchControllerProvider =
     StateNotifierProvider<SearchController, bool>((ref) {

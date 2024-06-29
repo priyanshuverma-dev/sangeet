@@ -1,7 +1,7 @@
 import 'package:audio_session/audio_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart';
-import 'package:saavn/core/constants.dart';
+import 'package:sangeet/core/constants.dart';
 import 'package:system_theme/system_theme.dart';
 import 'package:tray_manager/tray_manager.dart';
 import 'package:window_manager/window_manager.dart';
@@ -24,7 +24,7 @@ Future<void> initWindowManager() async {
 
   WindowOptions windowOptions = const WindowOptions(
     center: true,
-    title: "Saavn Music Desktop",
+    title: "Sangeet Desktop",
   );
   windowManager.waitUntilReadyToShow(windowOptions, () async {
     await windowManager.show();

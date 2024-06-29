@@ -1,30 +1,30 @@
-# Saavn Music Player for Windows
+# Sangeet Music Player for Windows
 
-Welcome to the Saavn Music Player for Windows, an open-source desktop application that allows you to enjoy your favorite music seamlessly. This music player is powered by the Saavn API and built with Flutter, providing a robust and modern user experience.
+Welcome to the Sangeet Music Player for Windows, an open-source desktop application that allows you to enjoy your favorite music seamlessly. This music player is powered by the Sangeet SDK and built with Flutter, providing a robust and modern user experience.
 
 ## Features
 
 - **Seamless Music Playback**: Enjoy high-quality music playback with an intuitive interface.
-- **Search and Discover**: Use the Saavn API to search for your favorite songs, albums, and artists.
+- **Search and Discover**: Use the Sangeet API to search for your favorite songs, albums, and artists.
 - **Playlist Management**: Create and manage your playlists easily.
 - **Rich Metadata**: View detailed metadata for each track, including album art, artist information, and more.
 - **Cross-Platform**: Built with Flutter, ensuring a consistent experience across different devices.
 
 ## Installation
 
-To install the Saavn Music Player for Windows, follow these steps:
+To install the Sangeet Music Player for Windows, follow these steps:
 
 1. **Download the Latest Release**:
-   - Go to the [Releases](https://github.com/priyanshuverma-dev/saavn/releases) page and download the latest version for Windows.
+   - Go to the [Releases](https://github.com/priyanshuverma-dev/sangeet/releases) page and download the latest version for Windows.
 
 2. **Clone the Repository (optional for development)**:
    ```sh
-   git clone https://github.com/priyanshuverma-dev/saavn.git
+   git clone https://github.com/priyanshuverma-dev/sangeet.git
    ```
 
 3. **Navigate to the Project Directory (optional for development)**:
    ```sh
-   cd saavn
+   cd sangeet
    ```
 
 4. **Install Dependencies (optional for development)**:
@@ -49,7 +49,7 @@ Once installed, you can start using the music player to search for songs, create
 
 ## Contributing
 
-We welcome contributions to the Saavn Music Player project! To contribute, please read the [Contributing Guide](CONTRIBUTING.md).
+We welcome contributions to the Sangeet Music Player project! To contribute, please read the [Contributing Guide](CONTRIBUTING.md).
 
 ## License
 
@@ -57,9 +57,9 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Acknowledgements
 
-- **Saavn API**: This project uses the [JioSaavn API](https://github.com/sumitkolhe/jiosaavn-api) for fetching music data.
+- **Sangeet SDK**: This project uses the [Sangeet API](https://github.com/priyanshuverma-dev/sangeet-api) for fetching music data.
 - **Flutter**: Built with [Flutter](https://github.com/priyanshuverma-dev).
-- **Open Source**: Check out the source code on [GitHub](https://github.com/priyanshuverma-dev/saavn).
+- **Open Source**: Check out the source code on [GitHub](https://github.com/priyanshuverma-dev/sangeet).
 
 ## Contact
 

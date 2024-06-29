@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:saavn/models/song_model.dart';
+import 'package:sangeet/models/song_model.dart';
 
 class SearchSongTile extends StatelessWidget {
   final SongModel song;

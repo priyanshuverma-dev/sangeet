@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:saavn/core/core.dart';
-import 'package:saavn/functions/player/controllers/player_controller.dart';
-import 'package:saavn/functions/search/controllers/search_controller.dart';
-import 'package:saavn/functions/search/widgets/searchbar.dart';
-import 'package:saavn/functions/search/widgets/song_tile.dart';
+import 'package:sangeet/core/core.dart';
+import 'package:sangeet/functions/player/controllers/player_controller.dart';
+import 'package:sangeet/functions/search/controllers/search_controller.dart';
+import 'package:sangeet/functions/search/widgets/searchbar.dart';
+import 'package:sangeet/functions/search/widgets/song_tile.dart';
 
 class SearchView extends ConsumerStatefulWidget {
   const SearchView({super.key});

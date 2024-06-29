@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:saavn/functions/settings/widgets/widgets.dart';
+import 'package:sangeet/functions/settings/widgets/widgets.dart';
 
 class SettingsView extends ConsumerWidget {
   const SettingsView({super.key});

@@ -3,10 +3,10 @@ import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:saavn/core/constants.dart';
-import 'package:saavn/core/core.dart';
+import 'package:sangeet/core/constants.dart';
+import 'package:sangeet/core/core.dart';
 import 'package:http/http.dart' as http;
-import 'package:saavn/models/artists/sub_artist_model.dart';
+import 'package:sangeet/models/artists/sub_artist_model.dart';
 
 final artistAPIProvider = Provider((ref) {
   return ArtistAPI();
