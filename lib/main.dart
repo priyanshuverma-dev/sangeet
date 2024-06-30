@@ -31,8 +31,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorSchemeSeed: SystemTheme.accentColor.accent,
       ),
-      darkTheme: ThemeData.dark()
-          .copyWith(scaffoldBackgroundColor: Colors.transparent),
+      darkTheme: ThemeData.dark().copyWith(),
       themeMode: ThemeMode.dark,
       home: const HomeFrame(),
       builder: BotToastInit(),

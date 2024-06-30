@@ -7,7 +7,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:sangeet/functions/explore/controllers/explore_controller.dart';
 import 'package:sangeet/functions/player/widgets/common.dart';
 import 'package:sangeet/functions/settings/controllers/settings_controller.dart';
-import 'package:sangeet/models/song_model.dart';
+import 'package:sangeet_api/modules/song/models/song_model.dart';
 
 final playerControllerProvider =
     StateNotifierProvider<PlayerController, bool>((ref) {
@@ -51,23 +51,68 @@ class PlayerController extends StateNotifier<bool> {
           (position, bufferedPosition, duration) => PositionData(
               position, bufferedPosition, duration ?? Duration.zero));
 
+  Future<void> runRadio(
+      {required String radioId, bool featured = false}) async {
+    try {
+      await playlist.clear();
+      final quality = await _settingsController.getSongQuality();
+      final songsObjects = await _exploreController.getRadio(radioId, featured);
+      for (var i = 0; i < songsObjects.songs.length; i++) {
+        final uri = songsObjects.songs[i].urls
+            .where((element) => element.quality == quality.name)
+            .toList()[0]
+            .url;
+
+        playlist
+            .add(AudioSource.uri(Uri.parse(uri), tag: songsObjects.songs[i]));
+      }
+
+      await _player.setAudioSource(playlist,
+          preload: kIsWeb || defaultTargetPlatform != TargetPlatform.linux);
+
+      await _player.play();
+    } on PlayerException catch (e) {
+      // iOS/macOS: maps to NSError.code
+      // Android: maps to ExoPlayerException.type
+      // Web: maps to MediaError.code
+      if (kDebugMode) {
+        print("Error code: ${e.code}");
+        // iOS/macOS: maps to NSError.localizedDescription
+        // Android: maps to ExoPlaybackException.getMessage()
+        // Web: a generic message
+        print("Error message: ${e.message}");
+      }
+    } on PlayerInterruptedException catch (e) {
+      // This call was interrupted since another audio source was loaded or the
+      // player was stopped or disposed before this audio source could complete
+      // loading.
+      if (kDebugMode) {
+        print("Connection aborted: ${e.message}");
+      }
+    } catch (e) {
+      // Fallback for all errors
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+  }
+
   Future<void> setSong({required SongModel song}) async {
     try {
       await playlist.clear();
       final quality = await _settingsController.getSongQuality();
-      final songsObjects =
-          await _exploreController.getSongRecommendationData(song.id);
+      final songsObjects = await _exploreController.getRadio(song.id, false);
 
-      songsObjects.insert(0, song);
+      songsObjects.songs.insert(0, song);
 
-      for (var i = 0; i < songsObjects.length; i++) {
-        final uri = songsObjects[i]
-            .downloadUrl
-            .where((element) => element.quality == quality)
+      for (var i = 0; i < songsObjects.songs.length; i++) {
+        final uri = songsObjects.songs[i].urls
+            .where((element) => element.quality == quality.name)
             .toList()[0]
             .url;
 
-        playlist.add(AudioSource.uri(Uri.parse(uri), tag: songsObjects[i]));
+        playlist
+            .add(AudioSource.uri(Uri.parse(uri), tag: songsObjects.songs[i]));
       }
 
       await _player.setAudioSource(playlist,
@@ -103,17 +148,16 @@ class PlayerController extends StateNotifier<bool> {
   Future<void> loadMoreSongs({required SongModel song}) async {
     try {
       final quality = await _settingsController.getSongQuality();
-      final songsObjects =
-          await _exploreController.getSongRecommendationData(song.id);
+      final songsObjects = await _exploreController.getRadio(song.id, false);
 
-      for (var i = 0; i < songsObjects.length; i++) {
-        final uri = songsObjects[i]
-            .downloadUrl
-            .where((element) => element.quality == quality)
+      for (var i = 0; i < songsObjects.songs.length; i++) {
+        final uri = songsObjects.songs[i].urls
+            .where((element) => element.quality == quality.name)
             .toList()[0]
             .url;
 
-        playlist.add(AudioSource.uri(Uri.parse(uri), tag: songsObjects[i]));
+        playlist
+            .add(AudioSource.uri(Uri.parse(uri), tag: songsObjects.songs[i]));
       }
     } on PlayerException catch (e) {
       // iOS/macOS: maps to NSError.code

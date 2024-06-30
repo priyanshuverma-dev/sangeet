@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sangeet/core/core.dart';
-import 'package:sangeet/functions/player/controllers/player_controller.dart';
 import 'package:sangeet/functions/search/controllers/search_controller.dart';
 import 'package:sangeet/functions/search/widgets/searchbar.dart';
 import 'package:sangeet/functions/search/widgets/song_tile.dart';
@@ -44,12 +43,11 @@ class _SearchViewState extends ConsumerState<SearchView> {
                     physics: const AlwaysScrollableScrollPhysics(),
                     children: [
                       for (final song in songs)
-                        SearchSongTile(
-                          song: song,
-                          onTap: () => ref
-                              .read(playerControllerProvider.notifier)
-                              .setSong(song: song),
-                        ),
+                        SearchSongTile(song: song, onTap: () {}
+                            // ref
+                            //     .read(playerControllerProvider.notifier)
+                            //     .setSong(song: song),
+                            ),
                       const Center(
                         child: Text(
                             'Only 24 results because this feature is in test phase.'),

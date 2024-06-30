@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:sangeet/models/song_model.dart';
+import 'package:sangeet_api/modules/song/models/song_model.dart';
 import 'package:windows_notification/notification_message.dart';
 import 'package:windows_notification/windows_notification.dart';
 import 'package:path_provider/path_provider.dart';
@@ -28,11 +28,11 @@ class SongNotifications {
     required SongModel song,
   }) async {
     await _winNotifyPlugin.clearNotificationHistory();
-    final imageDir = await getImageBytes(song.image[1].url, song.id);
+    final imageDir = await getImageBytes(song.images[1].url, song.id);
     NotificationMessage message = NotificationMessage.fromPluginTemplate(
       "notify_song",
-      "Playing Now ${song.name}",
-      "${song.album.name} - ${song.label}",
+      "Playing Now ${song.title}",
+      song.subtitle,
       image: imageDir,
     );
     await _winNotifyPlugin.showNotificationPluginTemplate(message);
@@ -43,11 +43,11 @@ class SongNotifications {
     required String state,
   }) async {
     await _winNotifyPlugin.clearNotificationHistory();
-    final imageDir = await getImageBytes(song.image[1].url, song.id);
+    final imageDir = await getImageBytes(song.images[1].url, song.id);
     NotificationMessage message = NotificationMessage.fromPluginTemplate(
       "play_pause_song",
-      "$state ${song.name}",
-      "${song.label} - ${song.album.name}",
+      "$state ${song.title}",
+      "${song.albumName} - ${song.label}",
       image: imageDir,
     );
     await _winNotifyPlugin.showNotificationPluginTemplate(message);

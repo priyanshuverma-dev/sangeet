@@ -1,16 +1,12 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sangeet/apis/artist_api.dart';
-import 'package:sangeet/apis/song_api.dart';
-import 'package:sangeet/models/artists/sub_artist_model.dart';
-import 'package:sangeet/models/explore_model.dart';
-import 'package:sangeet/models/song_model.dart';
+import 'package:sangeet/core/api_provider.dart';
+import 'package:sangeet_api/models.dart';
+import 'package:sangeet_api/sangeet_api.dart';
 
 final exploreControllerProvider =
     StateNotifierProvider<ExploreController, bool>((ref) {
   return ExploreController(
-    songAPI: ref.watch(songAPIProvider),
-    artistAPI: ref.watch(artistAPIProvider),
+    api: ref.watch(sangeetAPIProvider),
   );
 });
 
@@ -20,45 +16,31 @@ final getExploreDataProvider = FutureProvider((ref) {
 });
 
 class ExploreController extends StateNotifier<bool> {
-  final SongAPI _songAPI;
-  final ArtistAPI _artistAPI;
-  ExploreController({required SongAPI songAPI, required ArtistAPI artistAPI})
-      : _songAPI = songAPI,
-        _artistAPI = artistAPI,
+  final SangeetAPI _api;
+  ExploreController({required SangeetAPI api})
+      : _api = api,
         super(false);
 
-  Future<ExploreModel> getExploreData() async {
-    List<SongModel> songs = [];
-    List<SubArtistModel> artists = [];
-    final fetchedsongs = await _songAPI.fetchInitData();
-    final fetchedArtists = await _artistAPI.fetchInitArtists();
-
-    fetchedsongs.fold((l) {
-      throw Error.throwWithStackTrace(l.message, l.stackTrace);
-    }, (r) => songs = r);
-
-    fetchedArtists.fold((l) {
-      throw Error.throwWithStackTrace(l.message, l.stackTrace);
-    }, (r) => artists = r);
-
-    final data = ExploreModel(
-      songs: songs,
-      artists: artists,
-    );
-
+  Future<BrowseModel> getExploreData() async {
+    final data = await _api.explore.browse();
+    if (data == null) {
+      throw Error.throwWithStackTrace(
+        "Unable to fetch data!",
+        StackTrace.current,
+      );
+    }
     return data;
   }
 
-  Future<List<SongModel>> getSongRecommendationData(String id) async {
-    List<SongModel> songs = [];
+  Future<SongRadioModel> getRadio(String id, bool featured) async {
+    final data = await _api.song.radio(songId: id, featured: featured);
 
-    final res = await _songAPI.fetchSongRecommedationData(id: id);
-
-    res.fold((l) {
-      if (kDebugMode) {
-        print("RECOMMENDED EXPLORE DATA ERROR: ${l.message}");
-      }
-    }, (r) => songs = r);
-    return songs;
+    if (data == null) {
+      throw Error.throwWithStackTrace(
+        "Unable to fetch data!",
+        StackTrace.current,
+      );
+    }
+    return data;
   }
 }

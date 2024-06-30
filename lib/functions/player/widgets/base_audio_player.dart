@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'package:just_audio/just_audio.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
@@ -9,8 +8,7 @@ import 'package:sangeet/frame/commons.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
 import 'package:sangeet/functions/player/widgets/common.dart';
 import 'package:sangeet/functions/player/widgets/player_control_buttons.dart';
-
-import 'package:sangeet/models/song_model.dart';
+import 'package:sangeet_api/modules/song/models/song_model.dart';
 
 // FOR APPBAR WIDGET
 PreferredSizeWidget getBasePlayerAppbar(BuildContext context) {
@@ -96,7 +94,7 @@ class _BaseAudioPlayerState extends ConsumerState<BaseAudioPlayer> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(7),
                             child: Image.network(
-                              metadata.image[1].url,
+                              metadata.images[1].url,
                               width: 80,
                               height: 80,
                               cacheHeight: 80,
@@ -113,7 +111,7 @@ class _BaseAudioPlayerState extends ConsumerState<BaseAudioPlayer> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 8.0),
                               child: Text(
-                                "${metadata.name} - ${metadata.label}",
+                                "${metadata.title} - ${metadata.label}",
                                 style: const TextStyle(
                                   fontSize: 16,
                                   overflow: TextOverflow.clip,
@@ -124,7 +122,7 @@ class _BaseAudioPlayerState extends ConsumerState<BaseAudioPlayer> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 8.0),
                               child: Text(
-                                metadata.album.name,
+                                metadata.albumName,
                                 style: const TextStyle(
                                   overflow: TextOverflow.clip,
                                 ),

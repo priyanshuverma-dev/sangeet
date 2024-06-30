@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sangeet/functions/explore/views/explore_view.dart';
 import 'package:sangeet/functions/player/views/playlist_view.dart';
@@ -14,26 +15,29 @@ enum Screens {
   explore(
     AppScreen(
       name: "Explore Sangeet",
+      index: 0,
       view: ExploreView(),
     ),
   ),
-  playlist(
+  search(
     AppScreen(
-      name: "Playlists",
-      view: PlaylistView(),
+      name: "Search Songs",
+      index: 1,
+      view: SearchView(),
     ),
   ),
   settings(
     AppScreen(
       name: "Settings",
+      index: 2,
       view: SettingsView(),
     ),
   ),
-
-  search(
+  playlist(
     AppScreen(
-      name: "Search Songs",
-      view: SearchView(),
+      name: "Playlists",
+      index: 0,
+      view: PlaylistView(),
     ),
   );
 
@@ -44,6 +48,10 @@ enum Screens {
 class AppScreenConfig extends StateNotifier<Screens> {
   AppScreenConfig() : super(Screens.explore);
 
+  void onIndex(int idx) {
+    state = Screens.values.firstWhere((e) => e.index == idx);
+  }
+
   void goto({required Screens screen}) {
     state = screen;
   }
@@ -52,9 +60,11 @@ class AppScreenConfig extends StateNotifier<Screens> {
 class AppScreen {
   final Widget view;
   final String name;
+  final int index;
 
   const AppScreen({
     required this.view,
     required this.name,
+    required this.index,
   });
 }

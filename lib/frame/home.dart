@@ -1,26 +1,14 @@
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hotkey_manager/hotkey_manager.dart';
 import 'package:sangeet/core/constants.dart';
 import 'package:sangeet/frame/commons.dart';
-import 'package:sangeet/frame/widgets/sidebar.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
 import 'package:sangeet/functions/player/widgets/base_audio_player.dart';
 import 'package:sangeet/functions/shortcuts/actions.dart';
-import 'package:sidebarx/sidebarx.dart';
 import 'package:tray_manager/tray_manager.dart';
 import 'package:window_manager/window_manager.dart';
-
-class ExampleIntent extends Intent {}
-
-class ExampleAction extends Action<ExampleIntent> {
-  @override
-  void invoke(covariant ExampleIntent intent) {
-    BotToast.showText(text: 'ExampleAction invoked');
-  }
-}
 
 class HomeFrame extends ConsumerStatefulWidget {
   const HomeFrame({super.key});
@@ -31,9 +19,6 @@ class HomeFrame extends ConsumerStatefulWidget {
 
 class _HomeFrameState extends ConsumerState<HomeFrame>
     with TrayListener, WindowListener {
-  final SidebarXController sidebarXController =
-      SidebarXController(selectedIndex: 0);
-
   @override
   void initState() {
     super.initState();
@@ -50,6 +35,7 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
 
   @override
   Widget build(BuildContext context) {
+    final screenConfig = ref.watch(appScreenConfigProvider.notifier);
     final screen = ref.watch(appScreenConfigProvider).screen;
     return Actions(
       actions: <Type, Action<Intent>>{
@@ -72,7 +58,36 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
         child: Scaffold(
           body: Row(
             children: [
-              SideBar(controller: sidebarXController),
+              NavigationRail(
+                selectedIndex: screen.index,
+                onDestinationSelected: (i) => screenConfig.onIndex(i),
+                destinations: const [
+                  NavigationRailDestination(
+                    icon: Icon(Icons.home),
+                    label: Text("Home"),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.search),
+                    label: Text("Search"),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.settings),
+                    label: Text("Settings"),
+                  ),
+                ],
+                leading: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Image.asset(
+                    'assets/app_icon.ico',
+                    width: 35,
+                  ),
+                ),
+                elevation: 10,
+                labelType: NavigationRailLabelType.all,
+                indicatorShape: ContinuousRectangleBorder(
+                  borderRadius: BorderRadius.circular(50),
+                ),
+              ),
               Expanded(
                 child: screen.view,
               ),

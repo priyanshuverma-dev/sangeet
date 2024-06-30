@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
-
-import 'package:sangeet/models/song_model.dart';
+import 'package:sangeet_api/modules/song/models/song_model.dart';
 
 class PlaylistView extends ConsumerStatefulWidget {
   const PlaylistView({super.key});
@@ -127,12 +126,12 @@ class _PlaylistViewState extends ConsumerState<PlaylistView> {
                           ? Theme.of(context).primaryColorLight.withOpacity(.4)
                           : null,
                       title: Text(
-                          "${song.name} ${i == state.currentIndex ? "(Playing)" : ""}"),
-                      subtitle: Text("${song.label} - ${song.year}"),
+                          "${song.title} ${i == state.currentIndex ? "(Playing)" : ""}"),
+                      subtitle: Text(song.subtitle),
                       leading: CircleAvatar(
                         radius: 25,
                         backgroundColor: Theme.of(context).primaryColorDark,
-                        foregroundImage: NetworkImage(song.image[0].url),
+                        foregroundImage: NetworkImage(song.images[0].url),
                       ),
                       onTap: () {
                         player.seek(Duration.zero, index: i);
