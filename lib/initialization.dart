@@ -1,12 +1,11 @@
 import 'package:audio_session/audio_session.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart';
 import 'package:sangeet/core/constants.dart';
-import 'package:system_theme/system_theme.dart';
 import 'package:tray_manager/tray_manager.dart';
 import 'package:window_manager/window_manager.dart';
 
 Future<void> initialiseAppFunctions() async {
-  await SystemTheme.accentColor.load();
   await initWindowManager();
   final session = await AudioSession.instance;
   await session.configure(const AudioSessionConfiguration.speech());
@@ -23,6 +22,7 @@ Future<void> initWindowManager() async {
   windowManager.waitUntilReadyToShow(windowOptions, () async {
     await windowManager.show();
     await windowManager.focus();
+    await windowManager.setMinimumSize(const Size(600, 800));
     await windowManager.setPreventClose(true);
 
     await trayManager.setIcon('assets/app_icon.ico');

@@ -52,7 +52,10 @@ class AppScreenConfig extends StateNotifier<Screens> {
     state = Screens.values.firstWhere((e) => e.index == idx);
   }
 
-  void goto({required Screens screen}) {
+  void goto({
+    required Screens screen,
+    Map<String, String> parameters = const {},
+  }) {
     state = screen;
   }
 }

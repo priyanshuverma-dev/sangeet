@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sangeet_api/models.dart';
 
-class TrendCard extends StatelessWidget {
+class TrendCard extends StatefulWidget {
   final String image;
   final String title;
   final String subtitle;
@@ -19,53 +18,147 @@ class TrendCard extends StatelessWidget {
   });
 
   @override
+  State<TrendCard> createState() => _TrendCardState();
+}
+
+class _TrendCardState extends State<TrendCard>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation _animation;
+  late Animation padding;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 275),
+      vsync: this,
+    );
+    _animation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.ease,
+      reverseCurve: Curves.easeIn,
+    ));
+    // padding = Tween(begin: 0.0, end: -25.0).animate(CurvedAnimation(
+    //     parent: _controller, curve: Curves.ease, reverseCurve: Curves.easeIn));
+    _controller.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Card(
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(15),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
+    return MouseRegion(
+      onEnter: (value) {
+        setState(() {
+          _controller.forward();
+        });
+      },
+      onExit: (value) {
+        setState(() {
+          _controller.reverse();
+        });
+      },
+      child: Card(
+        child: InkWell(
+          onTap: widget.onTap,
+          borderRadius: BorderRadius.circular(15),
+          child: Stack(
+            alignment: Alignment.bottomRight,
             children: [
-              Badge(
-                backgroundColor:
-                    explicitContent ? Colors.redAccent : Colors.teal,
-                label: Icon(
-                  badgeIcon,
-                  size: 10,
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
-                    image,
-                    width: 50,
-                    height: 50,
-                  ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Badge(
+                      backgroundColor: widget.explicitContent
+                          ? Colors.redAccent
+                          : Colors.teal,
+                      label: Icon(
+                        widget.badgeIcon,
+                        size: 10,
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.network(
+                          widget.image,
+                          width: 50,
+                          height: 50,
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              widget.title,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                              softWrap: true,
+                            ),
+                            Text(
+                              widget.subtitle,
+                              style: const TextStyle(
+                                overflow: TextOverflow.fade,
+                              ),
+                              maxLines: 2,
+                              softWrap: true,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
+              Padding(
+                padding: const EdgeInsets.only(right: 5, bottom: 5),
+                child: AnimatedScale(
+                  curve: Curves.bounceOut,
+                  alignment: Alignment.bottomRight,
+                  duration: const Duration(microseconds: 100),
+                  scale: _animation.value,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        title,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.favorite,
+                            size: 15,
+                          ),
+                          splashColor: Colors.red,
+                          constraints:
+                              const BoxConstraints(maxHeight: 35, maxWidth: 35),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red.shade400,
+                          ),
                         ),
-                        softWrap: true,
                       ),
-                      Text(
-                        subtitle,
-                        style: const TextStyle(
-                          overflow: TextOverflow.fade,
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.play_arrow,
+                            size: 15,
+                          ),
+                          splashColor: Colors.teal,
+                          constraints:
+                              const BoxConstraints(maxHeight: 35, maxWidth: 35),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.teal.shade500,
+                          ),
                         ),
-                        maxLines: 2,
-                        softWrap: true,
                       ),
                     ],
                   ),
@@ -77,38 +170,4 @@ class TrendCard extends StatelessWidget {
       ),
     );
   }
-}
-
-List<Widget> trendCards(BrowseTrendingModel trendings) {
-  final l = [
-    for (SongModel album in trendings.songs)
-      (TrendCard(
-        onTap: () {},
-        image: album.images[1].url,
-        title: album.title,
-        subtitle: album.subtitle,
-        explicitContent: album.explicitContent,
-        badgeIcon: Icons.music_note,
-      )),
-    for (AlbumModel album in trendings.albums)
-      (TrendCard(
-        onTap: () {},
-        image: album.images[1].url,
-        title: album.title,
-        subtitle: album.artists.map((e) => e.name).join(','),
-        explicitContent: album.explicitContent,
-        badgeIcon: Icons.album,
-      )),
-    for (PlaylistMapModel album in trendings.playlists)
-      (TrendCard(
-        onTap: () {},
-        image: album.images[1].url,
-        title: album.title,
-        subtitle: album.subtitle,
-        explicitContent: album.explicitContent,
-        badgeIcon: Icons.playlist_play_rounded,
-      )),
-  ];
-
-  return l;
 }

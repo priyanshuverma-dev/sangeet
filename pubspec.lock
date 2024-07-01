@@ -240,6 +240,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  google_fonts:
+    dependency: "direct main"
+    description:
+      name: google_fonts
+      sha256: b1ac0fe2832c9cc95e5e88b57d627c5e68c223b9657f4b96e1487aa9098c7b82
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.2.1"
   hotkey_manager:
     dependency: "direct main"
     description:
@@ -304,6 +312,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.0"
+  intl:
+    dependency: "direct main"
+    description:
+      name: intl
+      sha256: d6f56758b7d3014a48af9701c085700aac781a92a87a62b1333b46d8879661cf
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.19.0"
   js:
     dependency: transitive
     description:
@@ -533,7 +549,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: a82d7cdb5aa116f7afaa66355987a30489445a76
+      resolved-ref: "09fb73d9c0010c021d753a55aea348d1edecc18b"
       url: "https://github.com/priyanshuverma-dev/sangeet-api"
     source: git
     version: "0.1.2"
@@ -617,6 +633,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.17.1"
+  simple_animations:
+    dependency: "direct main"
+    description:
+      name: simple_animations
+      sha256: "1ea7b93fb98e2a611b6865d632de55607b766328d14700143353129ee0559d3a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.2"
   skeletonizer:
     dependency: "direct main"
     description:
@@ -848,4 +872,4 @@ packages:
     version: "3.1.2"
 sdks:
   dart: ">=3.3.3 <4.0.0"
-  flutter: ">=3.19.0"
+  flutter: ">=3.19.2"

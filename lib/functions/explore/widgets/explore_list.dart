@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sangeet/core/core.dart';
+import 'package:sangeet/functions/album/view/album_view.dart';
 import 'package:sangeet/functions/explore/controllers/explore_controller.dart';
 import 'package:sangeet/functions/explore/widgets/album_card.dart';
 import 'package:sangeet/functions/explore/widgets/chart_card.dart';
@@ -8,6 +9,7 @@ import 'package:sangeet/functions/explore/widgets/playlist_card.dart';
 import 'package:sangeet/functions/explore/widgets/radio_card.dart';
 import 'package:sangeet/functions/explore/widgets/trend_card.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
+import 'package:sangeet_api/models.dart';
 
 class ExploreList extends ConsumerWidget {
   const ExploreList({super.key});
@@ -48,7 +50,42 @@ class ExploreList extends ConsumerWidget {
                       childAspectRatio: 0.2,
                       scrollDirection: Axis.horizontal,
                       physics: const BouncingScrollPhysics(),
-                      children: trendCards(trendings),
+                      children: [
+                        for (SongModel song in trendings.songs)
+                          (TrendCard(
+                            onTap: () => ref
+                                .watch(playerControllerProvider.notifier)
+                                .runRadio(
+                                  radioId: song.id,
+                                  type: MediaType.song,
+                                  song: song,
+                                ),
+                            image: song.images[1].url,
+                            title: song.title,
+                            subtitle: song.subtitle,
+                            explicitContent: song.explicitContent,
+                            badgeIcon: Icons.music_note,
+                          )),
+                        for (AlbumModel album in trendings.albums)
+                          (TrendCard(
+                            onTap: () {},
+                            image: album.images[1].url,
+                            title: album.title,
+                            subtitle:
+                                album.artists.map((e) => e.name).join(','),
+                            explicitContent: album.explicitContent,
+                            badgeIcon: Icons.album,
+                          )),
+                        for (PlaylistMapModel playlist in trendings.playlists)
+                          (TrendCard(
+                            onTap: () {},
+                            image: playlist.images[1].url,
+                            title: playlist.title,
+                            subtitle: playlist.subtitle,
+                            explicitContent: playlist.explicitContent,
+                            badgeIcon: Icons.playlist_play_rounded,
+                          )),
+                      ],
                     ),
                   ),
 
@@ -73,7 +110,14 @@ class ExploreList extends ConsumerWidget {
                         final chart = charts[index];
                         return ChartCard(
                           chart: chart,
-                          onTap: () {},
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const AlbumView(),
+                              settings: RouteSettings(
+                                name: chart.id,
+                              ),
+                            ),
+                          ),
                         );
                       },
                     ),
@@ -107,7 +151,10 @@ class ExploreList extends ConsumerWidget {
                           radio: radio,
                           onTap: () => ref
                               .watch(playerControllerProvider.notifier)
-                              .runRadio(radioId: radio.id, featured: true),
+                              .runRadio(
+                                radioId: radio.id,
+                                type: MediaType.radio,
+                              ),
                         );
                       },
                     ),
@@ -139,7 +186,14 @@ class ExploreList extends ConsumerWidget {
                         final album = albums[index];
                         return AlbumCard(
                           album: album,
-                          onTap: () {},
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const AlbumView(),
+                              settings: RouteSettings(
+                                name: album.id,
+                              ),
+                            ),
+                          ),
                         );
                       },
                     ),

@@ -11,7 +11,7 @@ class AlbumCard extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.all(5.0),
       child: InkWell(
-        onTap: () {},
+        onTap: onTap,
         borderRadius: BorderRadius.circular(15),
         child: Container(
           width: 150,

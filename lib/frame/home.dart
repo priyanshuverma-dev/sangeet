@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:hotkey_manager/hotkey_manager.dart';
+import 'package:window_manager/window_manager.dart';
+import 'package:tray_manager/tray_manager.dart';
+
 import 'package:sangeet/core/constants.dart';
 import 'package:sangeet/frame/commons.dart';
+import 'package:sangeet/functions/explore/views/explore_view.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
 import 'package:sangeet/functions/player/widgets/base_audio_player.dart';
+import 'package:sangeet/functions/search/views/search_view.dart';
+import 'package:sangeet/functions/settings/views/settings_view.dart';
 import 'package:sangeet/functions/shortcuts/actions.dart';
-import 'package:tray_manager/tray_manager.dart';
-import 'package:window_manager/window_manager.dart';
 
 class HomeFrame extends ConsumerStatefulWidget {
   const HomeFrame({super.key});
@@ -19,6 +24,14 @@ class HomeFrame extends ConsumerStatefulWidget {
 
 class _HomeFrameState extends ConsumerState<HomeFrame>
     with TrayListener, WindowListener {
+  int _index = 0;
+
+  void onDestinationSelected(int i) {
+    setState(() {
+      _index = i;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -35,8 +48,6 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
 
   @override
   Widget build(BuildContext context) {
-    final screenConfig = ref.watch(appScreenConfigProvider.notifier);
-    final screen = ref.watch(appScreenConfigProvider).screen;
     return Actions(
       actions: <Type, Action<Intent>>{
         BaseIntent: SongActions(
@@ -59,8 +70,8 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
           body: Row(
             children: [
               NavigationRail(
-                selectedIndex: screen.index,
-                onDestinationSelected: (i) => screenConfig.onIndex(i),
+                selectedIndex: _index,
+                onDestinationSelected: onDestinationSelected,
                 destinations: const [
                   NavigationRailDestination(
                     icon: Icon(Icons.home),
@@ -89,12 +100,37 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
                 ),
               ),
               Expanded(
-                child: screen.view,
+                child: IndexedStack(
+                  index: _index,
+                  children: [
+                    _buildNavigator(
+                      0,
+                      const ExploreView(),
+                    ),
+                    _buildNavigator(
+                      1,
+                      const SearchView(),
+                    ),
+                    _buildNavigator(
+                      2,
+                      const SettingsView(),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
           bottomNavigationBar: const BaseAudioPlayer(),
         ),
+      ),
+    );
+  }
+
+  Widget _buildNavigator(int index, Widget child) {
+    return Navigator(
+      key: GlobalKey<NavigatorState>(debugLabel: 'navigator$index'),
+      onGenerateRoute: (settings) => MaterialPageRoute(
+        builder: (context) => child,
       ),
     );
   }

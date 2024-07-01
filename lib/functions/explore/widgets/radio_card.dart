@@ -52,7 +52,7 @@ class RadioCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                         textAlign: TextAlign.center,
-                        maxLines: 3,
+                        maxLines: 2,
                         softWrap: true,
                       ),
                     ),

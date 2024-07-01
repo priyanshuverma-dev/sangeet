@@ -1,9 +1,9 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hotkey_manager/hotkey_manager.dart';
-import 'package:system_theme/system_theme.dart';
 
 import 'package:sangeet/frame/home.dart';
 import 'package:sangeet/initialization.dart';
@@ -29,9 +29,15 @@ class MyApp extends StatelessWidget {
       title: 'Sangeet',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorSchemeSeed: SystemTheme.accentColor.accent,
+        colorSchemeSeed: Colors.teal,
       ),
-      darkTheme: ThemeData.dark().copyWith(),
+      darkTheme: ThemeData.dark().copyWith(
+        textTheme: GoogleFonts.ubuntuTextTheme(ThemeData.dark().textTheme),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.teal,
+          brightness: Brightness.dark,
+        ),
+      ),
       themeMode: ThemeMode.dark,
       home: const HomeFrame(),
       builder: BotToastInit(),
