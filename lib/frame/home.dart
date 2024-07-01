@@ -7,7 +7,6 @@ import 'package:window_manager/window_manager.dart';
 import 'package:tray_manager/tray_manager.dart';
 
 import 'package:sangeet/core/constants.dart';
-import 'package:sangeet/frame/commons.dart';
 import 'package:sangeet/functions/explore/views/explore_view.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
 import 'package:sangeet/functions/player/widgets/base_audio_player.dart';
@@ -169,9 +168,6 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
       }
       if (menuItem.key == SystemTrayActions.openPlaylist) {
         await windowManager.show();
-        ref
-            .watch(appScreenConfigProvider.notifier)
-            .goto(screen: Screens.playlist);
       }
     }
 

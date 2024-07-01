@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sangeet/functions/explore/views/explore_view.dart';
-import 'package:sangeet/functions/player/views/playlist_view.dart';
 import 'package:sangeet/functions/search/views/search_view.dart';
 import 'package:sangeet/functions/settings/views/settings_view.dart';
 
@@ -31,13 +30,6 @@ enum Screens {
       name: "Settings",
       index: 2,
       view: SettingsView(),
-    ),
-  ),
-  playlist(
-    AppScreen(
-      name: "Playlists",
-      index: 0,
-      view: PlaylistView(),
     ),
   );
 

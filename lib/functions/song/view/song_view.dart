@@ -1,27 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:sangeet/core/core.dart';
-import 'package:sangeet/core/utils.dart';
-import 'package:sangeet/functions/album/controllers/album_controller.dart';
-import 'package:sangeet/functions/album/widgets/album_top_details.dart';
+import 'package:sangeet/functions/player/controllers/player_controller.dart';
+import 'package:sangeet/functions/player/widgets/current_playing_list.dart';
+import 'package:sangeet/functions/song/controllers/song_controller.dart';
+import 'package:sangeet/functions/song/widgets/song_top_details.dart';
 
-class AlbumView extends ConsumerWidget {
-  final String albumId;
-  const AlbumView({this.albumId = "", super.key});
+class SongView extends ConsumerStatefulWidget {
+  final String songId;
+  const SongView({this.songId = "", super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final name = ModalRoute.of(context)?.settings.name ?? albumId;
+  ConsumerState<ConsumerStatefulWidget> createState() => _SongViewState();
+}
 
-    return ref.watch(albumByIdProvider(name)).when(
-          data: (album) {
+class _SongViewState extends ConsumerState<SongView> {
+  @override
+  Widget build(BuildContext context) {
+    final name = ModalRoute.of(context)?.settings.name ?? widget.songId;
+    final player = ref.read(getAudioPlayer);
+
+    return ref.watch(songByIdProvider(name)).when(
+          data: (song) {
             return Container(
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                    color: Color(album.playCount),
+                    color: song.accentColor!,
                   ),
                 ],
               ),
@@ -51,7 +58,7 @@ class AlbumView extends ConsumerWidget {
                                 ),
                               ),
                             ),
-                            AlbumTopDetails(album: album),
+                            SongTopDetails(song: song),
                             Container(
                               padding: const EdgeInsets.all(8),
                               margin: const EdgeInsets.symmetric(vertical: 10),
@@ -69,13 +76,13 @@ class AlbumView extends ConsumerWidget {
                                       children: [
                                         CircleAvatar(
                                           backgroundImage: NetworkImage(
-                                              album.artists[0].image),
+                                              song.artists[0].image),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 4),
                                           child: Text(
-                                            album.artists[0].name,
+                                            song.artists[0].name,
                                             style: GoogleFonts.caesarDressing()
                                                 .copyWith(
                                                     fontSize: 18,
@@ -87,7 +94,13 @@ class AlbumView extends ConsumerWidget {
                                     ),
                                   ),
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () => ref
+                                        .watch(
+                                            playerControllerProvider.notifier)
+                                        .runRadio(
+                                          radioId: song.id,
+                                          type: MediaType.song,
+                                        ),
                                     icon: const Icon(
                                       Icons.play_arrow_rounded,
                                       size: 35,
@@ -96,33 +109,34 @@ class AlbumView extends ConsumerWidget {
                                     style: IconButton.styleFrom(
                                       backgroundColor: Colors.teal,
                                     ),
-                                    splashColor: Color(album.playCount),
+                                    splashColor: song.accentColor,
                                   ),
                                 ],
                               ),
                             ),
-                            Container(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: ListView.builder(
-                                shrinkWrap: true,
-                                physics: const BouncingScrollPhysics(),
-                                scrollDirection: Axis.vertical,
-                                itemCount: album.songs.length,
-                                itemBuilder: (context, index) {
-                                  final song = album.songs[index];
-                                  return ListTile(
-                                    onTap: () {},
-                                    title: Text(song.title),
-                                    subtitle: Text(
-                                        "${formatNumber(song.playCount)} listens, ${formatDuration(song.duration)} long"),
-                                    leading: CircleAvatar(
-                                      backgroundImage:
-                                          NetworkImage(song.images[1].url),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
+
+                            // Container(
+                            //   padding: const EdgeInsets.symmetric(vertical: 10),
+                            //   child: ListView.builder(
+                            //     shrinkWrap: true,
+                            //     physics: const BouncingScrollPhysics(),
+                            //     scrollDirection: Axis.vertical,
+                            //     itemCount: album.songs.length,
+                            //     itemBuilder: (context, index) {
+                            //       final song = album.songs[index];
+                            //       return ListTile(
+                            //         onTap: () {},
+                            //         title: Text(song.title),
+                            //         subtitle: Text(
+                            //             "${formatNumber(song.playCount)} listens, ${formatDuration(song.duration)} long"),
+                            //         leading: CircleAvatar(
+                            //           backgroundImage:
+                            //               NetworkImage(song.images[1].url),
+                            //         ),
+                            //       );
+                            //     },
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),
@@ -158,13 +172,13 @@ class AlbumView extends ConsumerWidget {
                               ListView.builder(
                                 shrinkWrap: true,
                                 physics: const BouncingScrollPhysics(),
-                                itemCount: album.artists.length,
+                                itemCount: song.artists.length,
                                 itemBuilder: (context, index) {
-                                  final artist = album.artists[index];
+                                  final artist = song.artists[index];
                                   return ListTile(
                                     onTap: () {},
                                     title: Text(artist.name),
-                                    subtitle: Text(artist.type),
+                                    subtitle: Text(artist.role),
                                     leading: CircleAvatar(
                                       backgroundImage:
                                           NetworkImage(artist.image),

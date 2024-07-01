@@ -24,10 +24,13 @@ class PlaylistCard extends StatelessWidget {
               Badge(
                 label: Text("${playlist.songCount}"),
                 alignment: Alignment.bottomLeft,
-                child: CircleAvatar(
-                  radius: 55,
-                  backgroundColor: Colors.black,
-                  foregroundImage: NetworkImage(playlist.images[2].url),
+                child: Hero(
+                  tag: "${playlist.id}-image",
+                  child: CircleAvatar(
+                    radius: 55,
+                    backgroundColor: Colors.black,
+                    foregroundImage: NetworkImage(playlist.images[2].url),
+                  ),
                 ),
               ),
               const SizedBox(height: 10),

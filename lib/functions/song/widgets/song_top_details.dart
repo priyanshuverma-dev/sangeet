@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:sangeet/core/utils.dart';
 import 'package:sangeet_api/models.dart';
 
-class AlbumTopDetails extends StatelessWidget {
-  final AlbumModel album;
-  const AlbumTopDetails({super.key, required this.album});
+class SongTopDetails extends StatelessWidget {
+  final SongModel song;
+  const SongTopDetails({super.key, required this.song});
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +14,9 @@ class AlbumTopDetails extends StatelessWidget {
       children: [
         Badge(
           backgroundColor:
-              album.explicitContent ? Colors.teal : Colors.transparent,
+              song.explicitContent ? Colors.teal : Colors.transparent,
           label: Visibility(
-            visible: album.explicitContent,
+            visible: song.explicitContent,
             child: const Icon(
               Icons.explicit_rounded,
               size: 12,
@@ -24,7 +25,7 @@ class AlbumTopDetails extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Image.network(
-              album.images[2].url,
+              song.images[2].url,
               width: 200,
               height: 200,
             ),
@@ -38,7 +39,7 @@ class AlbumTopDetails extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  album.title,
+                  song.title,
                   style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
@@ -47,7 +48,7 @@ class AlbumTopDetails extends StatelessWidget {
                   maxLines: 2,
                 ),
                 Text(
-                  album.subtitle,
+                  song.subtitle,
                   style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w200,
@@ -55,7 +56,7 @@ class AlbumTopDetails extends StatelessWidget {
                   maxLines: 2,
                 ),
                 Text(
-                  "${album.language} - ${album.year}",
+                  "${song.language} - ${song.year}",
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
@@ -67,7 +68,7 @@ class AlbumTopDetails extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Songs - ${album.listCount}",
+                  "Listens - ${formatNumber(song.playCount)}",
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,

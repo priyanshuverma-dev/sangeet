@@ -29,6 +29,7 @@ class ExploreController extends StateNotifier<bool> {
         StackTrace.current,
       );
     }
+
     return data;
   }
 

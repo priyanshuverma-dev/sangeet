@@ -6,15 +6,21 @@ class TrendCard extends StatefulWidget {
   final String subtitle;
   final IconData badgeIcon;
   final VoidCallback onTap;
+  final VoidCallback onLike;
+  final VoidCallback onPlay;
   final bool explicitContent;
+  final Color? accentColor;
   const TrendCard({
     super.key,
     required this.onTap,
     required this.image,
+    this.accentColor,
     required this.title,
     required this.subtitle,
     required this.badgeIcon,
     required this.explicitContent,
+    required this.onLike,
+    required this.onPlay,
   });
 
   @override
@@ -31,7 +37,7 @@ class _TrendCardState extends State<TrendCard>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 275),
+      duration: const Duration(milliseconds: 100),
       vsync: this,
     );
     _animation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
@@ -39,8 +45,6 @@ class _TrendCardState extends State<TrendCard>
       curve: Curves.ease,
       reverseCurve: Curves.easeIn,
     ));
-    // padding = Tween(begin: 0.0, end: -25.0).animate(CurvedAnimation(
-    //     parent: _controller, curve: Curves.ease, reverseCurve: Curves.easeIn));
     _controller.addListener(() {
       setState(() {});
     });
@@ -60,6 +64,7 @@ class _TrendCardState extends State<TrendCard>
         });
       },
       child: Card(
+        surfaceTintColor: widget.accentColor,
         child: InkWell(
           onTap: widget.onTap,
           borderRadius: BorderRadius.circular(15),
@@ -131,7 +136,7 @@ class _TrendCardState extends State<TrendCard>
                       Padding(
                         padding: const EdgeInsets.all(2.0),
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: widget.onLike,
                           icon: const Icon(
                             Icons.favorite,
                             size: 15,
@@ -147,7 +152,7 @@ class _TrendCardState extends State<TrendCard>
                       Padding(
                         padding: const EdgeInsets.all(2.0),
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: widget.onPlay,
                           icon: const Icon(
                             Icons.play_arrow,
                             size: 15,

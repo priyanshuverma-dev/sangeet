@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sangeet/core/core.dart';
 import 'package:sangeet/core/utils.dart';
-import 'package:sangeet/functions/album/controllers/album_controller.dart';
-import 'package:sangeet/functions/album/widgets/album_top_details.dart';
+import 'package:sangeet/functions/playlist/controllers/playlist_controller.dart';
+import 'package:sangeet/functions/playlist/widgets/playlist_top_details.dart';
 
-class AlbumView extends ConsumerWidget {
-  final String albumId;
-  const AlbumView({this.albumId = "", super.key});
+class PlaylistView extends ConsumerWidget {
+  final String playlistId;
+  const PlaylistView({this.playlistId = "", super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final name = ModalRoute.of(context)?.settings.name ?? albumId;
+    final name = ModalRoute.of(context)?.settings.name ?? playlistId;
 
-    return ref.watch(albumByIdProvider(name)).when(
-          data: (album) {
+    return ref.watch(playlistByIdProvider(name)).when(
+          data: (playlist) {
             return Container(
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                    color: Color(album.playCount),
+                    color: playlist.accentColor!,
                   ),
                 ],
               ),
@@ -51,7 +50,7 @@ class AlbumView extends ConsumerWidget {
                                 ),
                               ),
                             ),
-                            AlbumTopDetails(album: album),
+                            PlaylistTopDetails(playlist: playlist),
                             Container(
                               padding: const EdgeInsets.all(8),
                               margin: const EdgeInsets.symmetric(vertical: 10),
@@ -69,13 +68,13 @@ class AlbumView extends ConsumerWidget {
                                       children: [
                                         CircleAvatar(
                                           backgroundImage: NetworkImage(
-                                              album.artists[0].image),
+                                              playlist.artists[0].image),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 4),
                                           child: Text(
-                                            album.artists[0].name,
+                                            playlist.artists[0].name,
                                             style: GoogleFonts.caesarDressing()
                                                 .copyWith(
                                                     fontSize: 18,
@@ -96,7 +95,7 @@ class AlbumView extends ConsumerWidget {
                                     style: IconButton.styleFrom(
                                       backgroundColor: Colors.teal,
                                     ),
-                                    splashColor: Color(album.playCount),
+                                    splashColor: Color(playlist.playCount),
                                   ),
                                 ],
                               ),
@@ -107,9 +106,9 @@ class AlbumView extends ConsumerWidget {
                                 shrinkWrap: true,
                                 physics: const BouncingScrollPhysics(),
                                 scrollDirection: Axis.vertical,
-                                itemCount: album.songs.length,
+                                itemCount: playlist.songs.length,
                                 itemBuilder: (context, index) {
-                                  final song = album.songs[index];
+                                  final song = playlist.songs[index];
                                   return ListTile(
                                     onTap: () {},
                                     title: Text(song.title),
@@ -158,13 +157,13 @@ class AlbumView extends ConsumerWidget {
                               ListView.builder(
                                 shrinkWrap: true,
                                 physics: const BouncingScrollPhysics(),
-                                itemCount: album.artists.length,
+                                itemCount: playlist.artists.length,
                                 itemBuilder: (context, index) {
-                                  final artist = album.artists[index];
+                                  final artist = playlist.artists[index];
                                   return ListTile(
                                     onTap: () {},
                                     title: Text(artist.name),
-                                    subtitle: Text(artist.type),
+                                    subtitle: Text(artist.role),
                                     leading: CircleAvatar(
                                       backgroundImage:
                                           NetworkImage(artist.image),
@@ -172,6 +171,7 @@ class AlbumView extends ConsumerWidget {
                                   );
                                 },
                               ),
+                              SizedBox(height: 20),
                             ],
                           ),
                         ),

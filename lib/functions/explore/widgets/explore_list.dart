@@ -3,13 +3,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sangeet/core/core.dart';
 import 'package:sangeet/functions/album/view/album_view.dart';
 import 'package:sangeet/functions/explore/controllers/explore_controller.dart';
+import 'package:sangeet/functions/explore/views/explore_view.dart';
 import 'package:sangeet/functions/explore/widgets/album_card.dart';
 import 'package:sangeet/functions/explore/widgets/chart_card.dart';
 import 'package:sangeet/functions/explore/widgets/playlist_card.dart';
 import 'package:sangeet/functions/explore/widgets/radio_card.dart';
 import 'package:sangeet/functions/explore/widgets/trend_card.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
-import 'package:sangeet_api/models.dart';
+import 'package:sangeet/functions/playlist/view/playlist_view.dart';
+import 'package:sangeet/functions/song/view/song_view.dart';
 
 class ExploreList extends ConsumerWidget {
   const ExploreList({super.key});
@@ -25,7 +27,6 @@ class ExploreList extends ConsumerWidget {
             final albums = data.albums;
             final playlists = data.topPlaylists;
             final trendings = data.trending;
-
             return SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Column(
@@ -50,42 +51,90 @@ class ExploreList extends ConsumerWidget {
                       childAspectRatio: 0.2,
                       scrollDirection: Axis.horizontal,
                       physics: const BouncingScrollPhysics(),
-                      children: [
-                        for (SongModel song in trendings.songs)
-                          (TrendCard(
-                            onTap: () => ref
-                                .watch(playerControllerProvider.notifier)
-                                .runRadio(
-                                  radioId: song.id,
-                                  type: MediaType.song,
-                                  song: song,
-                                ),
-                            image: song.images[1].url,
-                            title: song.title,
-                            subtitle: song.subtitle,
-                            explicitContent: song.explicitContent,
-                            badgeIcon: Icons.music_note,
-                          )),
-                        for (AlbumModel album in trendings.albums)
-                          (TrendCard(
-                            onTap: () {},
-                            image: album.images[1].url,
-                            title: album.title,
-                            subtitle:
-                                album.artists.map((e) => e.name).join(','),
-                            explicitContent: album.explicitContent,
-                            badgeIcon: Icons.album,
-                          )),
-                        for (PlaylistMapModel playlist in trendings.playlists)
-                          (TrendCard(
-                            onTap: () {},
-                            image: playlist.images[1].url,
-                            title: playlist.title,
-                            subtitle: playlist.subtitle,
-                            explicitContent: playlist.explicitContent,
-                            badgeIcon: Icons.playlist_play_rounded,
-                          )),
-                      ],
+                      children: trendings
+                          .map(
+                            (item) => TrendCard(
+                              key: Key(item.id),
+                              onPlay: () => ref
+                                  .watch(playerControllerProvider.notifier)
+                                  .runRadio(
+                                    radioId: item.id,
+                                    type: MediaType.fromString(item.type),
+                                    redirect: () {
+                                      Navigator.of(context)
+                                          .push(MaterialPageRoute(
+                                        builder: (context) {
+                                          if (item.type == 'song') {
+                                            return SongView(
+                                              songId: item.id,
+                                            );
+                                          }
+                                          if (item.type == 'album') {
+                                            return AlbumView(
+                                              albumId: item.id,
+                                            );
+                                          }
+                                          if (item.type == 'playlist') {
+                                            return PlaylistView(
+                                              playlistId: item.id,
+                                            );
+                                          } else {
+                                            return const ExploreView();
+                                          }
+                                        },
+                                      ));
+                                    },
+                                  ),
+                              onLike: () {},
+                              onTap: () {
+                                Navigator.of(context)
+                                    .push(MaterialPageRoute(builder: (context) {
+                                  if (item.type == 'song') {
+                                    return SongView(
+                                      songId: item.id,
+                                    );
+                                  }
+                                  if (item.type == 'album') {
+                                    return AlbumView(
+                                      albumId: item.id,
+                                    );
+                                  }
+                                  if (item.type == 'playlist') {
+                                    return PlaylistView(
+                                      playlistId: item.id,
+                                    );
+                                  } else {
+                                    return const ExploreView();
+                                  }
+                                }));
+                                // if (item.type == 'album') {
+                                //   Navigator.of(context).push(MaterialPageRoute(
+                                //     builder: (context) => AlbumView(
+                                //       albumId: item.id,
+                                //     ),
+                                //   ));
+                                // }
+                                // if (item.type == 'playlist') {
+                                //   Navigator.of(context).push(MaterialPageRoute(
+                                //     builder: (context) => PlaylistView(
+                                //       playlistId: item.id,
+                                //     ),
+                                //   ));
+                                // }
+                              },
+                              image: item.image,
+                              accentColor: item.accentColor,
+                              title: item.title,
+                              subtitle: item.subtitle,
+                              explicitContent: item.explicitContent,
+                              badgeIcon: item.type == "song"
+                                  ? Icons.music_note
+                                  : item.type == "playlist"
+                                      ? Icons.playlist_play_rounded
+                                      : Icons.album_rounded,
+                            ),
+                          )
+                          .toList(),
                     ),
                   ),
 
@@ -186,14 +235,12 @@ class ExploreList extends ConsumerWidget {
                         final album = albums[index];
                         return AlbumCard(
                           album: album,
-                          onTap: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const AlbumView(),
-                              settings: RouteSettings(
-                                name: album.id,
-                              ),
+                          onTap: () =>
+                              Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => AlbumView(
+                              albumId: album.id,
                             ),
-                          ),
+                          )),
                         );
                       },
                     ),
@@ -223,7 +270,16 @@ class ExploreList extends ConsumerWidget {
                       itemCount: playlists.length,
                       itemBuilder: (context, index) {
                         final playlist = playlists[index];
-                        return PlaylistCard(playlist: playlist, onTap: () {});
+                        return PlaylistCard(
+                          playlist: playlist,
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => PlaylistView(
+                                playlistId: playlist.id,
+                              ),
+                            ),
+                          ),
+                        );
                       },
                     ),
                   ),

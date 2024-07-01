@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:sangeet/core/utils.dart';
 import 'package:sangeet_api/models.dart';
 
-class AlbumTopDetails extends StatelessWidget {
-  final AlbumModel album;
-  const AlbumTopDetails({super.key, required this.album});
+class PlaylistTopDetails extends StatelessWidget {
+  final PlaylistModel playlist;
+  const PlaylistTopDetails({super.key, required this.playlist});
 
   @override
   Widget build(BuildContext context) {
@@ -13,20 +14,23 @@ class AlbumTopDetails extends StatelessWidget {
       children: [
         Badge(
           backgroundColor:
-              album.explicitContent ? Colors.teal : Colors.transparent,
+              playlist.explicitContent ? Colors.teal : Colors.transparent,
           label: Visibility(
-            visible: album.explicitContent,
+            visible: playlist.explicitContent,
             child: const Icon(
               Icons.explicit_rounded,
               size: 12,
             ),
           ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.network(
-              album.images[2].url,
-              width: 200,
-              height: 200,
+          child: Hero(
+            tag: "${playlist.id}-image",
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.network(
+                playlist.images[2].url,
+                width: 200,
+                height: 200,
+              ),
             ),
           ),
         ),
@@ -38,7 +42,7 @@ class AlbumTopDetails extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  album.title,
+                  playlist.title,
                   style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
@@ -47,7 +51,7 @@ class AlbumTopDetails extends StatelessWidget {
                   maxLines: 2,
                 ),
                 Text(
-                  album.subtitle,
+                  playlist.subtitle,
                   style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w200,
@@ -55,7 +59,7 @@ class AlbumTopDetails extends StatelessWidget {
                   maxLines: 2,
                 ),
                 Text(
-                  "${album.language} - ${album.year}",
+                  "fans - ${formatNumber(playlist.fanCount)} \nfollowers - ${formatNumber(playlist.followerCount)}",
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
@@ -67,7 +71,7 @@ class AlbumTopDetails extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Songs - ${album.listCount}",
+                  "Songs - ${playlist.songs.length}",
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,

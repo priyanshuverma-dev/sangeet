@@ -1,12 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sangeet/core/api_provider.dart';
 import 'package:sangeet/core/core.dart';
-import 'package:sangeet/frame/commons.dart';
 import 'package:sangeet/functions/explore/controllers/explore_controller.dart';
 import 'package:sangeet/functions/player/widgets/common.dart';
 import 'package:sangeet/functions/settings/controllers/settings_controller.dart';
@@ -61,9 +61,9 @@ class PlayerController extends StateNotifier<bool> {
 
   Future<void> runRadio({
     required String radioId,
-    SongModel? song,
     required MediaType type,
     bool featured = false,
+    VoidCallback? redirect,
   }) async {
     try {
       await playlist.clear();
@@ -71,6 +71,7 @@ class PlayerController extends StateNotifier<bool> {
 
       if (type == MediaType.song) {
         final songsObjects = await _exploreController.getRadio(radioId, false);
+        final song = await _api.song.getById(songId: radioId);
         songsObjects.songs.insert(0, song!);
         for (var i = 0; i < songsObjects.songs.length; i++) {
           final uri = songsObjects.songs[i].urls
@@ -78,12 +79,19 @@ class PlayerController extends StateNotifier<bool> {
               .toList()[0]
               .url;
 
-          playlist
-              .add(AudioSource.uri(Uri.parse(uri), tag: songsObjects.songs[i]));
+          final accentColor = await ColorScheme.fromImageProvider(
+            provider: NetworkImage(songsObjects.songs[i].images[0].url),
+            brightness: Brightness.dark,
+          );
+
+          final s = song.copyWith(
+            accentColor: accentColor.background,
+          );
+          playlist.add(AudioSource.uri(Uri.parse(uri), tag: s));
         }
         await _player.setAudioSource(playlist, preload: true);
       }
-
+      redirect?.call();
       await _player.play();
     } on PlayerException catch (e) {
       if (kDebugMode) {
