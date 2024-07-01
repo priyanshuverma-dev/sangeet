@@ -91,6 +91,48 @@ class PlayerController extends StateNotifier<bool> {
         }
         await _player.setAudioSource(playlist, preload: true);
       }
+
+      if (type == MediaType.album) {
+        final album = await _api.album.getById(albumId: radioId);
+        if (album == null) {
+          throw Error.throwWithStackTrace("Album not found", StackTrace.empty);
+        }
+
+        for (var i = 0; i < album.songs.length; i++) {
+          final uri = album.songs[i].urls
+              .where((element) => element.quality == quality.name)
+              .toList()[0]
+              .url;
+
+          playlist.add(AudioSource.uri(Uri.parse(uri), tag: album.songs[i]));
+        }
+
+        await _player.setAudioSource(playlist, preload: true);
+      }
+      if (type == MediaType.playlist) {
+        final playlistModel = await _api.playlist.getById(id: radioId);
+        if (playlistModel == null) {
+          throw Error.throwWithStackTrace(
+            "Playlist not found",
+            StackTrace.empty,
+          );
+        }
+
+        for (var i = 0; i < playlistModel.songs.length; i++) {
+          final uri = playlistModel.songs[i].urls
+              .where((element) => element.quality == quality.name)
+              .toList()[0]
+              .url;
+
+          playlist.add(AudioSource.uri(
+            Uri.parse(uri),
+            tag: playlistModel.songs[i],
+          ));
+        }
+
+        await _player.setAudioSource(playlist, preload: true);
+      }
+
       redirect?.call();
       await _player.play();
     } on PlayerException catch (e) {

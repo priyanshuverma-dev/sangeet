@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sangeet/core/core.dart';
 import 'package:sangeet/core/utils.dart';
+import 'package:sangeet/functions/player/controllers/player_controller.dart';
 import 'package:sangeet/functions/playlist/controllers/playlist_controller.dart';
 import 'package:sangeet/functions/playlist/widgets/playlist_top_details.dart';
 
@@ -63,7 +64,6 @@ class PlaylistView extends ConsumerWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   InkWell(
-                                    // onTap: () => Navigator.of(context).pop(),
                                     child: Row(
                                       children: [
                                         CircleAvatar(
@@ -86,7 +86,12 @@ class PlaylistView extends ConsumerWidget {
                                     ),
                                   ),
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () => ref
+                                        .watch(
+                                            playerControllerProvider.notifier)
+                                        .runRadio(
+                                            radioId: playlist.id,
+                                            type: MediaType.playlist),
                                     icon: const Icon(
                                       Icons.play_arrow_rounded,
                                       size: 35,
@@ -130,52 +135,52 @@ class PlaylistView extends ConsumerWidget {
 
                   // SUGGESTIONS
                   Visibility(
-                      visible: MediaQuery.of(context).size.width > 750,
-                      child: Container(
-                        margin: const EdgeInsets.all(8),
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        height: double.infinity,
-                        decoration: BoxDecoration(
-                          color: Colors.black12,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: SingleChildScrollView(
-                          physics: const BouncingScrollPhysics(),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  'Artists.',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                    visible: MediaQuery.of(context).size.width > 750,
+                    child: Container(
+                      margin: const EdgeInsets.all(8),
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      height: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.black12,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Artists.',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              ListView.builder(
-                                shrinkWrap: true,
-                                physics: const BouncingScrollPhysics(),
-                                itemCount: playlist.artists.length,
-                                itemBuilder: (context, index) {
-                                  final artist = playlist.artists[index];
-                                  return ListTile(
-                                    onTap: () {},
-                                    title: Text(artist.name),
-                                    subtitle: Text(artist.role),
-                                    leading: CircleAvatar(
-                                      backgroundImage:
-                                          NetworkImage(artist.image),
-                                    ),
-                                  );
-                                },
-                              ),
-                              SizedBox(height: 20),
-                            ],
-                          ),
+                            ),
+                            ListView.builder(
+                              shrinkWrap: true,
+                              physics: const BouncingScrollPhysics(),
+                              itemCount: playlist.artists.length,
+                              itemBuilder: (context, index) {
+                                final artist = playlist.artists[index];
+                                return ListTile(
+                                  onTap: () {},
+                                  title: Text(artist.name),
+                                  subtitle: Text(artist.role),
+                                  leading: CircleAvatar(
+                                    backgroundImage: NetworkImage(artist.image),
+                                  ),
+                                );
+                              },
+                            ),
+                            const SizedBox(height: 20),
+                          ],
                         ),
-                      ))
+                      ),
+                    ),
+                  )
                 ],
               ),
             );

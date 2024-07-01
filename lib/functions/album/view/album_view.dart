@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sangeet/core/core.dart';
 import 'package:sangeet/core/utils.dart';
 import 'package:sangeet/functions/album/controllers/album_controller.dart';
 import 'package:sangeet/functions/album/widgets/album_top_details.dart';
+import 'package:sangeet/functions/player/controllers/player_controller.dart';
 
 class AlbumView extends ConsumerWidget {
   final String albumId;
@@ -64,7 +64,6 @@ class AlbumView extends ConsumerWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   InkWell(
-                                    // onTap: () => Navigator.of(context).pop(),
                                     child: Row(
                                       children: [
                                         CircleAvatar(
@@ -87,7 +86,12 @@ class AlbumView extends ConsumerWidget {
                                     ),
                                   ),
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () => ref
+                                        .watch(
+                                            playerControllerProvider.notifier)
+                                        .runRadio(
+                                            radioId: album.id,
+                                            type: MediaType.album),
                                     icon: const Icon(
                                       Icons.play_arrow_rounded,
                                       size: 35,

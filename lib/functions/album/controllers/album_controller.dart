@@ -35,8 +35,6 @@ class AlbumController extends StateNotifier<bool> {
       brightness: Brightness.dark,
     );
 
-    print(accentColor.background.value);
-
     final s = album.copyWith(
       playCount: accentColor.background.value,
     );

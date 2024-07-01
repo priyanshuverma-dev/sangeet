@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:sangeet/functions/explore/widgets/trend_card.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
 import 'package:sangeet_api/modules/song/models/song_model.dart';
 

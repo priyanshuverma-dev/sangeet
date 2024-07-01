@@ -107,20 +107,6 @@ class ExploreList extends ConsumerWidget {
                                     return const ExploreView();
                                   }
                                 }));
-                                // if (item.type == 'album') {
-                                //   Navigator.of(context).push(MaterialPageRoute(
-                                //     builder: (context) => AlbumView(
-                                //       albumId: item.id,
-                                //     ),
-                                //   ));
-                                // }
-                                // if (item.type == 'playlist') {
-                                //   Navigator.of(context).push(MaterialPageRoute(
-                                //     builder: (context) => PlaylistView(
-                                //       playlistId: item.id,
-                                //     ),
-                                //   ));
-                                // }
                               },
                               image: item.image,
                               accentColor: item.accentColor,
@@ -135,6 +121,43 @@ class ExploreList extends ConsumerWidget {
                             ),
                           )
                           .toList(),
+                    ),
+                  ),
+
+                  // ALBUMS //
+                  const Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Text(
+                      'New Albums.',
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 20.0),
+                    height: 400.0,
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                      ),
+                      scrollDirection: Axis.horizontal,
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: albums.length,
+                      itemBuilder: (context, index) {
+                        final album = albums[index];
+                        return AlbumCard(
+                          album: album,
+                          onTap: () =>
+                              Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => AlbumView(
+                              albumId: album.id,
+                            ),
+                          )),
+                        );
+                      },
                     ),
                   ),
 
@@ -204,43 +227,6 @@ class ExploreList extends ConsumerWidget {
                                 radioId: radio.id,
                                 type: MediaType.radio,
                               ),
-                        );
-                      },
-                    ),
-                  ),
-
-                  // ALBUMS //
-                  const Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Text(
-                      'New Albums.',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(vertical: 20.0),
-                    height: 400.0,
-                    child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                      ),
-                      scrollDirection: Axis.horizontal,
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: albums.length,
-                      itemBuilder: (context, index) {
-                        final album = albums[index];
-                        return AlbumCard(
-                          album: album,
-                          onTap: () =>
-                              Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => AlbumView(
-                              albumId: album.id,
-                            ),
-                          )),
                         );
                       },
                     ),

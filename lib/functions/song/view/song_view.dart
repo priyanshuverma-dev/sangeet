@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:sangeet/core/core.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
-import 'package:sangeet/functions/player/widgets/current_playing_list.dart';
 import 'package:sangeet/functions/song/controllers/song_controller.dart';
 import 'package:sangeet/functions/song/widgets/song_top_details.dart';
 
@@ -20,7 +18,7 @@ class _SongViewState extends ConsumerState<SongView> {
   @override
   Widget build(BuildContext context) {
     final name = ModalRoute.of(context)?.settings.name ?? widget.songId;
-    final player = ref.read(getAudioPlayer);
+    // final player = ref.read(getAudioPlayer);
 
     return ref.watch(songByIdProvider(name)).when(
           data: (song) {
