@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,6 +8,11 @@ import 'package:sangeet/functions/song/controllers/song_controller.dart';
 import 'package:sangeet/functions/song/widgets/song_top_details.dart';
 
 class SongView extends ConsumerStatefulWidget {
+  static route(String id) => CupertinoPageRoute(
+        builder: (context) => SongView(
+          songId: id,
+        ),
+      );
   final String songId;
   const SongView({this.songId = "", super.key});
 
@@ -18,7 +24,6 @@ class _SongViewState extends ConsumerState<SongView> {
   @override
   Widget build(BuildContext context) {
     final name = ModalRoute.of(context)?.settings.name ?? widget.songId;
-    // final player = ref.read(getAudioPlayer);
 
     return ref.watch(songByIdProvider(name)).when(
           data: (song) {

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,6 +9,11 @@ import 'package:sangeet/functions/playlist/controllers/playlist_controller.dart'
 import 'package:sangeet/functions/playlist/widgets/playlist_top_details.dart';
 
 class PlaylistView extends ConsumerWidget {
+  static route(String id) => CupertinoPageRoute(
+        builder: (context) => PlaylistView(
+          playlistId: id,
+        ),
+      );
   final String playlistId;
   const PlaylistView({this.playlistId = "", super.key});
 

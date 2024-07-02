@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sangeet/core/core.dart';
@@ -62,28 +63,18 @@ class ExploreList extends ConsumerWidget {
                                     radioId: item.id,
                                     type: MediaType.fromString(item.type),
                                     redirect: () {
-                                      Navigator.of(context)
-                                          .push(MaterialPageRoute(
-                                        builder: (context) {
-                                          if (item.type == 'song') {
-                                            return SongView(
-                                              songId: item.id,
-                                            );
-                                          }
-                                          if (item.type == 'album') {
-                                            return AlbumView(
-                                              albumId: item.id,
-                                            );
-                                          }
-                                          if (item.type == 'playlist') {
-                                            return PlaylistView(
-                                              playlistId: item.id,
-                                            );
-                                          } else {
-                                            return const ExploreView();
-                                          }
-                                        },
-                                      ));
+                                      if (item.type == 'song') {
+                                        Navigator.of(context)
+                                            .push(SongView.route(item.id));
+                                      }
+                                      if (item.type == 'album') {
+                                        Navigator.of(context)
+                                            .push(AlbumView.route(item.id));
+                                      }
+                                      if (item.type == 'playlist') {
+                                        Navigator.of(context)
+                                            .push(PlaylistView.route(item.id));
+                                      }
                                     },
                                   ),
                               onLike: () {},
@@ -151,12 +142,8 @@ class ExploreList extends ConsumerWidget {
                         final album = albums[index];
                         return AlbumCard(
                           album: album,
-                          onTap: () =>
-                              Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => AlbumView(
-                              albumId: album.id,
-                            ),
-                          )),
+                          onTap: () => Navigator.of(context)
+                              .push(AlbumView.route(album.id)),
                         );
                       },
                     ),
@@ -184,14 +171,7 @@ class ExploreList extends ConsumerWidget {
                         return ChartCard(
                           chart: chart,
                           onTap: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => ChartView(
-                                chartId: chart.token,
-                              ),
-                              settings: RouteSettings(
-                                name: chart.token,
-                              ),
-                            ),
+                            ChartView.route(chart.token),
                           ),
                         );
                       },
@@ -263,11 +243,7 @@ class ExploreList extends ConsumerWidget {
                         return PlaylistCard(
                           playlist: playlist,
                           onTap: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => PlaylistView(
-                                playlistId: playlist.id,
-                              ),
-                            ),
+                            PlaylistView.route(playlist.id),
                           ),
                         );
                       },

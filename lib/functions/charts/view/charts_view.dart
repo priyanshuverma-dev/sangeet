@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,6 +9,12 @@ import 'package:sangeet/functions/charts/widgets/charts_top_details.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
 
 class ChartView extends ConsumerWidget {
+  static route(String id) => CupertinoPageRoute(
+        builder: (context) => ChartView(
+          chartId: id,
+        ),
+      );
+
   final String chartId;
   const ChartView({this.chartId = "", super.key});
 
@@ -135,51 +142,51 @@ class ChartView extends ConsumerWidget {
 
                   // SUGGESTIONS
                   Visibility(
-                      visible: MediaQuery.of(context).size.width > 750,
-                      child: Container(
-                        margin: const EdgeInsets.all(8),
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        height: double.infinity,
-                        decoration: BoxDecoration(
-                          color: Colors.black12,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: SingleChildScrollView(
-                          physics: const BouncingScrollPhysics(),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  'Artists.',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                    visible: MediaQuery.of(context).size.width > 750,
+                    child: Container(
+                      margin: const EdgeInsets.all(8),
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      height: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.black12,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Artists.',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              ListView.builder(
-                                shrinkWrap: true,
-                                physics: const BouncingScrollPhysics(),
-                                itemCount: chart.artists.length,
-                                itemBuilder: (context, index) {
-                                  final artist = chart.artists[index];
-                                  return ListTile(
-                                    onTap: () {},
-                                    title: Text(artist.name),
-                                    subtitle: Text(artist.type),
-                                    leading: CircleAvatar(
-                                      backgroundImage:
-                                          NetworkImage(artist.image),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
+                            ),
+                            ListView.builder(
+                              shrinkWrap: true,
+                              physics: const BouncingScrollPhysics(),
+                              itemCount: chart.artists.length,
+                              itemBuilder: (context, index) {
+                                final artist = chart.artists[index];
+                                return ListTile(
+                                  onTap: () {},
+                                  title: Text(artist.name),
+                                  subtitle: Text(artist.type),
+                                  leading: CircleAvatar(
+                                    backgroundImage: NetworkImage(artist.image),
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
                         ),
-                      ))
+                      ),
+                    ),
+                  )
                 ],
               ),
             );

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,6 +9,11 @@ import 'package:sangeet/functions/album/widgets/album_top_details.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
 
 class AlbumView extends ConsumerWidget {
+  static route(String id) => CupertinoPageRoute(
+        builder: (context) => AlbumView(
+          albumId: id,
+        ),
+      );
   final String albumId;
   const AlbumView({this.albumId = "", super.key});
 
