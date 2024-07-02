@@ -8,14 +8,6 @@ import 'package:sangeet/functions/player/widgets/common.dart';
 import 'package:sangeet/functions/player/widgets/player_control_buttons.dart';
 import 'package:sangeet_api/modules/song/models/song_model.dart';
 
-// FOR APPBAR WIDGET
-PreferredSizeWidget getBasePlayerAppbar(BuildContext context) {
-  return PreferredSize(
-    preferredSize: Size(MediaQuery.of(context).size.width, 200),
-    child: const BaseAudioPlayer(),
-  );
-}
-
 class BaseAudioPlayer extends ConsumerStatefulWidget {
   const BaseAudioPlayer({super.key});
 
@@ -44,7 +36,9 @@ class _BaseAudioPlayerState extends ConsumerState<BaseAudioPlayer> {
 
         // Start
         return Card(
-          surfaceTintColor: metadata.accentColor,
+          surfaceTintColor: Colors.transparent,
+          color: Colors.transparent,
+          shadowColor: Colors.transparent,
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

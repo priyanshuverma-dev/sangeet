@@ -92,34 +92,41 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
                     width: 35,
                   ),
                 ),
-                elevation: 10,
-                labelType: NavigationRailLabelType.all,
+                labelType: NavigationRailLabelType.none,
                 indicatorShape: ContinuousRectangleBorder(
                   borderRadius: BorderRadius.circular(50),
                 ),
               ),
               Expanded(
-                child: IndexedStack(
-                  index: _index,
+                child: Column(
                   children: [
-                    _buildNavigator(
-                      0,
-                      const ExploreView(),
+                    Expanded(
+                      flex: 1,
+                      child: IndexedStack(
+                        index: _index,
+                        children: [
+                          _buildNavigator(
+                            0,
+                            const ExploreView(),
+                          ),
+                          _buildNavigator(
+                            1,
+                            const SearchView(),
+                          ),
+                          _buildNavigator(
+                            2,
+                            const SettingsView(),
+                          ),
+                        ],
+                      ),
                     ),
-                    _buildNavigator(
-                      1,
-                      const SearchView(),
-                    ),
-                    _buildNavigator(
-                      2,
-                      const SettingsView(),
-                    ),
+                    const BaseAudioPlayer(),
                   ],
                 ),
               ),
             ],
           ),
-          bottomNavigationBar: const BaseAudioPlayer(),
+          // bottomNavigationBar: const BaseAudioPlayer(),
         ),
       ),
     );

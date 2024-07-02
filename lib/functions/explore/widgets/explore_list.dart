@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sangeet/core/core.dart';
 import 'package:sangeet/functions/album/view/album_view.dart';
+import 'package:sangeet/functions/charts/view/charts_view.dart';
 import 'package:sangeet/functions/explore/controllers/explore_controller.dart';
 import 'package:sangeet/functions/explore/views/explore_view.dart';
 import 'package:sangeet/functions/explore/widgets/album_card.dart';
@@ -184,9 +185,11 @@ class ExploreList extends ConsumerWidget {
                           chart: chart,
                           onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => const AlbumView(),
+                              builder: (context) => ChartView(
+                                chartId: chart.token,
+                              ),
                               settings: RouteSettings(
-                                name: chart.id,
+                                name: chart.token,
                               ),
                             ),
                           ),
@@ -226,6 +229,7 @@ class ExploreList extends ConsumerWidget {
                               .runRadio(
                                 radioId: radio.id,
                                 type: MediaType.radio,
+                                redirect: () {},
                               ),
                         );
                       },

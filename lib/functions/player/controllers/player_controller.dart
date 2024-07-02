@@ -62,34 +62,18 @@ class PlayerController extends StateNotifier<bool> {
   Future<void> runRadio({
     required String radioId,
     required MediaType type,
-    bool featured = false,
     VoidCallback? redirect,
   }) async {
     try {
+      List<SongModel> songs = [];
+
       await playlist.clear();
       final quality = await _settingsController.getSongQuality();
 
       if (type == MediaType.song) {
         final songsObjects = await _exploreController.getRadio(radioId, false);
         final song = await _api.song.getById(songId: radioId);
-        songsObjects.songs.insert(0, song!);
-        for (var i = 0; i < songsObjects.songs.length; i++) {
-          final uri = songsObjects.songs[i].urls
-              .where((element) => element.quality == quality.name)
-              .toList()[0]
-              .url;
-
-          final accentColor = await ColorScheme.fromImageProvider(
-            provider: NetworkImage(songsObjects.songs[i].images[0].url),
-            brightness: Brightness.dark,
-          );
-
-          final s = song.copyWith(
-            accentColor: accentColor.background,
-          );
-          playlist.add(AudioSource.uri(Uri.parse(uri), tag: s));
-        }
-        await _player.setAudioSource(playlist, preload: true);
+        songs = [song!, ...songsObjects.songs];
       }
 
       if (type == MediaType.album) {
@@ -97,17 +81,7 @@ class PlayerController extends StateNotifier<bool> {
         if (album == null) {
           throw Error.throwWithStackTrace("Album not found", StackTrace.empty);
         }
-
-        for (var i = 0; i < album.songs.length; i++) {
-          final uri = album.songs[i].urls
-              .where((element) => element.quality == quality.name)
-              .toList()[0]
-              .url;
-
-          playlist.add(AudioSource.uri(Uri.parse(uri), tag: album.songs[i]));
-        }
-
-        await _player.setAudioSource(playlist, preload: true);
+        songs = album.songs;
       }
       if (type == MediaType.playlist) {
         final playlistModel = await _api.playlist.getById(id: radioId);
@@ -118,20 +92,43 @@ class PlayerController extends StateNotifier<bool> {
           );
         }
 
-        for (var i = 0; i < playlistModel.songs.length; i++) {
-          final uri = playlistModel.songs[i].urls
-              .where((element) => element.quality == quality.name)
-              .toList()[0]
-              .url;
-
-          playlist.add(AudioSource.uri(
-            Uri.parse(uri),
-            tag: playlistModel.songs[i],
-          ));
-        }
-
-        await _player.setAudioSource(playlist, preload: true);
+        songs = playlistModel.songs;
       }
+
+      if (type == MediaType.radio) {
+        final radio = await _api.song.radio(songId: radioId, featured: true);
+        if (radio == null) {
+          throw Error.throwWithStackTrace(
+            "Radio not found",
+            StackTrace.empty,
+          );
+        }
+        songs = radio.songs;
+      }
+
+      for (var i = 0; i < songs.length; i++) {
+        final uri = songs[i]
+            .urls
+            .where((element) => element.quality == quality.name)
+            .toList()[0]
+            .url;
+
+        final accentColor = await ColorScheme.fromImageProvider(
+          provider: NetworkImage(songs[i].images[0].url),
+          brightness: Brightness.dark,
+        );
+
+        final song = songs[i].copyWith(
+          accentColor: accentColor.background,
+        );
+
+        playlist.add(AudioSource.uri(
+          Uri.parse(uri),
+          tag: song,
+        ));
+      }
+
+      await _player.setAudioSource(playlist, preload: true);
 
       redirect?.call();
       await _player.play();

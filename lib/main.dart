@@ -29,14 +29,15 @@ class MyApp extends StatelessWidget {
       title: 'Sangeet',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorSchemeSeed: Colors.teal,
+        colorSchemeSeed: Colors.grey,
       ),
       darkTheme: ThemeData.dark().copyWith(
         textTheme: GoogleFonts.ubuntuTextTheme(ThemeData.dark().textTheme),
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.teal,
+          seedColor: Colors.deepPurpleAccent,
           brightness: Brightness.dark,
         ),
+        primaryColor: Colors.black12,
       ),
       themeMode: ThemeMode.dark,
       home: const HomeFrame(),
