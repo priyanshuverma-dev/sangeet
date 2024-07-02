@@ -21,10 +21,13 @@ class AlbumCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircleAvatar(
-                radius: 55,
-                backgroundColor: Colors.black,
-                foregroundImage: NetworkImage(album.images[2].url),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  album.images[1].url,
+                  width: 100,
+                  height: 100,
+                ),
               ),
               const SizedBox(height: 10),
               Text(

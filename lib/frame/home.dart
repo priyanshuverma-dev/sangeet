@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:hotkey_manager/hotkey_manager.dart';
+import 'package:sangeet/functions/player/views/current_playing_view.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:tray_manager/tray_manager.dart';
 
@@ -14,6 +15,8 @@ import 'package:sangeet/functions/search/views/search_view.dart';
 import 'package:sangeet/functions/settings/views/settings_view.dart';
 import 'package:sangeet/functions/shortcuts/actions.dart';
 
+import 'commons.dart';
+
 class HomeFrame extends ConsumerStatefulWidget {
   const HomeFrame({super.key});
 
@@ -23,14 +26,6 @@ class HomeFrame extends ConsumerStatefulWidget {
 
 class _HomeFrameState extends ConsumerState<HomeFrame>
     with TrayListener, WindowListener {
-  int _index = 0;
-
-  void onDestinationSelected(int i) {
-    setState(() {
-      _index = i;
-    });
-  }
-
   @override
   void initState() {
     super.initState();
@@ -47,10 +42,14 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
 
   @override
   Widget build(BuildContext context) {
+    final index = ref.watch(appScreenConfigProvider);
+    final config = ref.watch(appScreenConfigProvider.notifier);
+    final player = ref.watch(playerControllerProvider.notifier).getPlayer;
+
     return Actions(
       actions: <Type, Action<Intent>>{
         BaseIntent: SongActions(
-          audioPlayer: ref.watch(playerControllerProvider.notifier).getPlayer,
+          audioPlayer: player,
         )
       },
       child: GlobalShortcuts(
@@ -66,21 +65,27 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
           ),
         },
         child: Scaffold(
+          backgroundColor: Colors.transparent,
           body: Row(
             children: [
               NavigationRail(
-                selectedIndex: _index,
-                onDestinationSelected: onDestinationSelected,
-                destinations: const [
-                  NavigationRailDestination(
+                selectedIndex: index,
+                onDestinationSelected: (idx) => config.onIndex(idx),
+                destinations: [
+                  const NavigationRailDestination(
                     icon: Icon(Icons.home),
                     label: Text("Home"),
                   ),
-                  NavigationRailDestination(
+                  const NavigationRailDestination(
                     icon: Icon(Icons.search),
                     label: Text("Search"),
                   ),
                   NavigationRailDestination(
+                    icon: const Icon(Icons.music_note_rounded),
+                    label: const Text("Current Playing"),
+                    disabled: !player.playing,
+                  ),
+                  const NavigationRailDestination(
                     icon: Icon(Icons.settings),
                     label: Text("Settings"),
                   ),
@@ -104,7 +109,7 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
                     Expanded(
                       flex: 1,
                       child: IndexedStack(
-                        index: _index,
+                        index: index,
                         children: [
                           _buildNavigator(
                             0,
@@ -116,12 +121,19 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
                           ),
                           _buildNavigator(
                             2,
+                            const CurrentPlayingView(),
+                          ),
+                          _buildNavigator(
+                            3,
                             const SettingsView(),
                           ),
                         ],
                       ),
                     ),
-                    const BaseAudioPlayer(),
+                    Visibility(
+                      visible: index != 2,
+                      child: const BaseAudioPlayer(),
+                    ),
                   ],
                 ),
               ),

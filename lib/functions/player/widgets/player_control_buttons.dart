@@ -65,7 +65,7 @@ class PlayerControllerButtons extends StatelessWidget {
             } else if (playing != true) {
               return IconButton(
                 icon: const Icon(
-                  Icons.play_arrow,
+                  Icons.play_arrow_rounded,
                   size: 35,
                   color: Colors.white,
                 ),
@@ -77,7 +77,7 @@ class PlayerControllerButtons extends StatelessWidget {
             } else if (processingState != ProcessingState.completed) {
               return IconButton(
                 icon: const Icon(
-                  Icons.pause,
+                  Icons.pause_rounded,
                   size: 35,
                   color: Colors.white,
                 ),
@@ -89,7 +89,7 @@ class PlayerControllerButtons extends StatelessWidget {
             } else {
               return IconButton(
                 icon: const Icon(
-                  Icons.replay,
+                  Icons.replay_circle_filled_rounded,
                   size: 35,
                   color: Colors.white,
                 ),

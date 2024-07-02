@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sangeet/frame/commons.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
 import 'package:sangeet/functions/player/widgets/common.dart';
 import 'package:sangeet/functions/player/widgets/player_control_buttons.dart';
 import 'package:sangeet_api/modules/song/models/song_model.dart';
 
 class BaseAudioPlayer extends ConsumerStatefulWidget {
-  const BaseAudioPlayer({super.key});
+  const BaseAudioPlayer({
+    super.key,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -25,6 +28,7 @@ class _BaseAudioPlayerState extends ConsumerState<BaseAudioPlayer> {
       stream: player.sequenceStateStream,
       builder: (context, snapshot) {
         final state = snapshot.data;
+
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Container(height: 0);
         }
@@ -34,11 +38,7 @@ class _BaseAudioPlayerState extends ConsumerState<BaseAudioPlayer> {
 
         final metadata = state!.currentSource!.tag as SongModel;
 
-        // Start
         return Card(
-          surfaceTintColor: Colors.transparent,
-          color: Colors.transparent,
-          shadowColor: Colors.transparent,
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -132,7 +132,9 @@ class _BaseAudioPlayerState extends ConsumerState<BaseAudioPlayer> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () => ref
+                            .watch(appScreenConfigProvider.notifier)
+                            .onIndex(2),
                         icon: const Icon(Icons.open_in_full_rounded),
                       ),
                     ],

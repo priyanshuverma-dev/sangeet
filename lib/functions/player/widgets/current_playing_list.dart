@@ -23,8 +23,8 @@ class _PlaylistViewState extends ConsumerState<CurrentPlayingList> {
           final state = snapshot.data;
           final sequence = state?.sequence ?? [];
 
-          final song = sequence[state!.currentIndex].tag as SongModel;
-          if (state.currentIndex == playlist.length - 1) {
+          // final song = sequence[state!.currentIndex].tag as SongModel;
+          if (state!.currentIndex == playlist.length - 1) {
             // playlist.removeRange(0, 10);
             // ref
             //     .watch(playerControllerProvider.notifier)
