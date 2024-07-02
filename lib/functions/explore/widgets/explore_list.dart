@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sangeet/core/core.dart';
 import 'package:sangeet/functions/album/view/album_view.dart';
 import 'package:sangeet/functions/charts/view/charts_view.dart';
 import 'package:sangeet/functions/explore/controllers/explore_controller.dart';
-import 'package:sangeet/functions/explore/views/explore_view.dart';
 import 'package:sangeet/functions/explore/widgets/album_card.dart';
 import 'package:sangeet/functions/explore/widgets/chart_card.dart';
 import 'package:sangeet/functions/explore/widgets/playlist_card.dart';
@@ -20,8 +18,6 @@ class ExploreList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final player = ref.read(getAudioPlayer);
-
     return ref.watch(getExploreDataProvider).when(
           data: (data) {
             final charts = data.charts;
@@ -79,26 +75,18 @@ class ExploreList extends ConsumerWidget {
                                   ),
                               onLike: () {},
                               onTap: () {
-                                Navigator.of(context)
-                                    .push(MaterialPageRoute(builder: (context) {
-                                  if (item.type == 'song') {
-                                    return SongView(
-                                      songId: item.id,
-                                    );
-                                  }
-                                  if (item.type == 'album') {
-                                    return AlbumView(
-                                      albumId: item.id,
-                                    );
-                                  }
-                                  if (item.type == 'playlist') {
-                                    return PlaylistView(
-                                      playlistId: item.id,
-                                    );
-                                  } else {
-                                    return const ExploreView();
-                                  }
-                                }));
+                                if (item.type == 'song') {
+                                  Navigator.of(context)
+                                      .push(SongView.route(item.id));
+                                }
+                                if (item.type == 'album') {
+                                  Navigator.of(context)
+                                      .push(AlbumView.route(item.id));
+                                }
+                                if (item.type == 'playlist') {
+                                  Navigator.of(context)
+                                      .push(PlaylistView.route(item.id));
+                                }
                               },
                               image: item.image,
                               accentColor: item.accentColor,

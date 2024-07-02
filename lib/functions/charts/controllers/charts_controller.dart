@@ -5,8 +5,8 @@ import 'package:sangeet_api/models.dart';
 import 'package:sangeet_api/sangeet_api.dart';
 
 final chartControllerProvider =
-    StateNotifierProvider<AlbumController, bool>((ref) {
-  return AlbumController(
+    StateNotifierProvider<ChartController, bool>((ref) {
+  return ChartController(
     api: ref.watch(sangeetAPIProvider),
   );
 });
@@ -18,25 +18,25 @@ final chartByIdProvider =
       .fetchChartById(token: token);
 });
 
-class AlbumController extends StateNotifier<bool> {
+class ChartController extends StateNotifier<bool> {
   final SangeetAPI _api;
-  AlbumController({required SangeetAPI api})
+  ChartController({required SangeetAPI api})
       : _api = api,
         super(false);
 
   Future<PlaylistModel> fetchChartById({required String token}) async {
-    final album = await _api.explore.chart(token: token);
+    final chart = await _api.explore.chart(token: token);
 
-    if (album == null) {
-      throw Error.throwWithStackTrace("Playlist not found", StackTrace.empty);
+    if (chart == null) {
+      throw Error.throwWithStackTrace("Chart not found", StackTrace.empty);
     }
     final accentColor = await ColorScheme.fromImageProvider(
-      provider: NetworkImage(album.images[0].url),
+      provider: NetworkImage(chart.images[0].url),
       brightness: Brightness.dark,
     );
 
-    final s = album.copyWith(
-      playCount: accentColor.background.value,
+    final s = chart.copyWith(
+      accentColor: accentColor.background,
     );
 
     return s;

@@ -12,6 +12,25 @@ class ExploreView extends ConsumerStatefulWidget {
 class _ExploreViewState extends ConsumerState<ExploreView> {
   @override
   Widget build(BuildContext context) {
-    return const ExploreList();
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/background.jpg'),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Colors.black.withOpacity(1),
+              Colors.grey.withOpacity(0.5),
+              Colors.black.withOpacity(1),
+            ],
+          ),
+        ),
+        child: const ExploreList(),
+      ),
+    );
   }
 }

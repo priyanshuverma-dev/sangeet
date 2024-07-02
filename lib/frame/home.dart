@@ -93,9 +93,10 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
                   ),
                 ),
                 labelType: NavigationRailLabelType.none,
-                indicatorShape: ContinuousRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
-                ),
+                backgroundColor: Colors.black,
+                indicatorColor: Colors.grey.shade900,
+                unselectedIconTheme: const IconThemeData(color: Colors.grey),
+                selectedIconTheme: const IconThemeData(color: Colors.white),
               ),
               Expanded(
                 child: Column(
@@ -126,7 +127,6 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
               ),
             ],
           ),
-          // bottomNavigationBar: const BaseAudioPlayer(),
         ),
       ),
     );

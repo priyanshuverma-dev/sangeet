@@ -37,7 +37,10 @@ class MyApp extends StatelessWidget {
           seedColor: Colors.deepPurpleAccent,
           brightness: Brightness.dark,
         ),
-        primaryColor: Colors.black12,
+        cardTheme: const CardTheme(
+          color: Colors.transparent,
+          elevation: .01,
+        ),
       ),
       themeMode: ThemeMode.dark,
       home: const HomeFrame(),

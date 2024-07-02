@@ -25,10 +25,10 @@ class _PlaylistViewState extends ConsumerState<CurrentPlayingList> {
 
           final song = sequence[state!.currentIndex].tag as SongModel;
           if (state.currentIndex == playlist.length - 1) {
-            playlist.removeRange(0, 10);
-            ref
-                .watch(playerControllerProvider.notifier)
-                .loadMoreSongs(song: song);
+            // playlist.removeRange(0, 10);
+            // ref
+            //     .watch(playerControllerProvider.notifier)
+            //     .loadMoreSongs(song: song);
           }
 
           return Column(children: [
