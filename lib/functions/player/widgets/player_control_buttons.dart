@@ -3,17 +3,14 @@ import 'package:just_audio/just_audio.dart';
 
 class PlayerControllerButtons extends StatelessWidget {
   final AudioPlayer player;
-  final VoidCallback onPressed;
   const PlayerControllerButtons({
     super.key,
     required this.player,
-    required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      // mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -22,9 +19,9 @@ class PlayerControllerButtons extends StatelessWidget {
           builder: (context, snapshot) {
             final loopMode = snapshot.data ?? LoopMode.off;
             const icons = [
-              Icon(Icons.repeat, color: Colors.grey),
-              Icon(Icons.repeat, color: Colors.orange),
-              Icon(Icons.repeat_one, color: Colors.orange),
+              Icon(Icons.repeat, color: Colors.white),
+              Icon(Icons.repeat, color: Colors.teal),
+              Icon(Icons.repeat_one, color: Colors.teal),
             ];
             const cycleModes = [
               LoopMode.off,
@@ -44,6 +41,7 @@ class PlayerControllerButtons extends StatelessWidget {
         IconButton(
           icon: const Icon(
             Icons.skip_previous_rounded,
+            color: Colors.white,
           ),
           onPressed: () => player.seekToPrevious(),
         ),
@@ -104,6 +102,7 @@ class PlayerControllerButtons extends StatelessWidget {
         IconButton(
           icon: const Icon(
             Icons.skip_next_rounded,
+            color: Colors.white,
           ),
           onPressed: () => player.seekToNext(),
         ),
@@ -113,8 +112,8 @@ class PlayerControllerButtons extends StatelessWidget {
             final shuffleModeEnabled = snapshot.data ?? false;
             return IconButton(
               icon: shuffleModeEnabled
-                  ? const Icon(Icons.shuffle, color: Colors.orange)
-                  : const Icon(Icons.shuffle, color: Colors.grey),
+                  ? const Icon(Icons.shuffle, color: Colors.teal)
+                  : const Icon(Icons.shuffle, color: Colors.white),
               onPressed: () async {
                 final enable = !shuffleModeEnabled;
                 if (enable) {

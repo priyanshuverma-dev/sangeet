@@ -1,12 +1,15 @@
 import 'dart:ui';
 
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:sangeet/core/utils.dart';
-import 'package:sangeet/frame/commons.dart';
+import 'package:sangeet/core/app_config.dart';
 import 'package:sangeet/functions/artist/view/artist_view.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
+import 'package:sangeet/functions/player/widgets/common.dart';
 import 'package:sangeet/functions/player/widgets/player_control_buttons.dart';
 import 'package:sangeet_api/models.dart';
 
@@ -105,6 +108,69 @@ class CurrentPlayingView extends ConsumerWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: StreamBuilder<PositionData>(
+                                      stream: ref
+                                          .watch(
+                                              playerControllerProvider.notifier)
+                                          .positionDataStream,
+                                      builder: (context, snapshot) {
+                                        final positionData = snapshot.data;
+                                        return ProgressBar(
+                                          progress: positionData?.position ??
+                                              Duration.zero,
+                                          buffered:
+                                              positionData?.bufferedPosition ??
+                                                  Duration.zero,
+                                          total: positionData?.duration ??
+                                              Duration.zero,
+                                          progressBarColor: Colors.teal,
+                                          baseBarColor:
+                                              Colors.white.withOpacity(0.24),
+                                          bufferedBarColor:
+                                              Colors.white.withOpacity(0.24),
+                                          thumbColor: Colors.white,
+                                          timeLabelLocation:
+                                              TimeLabelLocation.sides,
+                                          timeLabelType:
+                                              TimeLabelType.totalTime,
+                                          barHeight: 3.0,
+                                          thumbRadius: 4.0,
+                                          onSeek: (duration) {
+                                            player.seek(duration);
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  PlayerControllerButtons(
+                                    player: player,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(8),
+                              margin: const EdgeInsets.symmetric(vertical: 10),
+                              decoration: BoxDecoration(
+                                color: Colors.black12,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.all(10.0),
+                                    child: Text(
+                                      'Next Songs.',
+                                      style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
                                   Container(
                                     padding: const EdgeInsets.all(8),
                                     child: TextButton.icon(
@@ -120,10 +186,6 @@ class CurrentPlayingView extends ConsumerWidget {
                                         backgroundColor: Colors.black12,
                                       ),
                                     ),
-                                  ),
-                                  PlayerControllerButtons(
-                                    player: player,
-                                    onPressed: () {},
                                   ),
                                 ],
                               ),

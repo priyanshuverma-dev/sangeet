@@ -7,7 +7,6 @@ import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sangeet/core/api_provider.dart';
 import 'package:sangeet/core/core.dart';
-import 'package:sangeet/functions/explore/controllers/explore_controller.dart';
 import 'package:sangeet/functions/player/widgets/common.dart';
 import 'package:sangeet/functions/settings/controllers/settings_controller.dart';
 import 'package:sangeet_api/modules/song/models/song_model.dart';
@@ -16,7 +15,6 @@ import 'package:sangeet_api/sangeet_api.dart';
 final playerControllerProvider =
     StateNotifierProvider<PlayerController, bool>((ref) {
   return PlayerController(
-    exploreController: ref.watch(exploreControllerProvider.notifier),
     settingsController: ref.watch(settingsControllerProvider.notifier),
     api: ref.watch(sangeetAPIProvider),
   );
@@ -26,7 +24,6 @@ final getAudioPlayer =
     Provider((ref) => ref.watch(playerControllerProvider.notifier).getPlayer);
 
 class PlayerController extends StateNotifier<bool> {
-  final ExploreController _exploreController;
   final SettingsController _settingsController;
   final SangeetAPI _api;
 
@@ -40,11 +37,9 @@ class PlayerController extends StateNotifier<bool> {
   );
 
   PlayerController({
-    required ExploreController exploreController,
     required SettingsController settingsController,
     required SangeetAPI api,
-  })  : _exploreController = exploreController,
-        _settingsController = settingsController,
+  })  : _settingsController = settingsController,
         _api = api,
         super(false);
 
@@ -71,9 +66,14 @@ class PlayerController extends StateNotifier<bool> {
       final quality = await _settingsController.getSongQuality();
 
       if (type == MediaType.song) {
-        final songsObjects = await _exploreController.getRadio(radioId, false);
+        final songsObjects = await _api.song.radio(songId: radioId);
         final song = await _api.song.getById(songId: radioId);
-        songs = [song!, ...songsObjects.songs];
+        if (songsObjects == null || song == null) {
+          throw Error.throwWithStackTrace(
+              "Can't load right now", StackTrace.empty);
+        }
+
+        songs = [song, ...songsObjects.songs];
       }
 
       if (type == MediaType.album) {

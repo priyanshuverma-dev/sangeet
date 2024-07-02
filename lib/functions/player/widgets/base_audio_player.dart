@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sangeet/frame/commons.dart';
+import 'package:sangeet/core/app_config.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
 import 'package:sangeet/functions/player/widgets/common.dart';
 import 'package:sangeet/functions/player/widgets/player_control_buttons.dart';
@@ -117,7 +117,6 @@ class _BaseAudioPlayerState extends ConsumerState<BaseAudioPlayer> {
                       ),
                       PlayerControllerButtons(
                         player: player,
-                        onPressed: () {},
                       ),
                     ],
                   ),

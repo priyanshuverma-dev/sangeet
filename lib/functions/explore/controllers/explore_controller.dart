@@ -15,6 +15,11 @@ final getExploreDataProvider = FutureProvider((ref) {
   return exploreController.getExploreData();
 });
 
+final getRelatedSongsProvider = FutureProvider.family((ref, String id) {
+  final exploreController = ref.watch(exploreControllerProvider.notifier);
+  return exploreController.getRadio(id);
+});
+
 class ExploreController extends StateNotifier<bool> {
   final SangeetAPI _api;
   ExploreController({required SangeetAPI api})
@@ -33,8 +38,10 @@ class ExploreController extends StateNotifier<bool> {
     return data;
   }
 
-  Future<SongRadioModel> getRadio(String id, bool featured) async {
-    final data = await _api.song.radio(songId: id, featured: featured);
+  Future<SongRadioModel> getRadio(String id) async {
+    final data = await _api.song.radio(
+      songId: id,
+    );
 
     if (data == null) {
       throw Error.throwWithStackTrace(

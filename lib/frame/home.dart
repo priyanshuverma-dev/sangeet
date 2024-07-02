@@ -15,7 +15,7 @@ import 'package:sangeet/functions/search/views/search_view.dart';
 import 'package:sangeet/functions/settings/views/settings_view.dart';
 import 'package:sangeet/functions/shortcuts/actions.dart';
 
-import 'commons.dart';
+import '../core/app_config.dart';
 
 class HomeFrame extends ConsumerStatefulWidget {
   const HomeFrame({super.key});

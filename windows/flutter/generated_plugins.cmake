@@ -7,7 +7,6 @@ list(APPEND FLUTTER_PLUGIN_LIST
   hotkey_manager_windows
   just_audio_windows
   screen_retriever
-  system_theme
   tray_manager
   window_manager
   windows_notification
