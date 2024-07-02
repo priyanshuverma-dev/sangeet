@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sangeet/models/song_model.dart';
+import 'package:sangeet_api/models.dart';
 
 class SearchSongTile extends StatelessWidget {
   final SongModel song;
@@ -9,12 +9,12 @@ class SearchSongTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(song.name),
+      title: Text(song.title),
       subtitle: Text("${song.label} - ${song.year}"),
       leading: CircleAvatar(
         radius: 25,
         backgroundColor: Theme.of(context).primaryColorDark,
-        foregroundImage: NetworkImage(song.image[0].url),
+        foregroundImage: NetworkImage(song.images[0].url),
       ),
       onTap: onTap,
     );

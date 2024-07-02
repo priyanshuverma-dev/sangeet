@@ -7,6 +7,7 @@ import 'package:sangeet/core/core.dart';
 import 'package:sangeet/core/utils.dart';
 import 'package:sangeet/functions/album/controllers/album_controller.dart';
 import 'package:sangeet/functions/album/widgets/album_top_details.dart';
+import 'package:sangeet/functions/artist/view/artist_view.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
 
 class AlbumView extends ConsumerWidget {
@@ -190,7 +191,8 @@ class AlbumView extends ConsumerWidget {
                                     itemBuilder: (context, index) {
                                       final artist = album.artists[index];
                                       return ListTile(
-                                        onTap: () {},
+                                        onTap: () => Navigator.of(context)
+                                            .push(ArtistView.route(artist.id)),
                                         title: Text(artist.name),
                                         subtitle: Text(artist.type),
                                         leading: CircleAvatar(

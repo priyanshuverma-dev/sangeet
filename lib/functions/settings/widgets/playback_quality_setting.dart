@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sangeet/core/constants.dart';
 import 'package:sangeet/functions/settings/controllers/settings_controller.dart';
-import 'package:sangeet/models/helpers/download_quality.dart';
+import 'package:sangeet_api/common/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PlaybackQualitySetting extends ConsumerStatefulWidget {
@@ -17,12 +17,12 @@ class _PlaybackQualitySettingState
     extends ConsumerState<PlaybackQualitySetting> {
   @override
   Widget build(BuildContext context) {
-    var items = SongQualityType.values
+    var items = SongQuality.values
         .map((e) => PopupMenuItem(
               child: Text(e.name),
               onTap: () async {
                 final prefs = await SharedPreferences.getInstance();
-                await prefs.setString(SharedPrefs.songQuality, e.type);
+                await prefs.setString(SharedPrefs.songQuality, e.quality);
                 ref.invalidate(songQualityProvider);
                 setState(() {});
               },
