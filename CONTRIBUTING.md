@@ -1,6 +1,6 @@
-# Contributing to Saavn Music Player
+# Contributing to Sangeet Music Player
 
-We appreciate your interest in contributing to the Saavn Music Player for Windows! Here are some guidelines to help you get started.
+We appreciate your interest in contributing to the Sangeet Music Player for Windows! Here are some guidelines to help you get started.
 
 ## How to Contribute
 
@@ -9,7 +9,7 @@ We appreciate your interest in contributing to the Saavn Music Player for Window
 
 2. **Clone Your Fork**:
    ```sh
-   git clone https://github.com/YOUR_GITHUB_USERNAME/saavn.git
+   git clone https://github.com/YOUR_GITHUB_USERNAME/sangeet.git
    ```
 
 3. **Create a Branch**:
@@ -42,7 +42,7 @@ Please note that this project is released with a [Contributor Code of Conduct](C
 
 ## Reporting Issues
 
-If you encounter any bugs or have feature requests, please [open an issue](https://github.com/priyanshuverma-dev/saavn/issues). Provide as much detail as possible, including steps to reproduce the issue and any relevant logs.
+If you encounter any bugs or have feature requests, please [open an issue](https://github.com/priyanshuverma-dev/sangeet/issues). Provide as much detail as possible, including steps to reproduce the issue and any relevant logs.
 
 ## Code Style
 
@@ -52,7 +52,7 @@ If you encounter any bugs or have feature requests, please [open an issue](https
 
 ## Thank You!
 
-Thank you for considering contributing to the Saavn Music Player for Windows! Your contributions help make this project better for everyone.
+Thank you for considering contributing to the Sangeet Music Player for Windows! Your contributions help make this project better for everyone.
 
 ## Contact
 

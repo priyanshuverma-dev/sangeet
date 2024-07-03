@@ -1,12 +1,12 @@
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
+import 'package:bot_toast/bot_toast.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hotkey_manager/hotkey_manager.dart';
-import 'package:system_theme/system_theme.dart';
 
-import 'package:saavn/frame/home.dart';
-import 'package:saavn/initialization.dart';
+import 'package:sangeet/frame/home.dart';
+import 'package:sangeet/initialization.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,13 +26,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Saavn Music',
+      title: 'Sangeet',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorSchemeSeed: SystemTheme.accentColor.accent,
+        colorSchemeSeed: Colors.lightBlueAccent,
       ),
-      darkTheme: ThemeData.dark()
-          .copyWith(scaffoldBackgroundColor: Colors.transparent),
+      darkTheme: ThemeData.dark().copyWith(
+        textTheme: GoogleFonts.ubuntuTextTheme(ThemeData.dark().textTheme),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.lightBlueAccent,
+          brightness: Brightness.dark,
+        ),
+        cardTheme: const CardTheme(
+          color: Colors.transparent,
+          elevation: .5,
+        ),
+      ),
       themeMode: ThemeMode.dark,
       home: const HomeFrame(),
       builder: BotToastInit(),

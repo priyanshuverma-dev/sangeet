@@ -1,26 +1,22 @@
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:hotkey_manager/hotkey_manager.dart';
-import 'package:saavn/core/constants.dart';
-import 'package:saavn/frame/commons.dart';
-import 'package:saavn/frame/widgets/sidebar.dart';
-import 'package:saavn/functions/player/controllers/player_controller.dart';
-import 'package:saavn/functions/player/widgets/base_audio_player.dart';
-import 'package:saavn/functions/shortcuts/actions.dart';
-import 'package:sidebarx/sidebarx.dart';
-import 'package:tray_manager/tray_manager.dart';
+import 'package:sangeet/core/widgets/blur_image_container.dart';
+import 'package:sangeet/functions/player/views/current_playing_view.dart';
 import 'package:window_manager/window_manager.dart';
+import 'package:tray_manager/tray_manager.dart';
 
-class ExampleIntent extends Intent {}
+import 'package:sangeet/core/constants.dart';
+import 'package:sangeet/functions/explore/views/explore_view.dart';
+import 'package:sangeet/functions/player/controllers/player_controller.dart';
+import 'package:sangeet/functions/player/widgets/base_audio_player.dart';
+import 'package:sangeet/functions/search/views/search_view.dart';
+import 'package:sangeet/functions/settings/views/settings_view.dart';
+import 'package:sangeet/functions/shortcuts/actions.dart';
 
-class ExampleAction extends Action<ExampleIntent> {
-  @override
-  void invoke(covariant ExampleIntent intent) {
-    BotToast.showText(text: 'ExampleAction invoked');
-  }
-}
+import '../core/app_config.dart';
 
 class HomeFrame extends ConsumerStatefulWidget {
   const HomeFrame({super.key});
@@ -31,9 +27,6 @@ class HomeFrame extends ConsumerStatefulWidget {
 
 class _HomeFrameState extends ConsumerState<HomeFrame>
     with TrayListener, WindowListener {
-  final SidebarXController sidebarXController =
-      SidebarXController(selectedIndex: 0);
-
   @override
   void initState() {
     super.initState();
@@ -50,11 +43,14 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
 
   @override
   Widget build(BuildContext context) {
-    final screen = ref.watch(appScreenConfigProvider).screen;
+    final index = ref.watch(appScreenConfigProvider);
+    final config = ref.watch(appScreenConfigProvider.notifier);
+    final player = ref.watch(getAudioPlayer);
+
     return Actions(
       actions: <Type, Action<Intent>>{
         BaseIntent: SongActions(
-          audioPlayer: ref.watch(playerControllerProvider.notifier).getPlayer,
+          audioPlayer: player,
         )
       },
       child: GlobalShortcuts(
@@ -70,16 +66,93 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
           ),
         },
         child: Scaffold(
-          body: Row(
-            children: [
-              SideBar(controller: sidebarXController),
-              Expanded(
-                child: screen.view,
-              ),
-            ],
+          backgroundColor: Colors.transparent,
+          body: BlurImageContainer(
+            image: 'assets/background.jpg',
+            isAsset: true,
+            child: Row(
+              children: [
+                NavigationRail(
+                  selectedIndex: index,
+                  onDestinationSelected: (idx) => config.onIndex(idx),
+                  destinations: const [
+                    NavigationRailDestination(
+                      icon: Icon(Icons.home),
+                      label: Text("Home"),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.search),
+                      label: Text("Search"),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.music_note_rounded),
+                      label: Text("Current Playing"),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.settings),
+                      label: Text("Settings"),
+                    ),
+                  ],
+                  leading: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Image.asset(
+                      'assets/app_icon.ico',
+                      width: 35,
+                    ),
+                  ),
+                  labelType: NavigationRailLabelType.none,
+                  backgroundColor: Colors.black,
+                  indicatorColor: Colors.grey.shade900,
+                  unselectedIconTheme: const IconThemeData(color: Colors.grey),
+                  selectedIconTheme: const IconThemeData(color: Colors.white),
+                ),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: IndexedStack(
+                          index: index,
+                          children: [
+                            _buildNavigator(
+                              0,
+                              const ExploreView(),
+                            ),
+                            _buildNavigator(
+                              1,
+                              const SearchView(),
+                            ),
+                            _buildNavigator(
+                              2,
+                              const CurrentPlayingView(),
+                            ),
+                            _buildNavigator(
+                              3,
+                              const SettingsView(),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Visibility(
+                        visible: index != 2,
+                        child: const BaseAudioPlayer(),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-          bottomNavigationBar: const BaseAudioPlayer(),
         ),
+      ),
+    );
+  }
+
+  Widget _buildNavigator(int index, Widget child) {
+    return Navigator(
+      key: GlobalKey<NavigatorState>(debugLabel: 'navigator$index'),
+      onGenerateRoute: (settings) => MaterialPageRoute(
+        builder: (context) => child,
       ),
     );
   }
@@ -118,9 +191,6 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
       }
       if (menuItem.key == SystemTrayActions.openPlaylist) {
         await windowManager.show();
-        ref
-            .watch(appScreenConfigProvider.notifier)
-            .goto(screen: Screens.playlist);
       }
     }
 
