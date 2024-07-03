@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sangeet/core/core.dart';
+import 'package:sangeet/core/skeletions/screen_loading_skeleton.dart';
 import 'package:sangeet/core/widgets/blur_image_container.dart';
 import 'package:sangeet/core/widgets/media_card.dart';
 import 'package:sangeet/core/widgets/play_button.dart';
@@ -147,7 +148,7 @@ class ChartView extends ConsumerWidget {
             );
           },
           error: (err, st) => ErrorPage(error: err.toString()),
-          loading: () => const LoadingPage(),
+          loading: () => const ScreenLoading(),
         );
   }
 }

@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:sangeet/core/core.dart';
 import 'package:sangeet/core/app_config.dart';
+import 'package:sangeet/core/skeletions/media_loading_skeletion.dart';
+import 'package:sangeet/core/skeletions/screen_loading_skeleton.dart';
 import 'package:sangeet/core/widgets/blur_image_container.dart';
 import 'package:sangeet/core/widgets/media_card.dart';
 import 'package:sangeet/core/widgets/split_view_container.dart';
@@ -35,7 +37,8 @@ class _CurrentPlayingViewState extends ConsumerState<CurrentPlayingView> {
         stream: player.sequenceStateStream,
         builder: (context, snapshot) {
           final state = snapshot.data;
-          if (snapshot.connectionState == ConnectionState.waiting) {
+
+          if (state?.sequence.isEmpty ?? false) {
             return Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,10 +79,8 @@ class _CurrentPlayingViewState extends ConsumerState<CurrentPlayingView> {
             );
           }
 
-          if (state?.sequence.isEmpty ?? true) {
-            return const Center(
-              child: Text("Nothing To Play"),
-            );
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const ScreenLoading();
           }
 
           final song = state!.currentSource!.tag as SongModel;
@@ -325,7 +326,7 @@ Widget getRightChild({
               error: (er, st) => ErrorPage(
                 error: er.toString(),
               ),
-              loading: () => const LoadingPage(),
+              loading: () => const MediaLoader(),
             ),
       ),
       const Padding(
@@ -363,7 +364,7 @@ Widget getRightChild({
               error: (er, st) => ErrorPage(
                 error: er.toString(),
               ),
-              loading: () => const LoadingPage(),
+              loading: () => const MediaLoader(),
             ),
       ),
     ],

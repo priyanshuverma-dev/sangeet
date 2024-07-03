@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sangeet/core/core.dart';
+import 'package:sangeet/core/skeletions/media_loading_skeletion.dart';
+import 'package:sangeet/core/skeletions/screen_loading_skeleton.dart';
 import 'package:sangeet/core/utils.dart';
 import 'package:sangeet/core/widgets/blur_image_container.dart';
 import 'package:sangeet/core/widgets/media_card.dart';
@@ -138,7 +140,7 @@ class _SongViewState extends ConsumerState<SongView> {
                               );
                             },
                             error: (er, st) => ErrorPage(error: er.toString()),
-                            loading: () => const Loader(),
+                            loading: () => const MediaLoader(),
                           ),
                     ),
                   ],
@@ -179,7 +181,7 @@ class _SongViewState extends ConsumerState<SongView> {
             );
           },
           error: (err, st) => ErrorPage(error: err.toString()),
-          loading: () => const LoadingPage(),
+          loading: () => const ScreenLoading(),
         );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:sangeet/core/core.dart';
+import 'package:sangeet/core/skeletions/explore_loading_skeletion.dart';
 
 import 'package:sangeet/functions/explore/widgets/browse_card.dart';
 import 'package:sangeet/functions/explore/widgets/trend_card.dart';
@@ -266,7 +267,7 @@ class ExploreList extends ConsumerWidget {
               error: error.toString(),
             );
           },
-          loading: () => const Loader(),
+          loading: () => const ExploreLoader(),
         );
   }
 }
