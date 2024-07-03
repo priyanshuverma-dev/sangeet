@@ -33,6 +33,10 @@ class MyApp extends StatelessWidget {
       ),
       darkTheme: ThemeData.dark().copyWith(
         textTheme: GoogleFonts.ubuntuTextTheme(ThemeData.dark().textTheme),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.lightBlueAccent,
+          brightness: Brightness.dark,
+        ),
         cardTheme: const CardTheme(
           color: Colors.transparent,
           elevation: .5,
