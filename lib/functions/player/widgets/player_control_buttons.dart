@@ -58,6 +58,8 @@ class PlayerControllerButtons extends StatelessWidget {
                 child: const CircularProgressIndicator(
                   strokeCap: StrokeCap.round,
                   strokeAlign: -4,
+                  color: Colors.teal,
+                  strokeWidth: 2,
                 ),
               );
             } else if (playing != true) {

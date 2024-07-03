@@ -19,6 +19,10 @@ final getRelatedSongsProvider = FutureProvider.family((ref, String id) {
   final exploreController = ref.watch(exploreControllerProvider.notifier);
   return exploreController.getRadio(id);
 });
+final getTrendingSongsProvider = FutureProvider((ref) {
+  final exploreController = ref.watch(exploreControllerProvider.notifier);
+  return exploreController.getTrendingSongs();
+});
 
 class ExploreController extends StateNotifier<bool> {
   final SangeetAPI _api;
@@ -28,6 +32,18 @@ class ExploreController extends StateNotifier<bool> {
 
   Future<BrowseModel> getExploreData() async {
     final data = await _api.explore.browse();
+    if (data == null) {
+      throw Error.throwWithStackTrace(
+        "Unable to fetch data!",
+        StackTrace.current,
+      );
+    }
+
+    return data;
+  }
+
+  Future<BrowseTrendingModel> getTrendingSongs() async {
+    final data = await _api.explore.trending();
     if (data == null) {
       throw Error.throwWithStackTrace(
         "Unable to fetch data!",

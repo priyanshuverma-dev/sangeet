@@ -58,12 +58,18 @@ class PlayerController extends StateNotifier<bool> {
     required String radioId,
     required MediaType type,
     VoidCallback? redirect,
+    List<SongModel>? prevSongs,
   }) async {
     try {
       List<SongModel> songs = [];
 
-      await playlist.clear();
+      if (playlist.length > 0) {
+        await playlist.clear();
+      }
       final quality = await _settingsController.getSongQuality();
+      if (prevSongs != null) {
+        songs = prevSongs;
+      }
 
       if (type == MediaType.song) {
         final songsObjects = await _api.song.radio(songId: radioId);
@@ -94,7 +100,6 @@ class PlayerController extends StateNotifier<bool> {
 
         songs = playlistModel.songs;
       }
-
       if (type == MediaType.radio) {
         final radio = await _api.song.radio(songId: radioId, featured: true);
         if (radio == null) {
@@ -104,6 +109,12 @@ class PlayerController extends StateNotifier<bool> {
           );
         }
         songs = radio.songs;
+      } else {
+        // if (prevSongs == null) {
+        //   throw Error();
+        // } else {
+        //   songs = prevSongs;
+        // }
       }
 
       for (var i = 0; i < songs.length; i++) {

@@ -6,6 +6,7 @@ import 'package:sangeet/core/widgets/blur_image_container.dart';
 import 'package:sangeet/core/widgets/top_details.dart';
 import 'package:sangeet/functions/album/view/album_view.dart';
 import 'package:sangeet/functions/artist/controller/artist_controller.dart';
+import 'package:sangeet/functions/player/controllers/player_controller.dart';
 import 'package:sangeet/functions/song/view/song_view.dart';
 
 class ArtistView extends ConsumerWidget {
@@ -70,16 +71,15 @@ class ArtistView extends ConsumerWidget {
                                       ),
                                     ),
                                   ),
-                                  // TODO: FIX THIS ADD SOMETHING TO PLAY
                                   IconButton(
-                                    onPressed: () {
-                                      // => ref
-                                      //     .watch(playerControllerProvider
-                                      //         .notifier)
-                                      //     .runRadio(
-                                      //         radioId: chart.id,
-                                      //         type: MediaType.playlist),
-                                    },
+                                    onPressed: () => ref
+                                        .watch(
+                                            playerControllerProvider.notifier)
+                                        .runRadio(
+                                          radioId: artist.id,
+                                          type: MediaType.artist,
+                                          prevSongs: artist.topSongs,
+                                        ),
                                     icon: const Icon(
                                       Icons.play_arrow_rounded,
                                       size: 35,
@@ -155,7 +155,7 @@ class ArtistView extends ConsumerWidget {
                                 final album = artist.topAlbums[index];
                                 return ListTile(
                                   onTap: () => Navigator.of(context)
-                                      .push(AlbumView.route(artist.id)),
+                                      .push(AlbumView.route(album.id)),
                                   title: Text(album.title),
                                   subtitle: Text(album.subtitle),
                                   leading: CircleAvatar(

@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sangeet/core/core.dart';
 import 'package:sangeet/core/utils.dart';
 import 'package:sangeet/core/widgets/blur_image_container.dart';
+import 'package:sangeet/core/widgets/top_details.dart';
 import 'package:sangeet/functions/artist/view/artist_view.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
 import 'package:sangeet/functions/playlist/controllers/playlist_controller.dart';
-import 'package:sangeet/functions/playlist/widgets/playlist_top_details.dart';
 import 'package:sangeet/functions/song/view/song_view.dart';
 
 class PlaylistView extends ConsumerWidget {
@@ -37,7 +37,11 @@ class PlaylistView extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            PlaylistTopDetails(playlist: playlist),
+                            TopDetailsContainer(
+                              image: playlist.images[2].url,
+                              subtitle: playlist.subtitle,
+                              title: playlist.title,
+                            ),
                             Container(
                               padding: const EdgeInsets.all(8),
                               margin: const EdgeInsets.symmetric(vertical: 10),
@@ -71,8 +75,9 @@ class PlaylistView extends ConsumerWidget {
                                         .watch(
                                             playerControllerProvider.notifier)
                                         .runRadio(
-                                            radioId: playlist.id,
-                                            type: MediaType.playlist),
+                                          radioId: playlist.id,
+                                          type: MediaType.playlist,
+                                        ),
                                     icon: const Icon(
                                       Icons.play_arrow_rounded,
                                       size: 35,

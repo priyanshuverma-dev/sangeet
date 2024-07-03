@@ -2,12 +2,14 @@ import 'dart:ui';
 
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:sangeet/core/core.dart';
 import 'package:sangeet/core/utils.dart';
 import 'package:sangeet/core/app_config.dart';
+import 'package:sangeet/core/widgets/media_card.dart';
 import 'package:sangeet/functions/artist/view/artist_view.dart';
+import 'package:sangeet/functions/explore/controllers/explore_controller.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
 import 'package:sangeet/functions/player/widgets/common.dart';
 import 'package:sangeet/functions/player/widgets/player_control_buttons.dart';
@@ -89,7 +91,7 @@ class CurrentPlayingView extends ConsumerWidget {
                                     ),
                                   ),
                                   Text(
-                                    song.subtitle,
+                                    song.albumName,
                                     style: const TextStyle(
                                       fontSize: 18,
                                     ),
@@ -262,6 +264,71 @@ class CurrentPlayingView extends ConsumerWidget {
                                   ),
                                 );
                               },
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Trending.',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              child: ref.watch(getTrendingSongsProvider).when(
+                                    data: (data) {
+                                      return ListView(
+                                        shrinkWrap: true,
+                                        physics: const BouncingScrollPhysics(),
+                                        children: [
+                                          ...data.songs.map(
+                                            (song) => MediaCard(
+                                              onTap: () {},
+                                              image: song.images[0].url,
+                                              title: song.title,
+                                              subtitle: song.albumName,
+                                              badgeIcon:
+                                                  Icons.music_note_rounded,
+                                              explicitContent:
+                                                  song.explicitContent,
+                                            ),
+                                          ),
+                                          ...data.albums.map(
+                                            (album) => MediaCard(
+                                              onTap: () {},
+                                              image: album.images[0].url,
+                                              title: album.title,
+                                              subtitle: album.artists
+                                                  .map((e) => e.name)
+                                                  .join(','),
+                                              badgeIcon: Icons.album_rounded,
+                                              explicitContent:
+                                                  album.explicitContent,
+                                              onDoubleTap: () {},
+                                            ),
+                                          ),
+                                          ...data.playlists.map(
+                                            (playlist) => MediaCard(
+                                              onTap: () {},
+                                              image: playlist.images[0].url,
+                                              title: playlist.title,
+                                              subtitle: playlist.subtitle,
+                                              badgeIcon:
+                                                  Icons.playlist_play_rounded,
+                                              explicitContent:
+                                                  playlist.explicitContent,
+                                              onDoubleTap: () {},
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                    error: (er, st) => ErrorPage(
+                                      error: er.toString(),
+                                    ),
+                                    loading: () => const LoadingPage(),
+                                  ),
                             ),
                           ],
                         ),

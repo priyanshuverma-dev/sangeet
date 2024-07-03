@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sangeet/core/core.dart';
+import 'package:sangeet/core/utils.dart';
 import 'package:sangeet/functions/album/view/album_view.dart';
 import 'package:sangeet/functions/charts/view/charts_view.dart';
 import 'package:sangeet/functions/explore/controllers/explore_controller.dart';
-import 'package:sangeet/functions/explore/widgets/album_card.dart';
-import 'package:sangeet/functions/explore/widgets/chart_card.dart';
-import 'package:sangeet/functions/explore/widgets/playlist_card.dart';
-import 'package:sangeet/functions/explore/widgets/radio_card.dart';
+import 'package:sangeet/functions/explore/widgets/browse_card.dart';
 import 'package:sangeet/functions/explore/widgets/trend_card.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
 import 'package:sangeet/functions/playlist/view/playlist_view.dart';
@@ -128,10 +126,17 @@ class ExploreList extends ConsumerWidget {
                       itemCount: albums.length,
                       itemBuilder: (context, index) {
                         final album = albums[index];
-                        return AlbumCard(
-                          album: album,
-                          onTap: () => Navigator.of(context)
-                              .push(AlbumView.route(album.id)),
+                        return BrowseCard(
+                          accentColor: album.accentColor,
+                          explicitContent: album.explicitContent,
+                          image: album.images[1].url,
+                          subtitle: album.subtitle == ""
+                              ? album.artists.map((e) => e.name).join(',')
+                              : album.subtitle,
+                          title: album.title,
+                          onTap: () => Navigator.of(context).push(
+                            AlbumView.route(album.id),
+                          ),
                         );
                       },
                     ),
@@ -156,8 +161,13 @@ class ExploreList extends ConsumerWidget {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         final chart = charts[index];
-                        return ChartCard(
-                          chart: chart,
+                        return BrowseCard(
+                          explicitContent: chart.explicitContent,
+                          image: chart.image,
+                          subtitle: chart.subtitle == ""
+                              ? chart.language
+                              : chart.subtitle,
+                          title: chart.title,
                           onTap: () => Navigator.of(context).push(
                             ChartView.route(chart.token),
                           ),
@@ -190,8 +200,12 @@ class ExploreList extends ConsumerWidget {
                       itemCount: radios.length,
                       itemBuilder: (context, index) {
                         final radio = radios[index];
-                        return RadioCard(
-                          radio: radio,
+                        return BrowseCard(
+                          accentColor: hexToColor(radio.accentColor),
+                          explicitContent: radio.explicitContent,
+                          image: radio.image,
+                          subtitle: radio.subtitle,
+                          title: radio.title,
                           onTap: () => ref
                               .watch(playerControllerProvider.notifier)
                               .runRadio(
@@ -228,8 +242,11 @@ class ExploreList extends ConsumerWidget {
                       itemCount: playlists.length,
                       itemBuilder: (context, index) {
                         final playlist = playlists[index];
-                        return PlaylistCard(
-                          playlist: playlist,
+                        return BrowseCard(
+                          explicitContent: playlist.explicitContent,
+                          image: playlist.images[1].url,
+                          subtitle: playlist.subtitle,
+                          title: playlist.title,
                           onTap: () => Navigator.of(context).push(
                             PlaylistView.route(playlist.id),
                           ),

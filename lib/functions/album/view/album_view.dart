@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sangeet/core/core.dart';
-import 'package:sangeet/core/utils.dart';
+import 'package:sangeet/core/widgets/play_button.dart';
 import 'package:sangeet/core/widgets/blur_image_container.dart';
+import 'package:sangeet/core/widgets/media_card.dart';
 import 'package:sangeet/core/widgets/top_details.dart';
 import 'package:sangeet/functions/album/controllers/album_controller.dart';
 import 'package:sangeet/functions/artist/view/artist_view.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
-import 'package:sangeet/functions/song/view/song_view.dart';
 
 class AlbumView extends ConsumerWidget {
   static route(String id) => MaterialPageRoute(
@@ -63,39 +63,25 @@ class AlbumView extends ConsumerWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Visibility(
-                                    visible: Navigator.of(context).canPop(),
-                                    child: Container(
-                                      padding: const EdgeInsets.all(8),
-                                      child: TextButton.icon(
-                                        onPressed: () =>
-                                            Navigator.of(context).pop(),
-                                        icon: const Icon(
-                                            Icons.arrow_left_rounded),
-                                        label: const Text("Back"),
-                                        style: TextButton.styleFrom(
-                                          foregroundColor: Colors.white,
-                                          backgroundColor: Colors.black12,
-                                        ),
+                                  Wrap(
+                                    children: [
+                                      const BackButton(),
+                                      IconButton(
+                                        tooltip: "More",
+                                        onPressed: () {},
+                                        icon:
+                                            const Icon(Icons.more_vert_rounded),
                                       ),
-                                    ),
+                                    ],
                                   ),
-                                  IconButton(
+                                  PlayButton(
                                     onPressed: () => ref
                                         .watch(
                                             playerControllerProvider.notifier)
                                         .runRadio(
                                             radioId: album.id,
                                             type: MediaType.album),
-                                    icon: const Icon(
-                                      Icons.play_arrow_rounded,
-                                      size: 35,
-                                      color: Colors.white,
-                                    ),
-                                    style: IconButton.styleFrom(
-                                      backgroundColor: Colors.teal,
-                                    ),
-                                  ),
+                                  )
                                 ],
                               ),
                             ),
@@ -108,17 +94,13 @@ class AlbumView extends ConsumerWidget {
                                 itemCount: album.songs.length,
                                 itemBuilder: (context, index) {
                                   final song = album.songs[index];
-                                  return ListTile(
-                                    onTap: () => Navigator.of(context)
-                                        .push(SongView.route(song.id)),
-                                    title: Text(song.title),
-                                    style: ListTileStyle.list,
-                                    subtitle: Text(
-                                        "${formatNumber(song.playCount)} listens, ${formatDuration(song.duration)} long"),
-                                    leading: CircleAvatar(
-                                      backgroundImage:
-                                          NetworkImage(song.images[1].url),
-                                    ),
+                                  return MediaCard(
+                                    onTap: () {},
+                                    image: song.images[1].url,
+                                    title: song.title,
+                                    subtitle:
+                                        "${formatNumber(song.playCount)} listens, ${formatDuration(song.duration)}",
+                                    explicitContent: song.explicitContent,
                                   );
                                 },
                               ),
@@ -161,15 +143,13 @@ class AlbumView extends ConsumerWidget {
                                 itemCount: album.artists.length,
                                 itemBuilder: (context, index) {
                                   final artist = album.artists[index];
-                                  return ListTile(
+                                  return MediaCard(
                                     onTap: () => Navigator.of(context)
                                         .push(ArtistView.route(artist.id)),
-                                    title: Text(artist.name),
-                                    subtitle: Text(artist.type),
-                                    leading: CircleAvatar(
-                                      backgroundImage:
-                                          NetworkImage(artist.image),
-                                    ),
+                                    image: artist.image,
+                                    title: artist.name,
+                                    subtitle: artist.type,
+                                    explicitContent: false,
                                   );
                                 },
                               ),

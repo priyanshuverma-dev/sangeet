@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.ubuntuTextTheme(ThemeData.dark().textTheme),
         cardTheme: const CardTheme(
           color: Colors.transparent,
-          elevation: .01,
+          elevation: .5,
         ),
       ),
       themeMode: ThemeMode.dark,

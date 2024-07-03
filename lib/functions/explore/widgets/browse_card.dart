@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:sangeet_api/models.dart';
 
-class PlaylistCard extends StatelessWidget {
-  final PlaylistMapModel playlist;
+class BrowseCard extends StatelessWidget {
   final VoidCallback onTap;
-  const PlaylistCard({super.key, required this.playlist, required this.onTap});
+  final String image;
+  final String title;
+  final String subtitle;
+  final bool explicitContent;
+  final Color? accentColor;
+  const BrowseCard({
+    super.key,
+    required this.onTap,
+    required this.image,
+    required this.title,
+    required this.subtitle,
+    required this.explicitContent,
+    this.accentColor,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      surfaceTintColor: accentColor,
       margin: const EdgeInsets.all(5.0),
       child: InkWell(
         onTap: onTap,
@@ -21,14 +33,17 @@ class PlaylistCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircleAvatar(
-                radius: 55,
-                backgroundColor: Colors.black,
-                foregroundImage: NetworkImage(playlist.images[2].url),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  image,
+                  width: 100,
+                  height: 100,
+                ),
               ),
               const SizedBox(height: 10),
               Text(
-                playlist.title,
+                title,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -39,17 +54,22 @@ class PlaylistCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(1.0),
-                    child: Text(
-                      playlist.subtitle,
-                      style: const TextStyle(
-                        fontSize: 16,
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(1.0),
+                      child: Text(
+                        subtitle,
+                        style: const TextStyle(
+                          fontSize: 16,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.fade,
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),
                   Visibility(
-                    visible: playlist.explicitContent,
+                    visible: explicitContent,
                     child: const Icon(
                       Icons.explicit,
                       size: 16,

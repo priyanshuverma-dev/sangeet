@@ -71,7 +71,7 @@ class _BaseAudioPlayerState extends ConsumerState<BaseAudioPlayer> {
                               maxLines: 1,
                             ),
                             Text(
-                              metadata.subtitle,
+                              metadata.albumName,
                               maxLines: 1,
                             ),
                           ],

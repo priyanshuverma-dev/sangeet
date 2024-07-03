@@ -10,7 +10,6 @@ class RadioCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      // elevation: 0,
       surfaceTintColor: hexToColor(radio.accentColor),
       margin: const EdgeInsets.all(5.0),
       child: InkWell(
@@ -46,13 +45,15 @@ class RadioCard extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(1.0),
                       child: Text(
-                        radio.description ?? radio.language,
+                        radio.description == ""
+                            ? radio.language
+                            : radio.description!,
                         style: const TextStyle(
                           fontSize: 16,
-                          overflow: TextOverflow.ellipsis,
+                          overflow: TextOverflow.fade,
                         ),
                         textAlign: TextAlign.center,
-                        maxLines: 2,
+                        maxLines: 1,
                         softWrap: true,
                       ),
                     ),

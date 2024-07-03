@@ -44,7 +44,7 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
   Widget build(BuildContext context) {
     final index = ref.watch(appScreenConfigProvider);
     final config = ref.watch(appScreenConfigProvider.notifier);
-    final player = ref.watch(playerControllerProvider.notifier).getPlayer;
+    final player = ref.watch(getAudioPlayer);
 
     return Actions(
       actions: <Type, Action<Intent>>{
