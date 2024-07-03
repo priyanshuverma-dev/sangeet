@@ -7,6 +7,8 @@ class MediaCard extends StatelessWidget {
   final IconData? badgeIcon;
   final VoidCallback onTap;
   final VoidCallback? onDoubleTap;
+  final VoidCallback? onMenuTap;
+  final bool showMenu;
   final bool explicitContent;
   final Color? accentColor;
   const MediaCard({
@@ -19,6 +21,8 @@ class MediaCard extends StatelessWidget {
     this.badgeIcon,
     required this.explicitContent,
     this.onDoubleTap,
+    this.onMenuTap,
+    this.showMenu = true,
   });
 
   @override
@@ -28,14 +32,14 @@ class MediaCard extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         onDoubleTap: onDoubleTap,
-        borderRadius: BorderRadius.circular(15),
-        child: Stack(
-          alignment: Alignment.bottomRight,
+        borderRadius: BorderRadius.circular(12),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            Flexible(
               child: Row(
-                mainAxisSize: MainAxisSize.max,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Badge(
                     isLabelVisible: badgeIcon != null,
@@ -46,16 +50,26 @@ class MediaCard extends StatelessWidget {
                       size: 10,
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(8),
+                        topLeft: Radius.circular(8),
+                      ),
                       child: Image.network(
                         image,
-                        width: 50,
-                        height: 50,
+                        width: 60,
+                        height: 60,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const SizedBox(
+                            width: 60,
+                            height: 60,
+                            child: Icon(Icons.error_outline_rounded),
+                          );
+                        },
                       ),
                     ),
                   ),
                   Flexible(
-                    child: Padding(
+                    child: Container(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,6 +80,7 @@ class MediaCard extends StatelessWidget {
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
+                            maxLines: 1,
                             softWrap: true,
                           ),
                           Text(
@@ -73,7 +88,7 @@ class MediaCard extends StatelessWidget {
                             style: const TextStyle(
                               overflow: TextOverflow.fade,
                             ),
-                            maxLines: 2,
+                            maxLines: 1,
                             softWrap: true,
                           ),
                         ],
@@ -81,6 +96,14 @@ class MediaCard extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+            ),
+            Visibility(
+              visible: showMenu,
+              child: IconButton(
+                tooltip: "Options",
+                onPressed: onMenuTap ?? () {},
+                icon: const Icon(Icons.more_vert_rounded),
               ),
             ),
           ],

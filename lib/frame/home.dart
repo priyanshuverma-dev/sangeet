@@ -71,21 +71,20 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
               NavigationRail(
                 selectedIndex: index,
                 onDestinationSelected: (idx) => config.onIndex(idx),
-                destinations: [
-                  const NavigationRailDestination(
+                destinations: const [
+                  NavigationRailDestination(
                     icon: Icon(Icons.home),
                     label: Text("Home"),
                   ),
-                  const NavigationRailDestination(
+                  NavigationRailDestination(
                     icon: Icon(Icons.search),
                     label: Text("Search"),
                   ),
                   NavigationRailDestination(
-                    icon: const Icon(Icons.music_note_rounded),
-                    label: const Text("Current Playing"),
-                    disabled: !player.playing,
+                    icon: Icon(Icons.music_note_rounded),
+                    label: Text("Current Playing"),
                   ),
-                  const NavigationRailDestination(
+                  NavigationRailDestination(
                     icon: Icon(Icons.settings),
                     label: Text("Settings"),
                   ),

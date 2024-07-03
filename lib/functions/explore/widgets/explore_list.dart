@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:sangeet/core/core.dart';
-import 'package:sangeet/core/utils.dart';
-import 'package:sangeet/functions/album/view/album_view.dart';
-import 'package:sangeet/functions/charts/view/charts_view.dart';
-import 'package:sangeet/functions/explore/controllers/explore_controller.dart';
+
 import 'package:sangeet/functions/explore/widgets/browse_card.dart';
 import 'package:sangeet/functions/explore/widgets/trend_card.dart';
+
+import 'package:sangeet/functions/explore/controllers/explore_controller.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
+
+import 'package:sangeet/functions/charts/view/charts_view.dart';
+import 'package:sangeet/functions/album/view/album_view.dart';
 import 'package:sangeet/functions/playlist/view/playlist_view.dart';
 import 'package:sangeet/functions/song/view/song_view.dart';
 

@@ -59,6 +59,7 @@ class PlayerController extends StateNotifier<bool> {
     required MediaType type,
     VoidCallback? redirect,
     List<SongModel>? prevSongs,
+    bool playCurrent = false,
   }) async {
     try {
       List<SongModel> songs = [];
@@ -68,53 +69,53 @@ class PlayerController extends StateNotifier<bool> {
       }
       final quality = await _settingsController.getSongQuality();
       if (prevSongs != null) {
-        songs = prevSongs;
-      }
-
-      if (type == MediaType.song) {
-        final songsObjects = await _api.song.radio(songId: radioId);
-        final song = await _api.song.getById(songId: radioId);
-        if (songsObjects == null || song == null) {
-          throw Error.throwWithStackTrace(
-              "Can't load right now", StackTrace.empty);
+        final songsCopy = prevSongs;
+        if (playCurrent) {
+          final i = songsCopy.indexWhere((element) => element.id == radioId);
+          songsCopy.removeRange(0, i);
         }
-
-        songs = [song, ...songsObjects.songs];
-      }
-
-      if (type == MediaType.album) {
-        final album = await _api.album.getById(albumId: radioId);
-        if (album == null) {
-          throw Error.throwWithStackTrace("Album not found", StackTrace.empty);
-        }
-        songs = album.songs;
-      }
-      if (type == MediaType.playlist) {
-        final playlistModel = await _api.playlist.getById(id: radioId);
-        if (playlistModel == null) {
-          throw Error.throwWithStackTrace(
-            "Playlist not found",
-            StackTrace.empty,
-          );
-        }
-
-        songs = playlistModel.songs;
-      }
-      if (type == MediaType.radio) {
-        final radio = await _api.song.radio(songId: radioId, featured: true);
-        if (radio == null) {
-          throw Error.throwWithStackTrace(
-            "Radio not found",
-            StackTrace.empty,
-          );
-        }
-        songs = radio.songs;
+        songs = songsCopy;
       } else {
-        // if (prevSongs == null) {
-        //   throw Error();
-        // } else {
-        //   songs = prevSongs;
-        // }
+        if (type == MediaType.song) {
+          final songsObjects = await _api.song.radio(songId: radioId);
+          final song = await _api.song.getById(songId: radioId);
+          if (songsObjects == null || song == null) {
+            throw Error.throwWithStackTrace(
+                "Can't load right now", StackTrace.empty);
+          }
+
+          songs = [song, ...songsObjects.songs];
+        }
+
+        if (type == MediaType.album) {
+          final album = await _api.album.getById(albumId: radioId);
+          if (album == null) {
+            throw Error.throwWithStackTrace(
+                "Album not found", StackTrace.empty);
+          }
+          songs = album.songs;
+        }
+        if (type == MediaType.playlist) {
+          final playlistModel = await _api.playlist.getById(id: radioId);
+          if (playlistModel == null) {
+            throw Error.throwWithStackTrace(
+              "Playlist not found",
+              StackTrace.empty,
+            );
+          }
+
+          songs = playlistModel.songs;
+        }
+        if (type == MediaType.radio) {
+          final radio = await _api.song.radio(songId: radioId, featured: true);
+          if (radio == null) {
+            throw Error.throwWithStackTrace(
+              "Radio not found",
+              StackTrace.empty,
+            );
+          }
+          songs = radio.songs;
+        }
       }
 
       for (var i = 0; i < songs.length; i++) {
