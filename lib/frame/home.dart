@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:hotkey_manager/hotkey_manager.dart';
+import 'package:sangeet/core/widgets/blur_image_container.dart';
 import 'package:sangeet/functions/player/views/current_playing_view.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:tray_manager/tray_manager.dart';
@@ -66,77 +67,81 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
         },
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: Row(
-            children: [
-              NavigationRail(
-                selectedIndex: index,
-                onDestinationSelected: (idx) => config.onIndex(idx),
-                destinations: const [
-                  NavigationRailDestination(
-                    icon: Icon(Icons.home),
-                    label: Text("Home"),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.search),
-                    label: Text("Search"),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.music_note_rounded),
-                    label: Text("Current Playing"),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.settings),
-                    label: Text("Settings"),
-                  ),
-                ],
-                leading: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Image.asset(
-                    'assets/app_icon.ico',
-                    width: 35,
-                  ),
-                ),
-                labelType: NavigationRailLabelType.none,
-                backgroundColor: Colors.black,
-                indicatorColor: Colors.grey.shade900,
-                unselectedIconTheme: const IconThemeData(color: Colors.grey),
-                selectedIconTheme: const IconThemeData(color: Colors.white),
-              ),
-              Expanded(
-                child: Column(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: IndexedStack(
-                        index: index,
-                        children: [
-                          _buildNavigator(
-                            0,
-                            const ExploreView(),
-                          ),
-                          _buildNavigator(
-                            1,
-                            const SearchView(),
-                          ),
-                          _buildNavigator(
-                            2,
-                            const CurrentPlayingView(),
-                          ),
-                          _buildNavigator(
-                            3,
-                            const SettingsView(),
-                          ),
-                        ],
-                      ),
+          body: BlurImageContainer(
+            image: 'assets/background.jpg',
+            isAsset: true,
+            child: Row(
+              children: [
+                NavigationRail(
+                  selectedIndex: index,
+                  onDestinationSelected: (idx) => config.onIndex(idx),
+                  destinations: const [
+                    NavigationRailDestination(
+                      icon: Icon(Icons.home),
+                      label: Text("Home"),
                     ),
-                    Visibility(
-                      visible: index != 2,
-                      child: const BaseAudioPlayer(),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.search),
+                      label: Text("Search"),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.music_note_rounded),
+                      label: Text("Current Playing"),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.settings),
+                      label: Text("Settings"),
                     ),
                   ],
+                  leading: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Image.asset(
+                      'assets/app_icon.ico',
+                      width: 35,
+                    ),
+                  ),
+                  labelType: NavigationRailLabelType.none,
+                  backgroundColor: Colors.black,
+                  indicatorColor: Colors.grey.shade900,
+                  unselectedIconTheme: const IconThemeData(color: Colors.grey),
+                  selectedIconTheme: const IconThemeData(color: Colors.white),
                 ),
-              ),
-            ],
+                Expanded(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: IndexedStack(
+                          index: index,
+                          children: [
+                            _buildNavigator(
+                              0,
+                              const ExploreView(),
+                            ),
+                            _buildNavigator(
+                              1,
+                              const SearchView(),
+                            ),
+                            _buildNavigator(
+                              2,
+                              const CurrentPlayingView(),
+                            ),
+                            _buildNavigator(
+                              3,
+                              const SettingsView(),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Visibility(
+                        visible: index != 2,
+                        child: const BaseAudioPlayer(),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

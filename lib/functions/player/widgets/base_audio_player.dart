@@ -39,6 +39,7 @@ class _BaseAudioPlayerState extends ConsumerState<BaseAudioPlayer> {
         final metadata = state!.currentSource!.tag as SongModel;
 
         return Card(
+          elevation: 0,
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
