@@ -7,10 +7,13 @@ class SettingsView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const Column(
-      children: [
-        PlaybackQualitySetting(),
-      ],
+    return const Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          PlaybackQualitySetting(),
+        ],
+      ),
     );
   }
 }

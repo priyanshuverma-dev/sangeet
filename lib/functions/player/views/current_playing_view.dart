@@ -252,181 +252,6 @@ class _CurrentPlayingViewState extends ConsumerState<CurrentPlayingView> {
             ),
           );
         });
-
-    // return BlurImageContainer(
-    //   image: "assets/background.jpg",
-    //   isAsset: true,
-    //   child: SplitViewContainer(
-    //     leftChild: StreamBuilder<SequenceState?>(
-    //       stream: player.sequenceStateStream,
-    //       builder: (context, snapshot) {
-    //         final state = snapshot.data;
-    //         if (snapshot.connectionState == ConnectionState.waiting) {
-    //           return const SizedBox(
-    //             width: 400,
-    //             child: Center(
-    //               child: CircularProgressIndicator(
-    //                 color: Colors.white,
-    //               ),
-    //             ),
-    //           );
-    //         }
-
-    //         if (state?.sequence.isEmpty ?? true) {
-    //           return const Center(
-    //             child: Text("Nothing To Play"),
-    //           );
-    //         }
-
-    //         final song = state!.currentSource!.tag as SongModel;
-    //         final songs = state.sequence;
-
-    // return Column(
-    //   mainAxisAlignment: MainAxisAlignment.start,
-    //   crossAxisAlignment: CrossAxisAlignment.center,
-    //   children: [
-    //     ClipRRect(
-    //       borderRadius: BorderRadius.circular(10),
-    //       child: Image.network(
-    //         song.images[2].url,
-    //       ),
-    //     ),
-    //     Container(
-    //       padding: const EdgeInsets.all(8),
-    //       width: 500,
-    //       margin: const EdgeInsets.symmetric(vertical: 10),
-    //       decoration: BoxDecoration(
-    //         color: Colors.black12,
-    //         borderRadius: BorderRadius.circular(10),
-    //       ),
-    //       child: Column(
-    //         children: [
-    //           Text(
-    //             song.title,
-    //             style: const TextStyle(
-    //               fontSize: 20,
-    //               fontWeight: FontWeight.bold,
-    //             ),
-    //           ),
-    //           Text(
-    //             song.albumName,
-    //             style: const TextStyle(
-    //               fontSize: 18,
-    //             ),
-    //           ),
-    //         ],
-    //       ),
-    //     ),
-    //     Container(
-    //       padding: const EdgeInsets.all(8),
-    //       margin: const EdgeInsets.symmetric(vertical: 10),
-    //       decoration: BoxDecoration(
-    //         color: Colors.black12,
-    //         borderRadius: BorderRadius.circular(10),
-    //       ),
-    //       child: Row(
-    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //         children: [
-    //           Expanded(
-    //             flex: 1,
-    //             child: StreamBuilder<PositionData>(
-    //               stream: ref
-    //                   .watch(playerControllerProvider.notifier)
-    //                   .positionDataStream,
-    //               builder: (context, snapshot) {
-    //                 final positionData = snapshot.data;
-    //                 return ProgressBar(
-    //                   progress: positionData?.position ?? Duration.zero,
-    //                   buffered: positionData?.bufferedPosition ??
-    //                       Duration.zero,
-    //                   total: positionData?.duration ?? Duration.zero,
-    //                   progressBarColor: Colors.teal,
-    //                   baseBarColor: Colors.white.withOpacity(0.24),
-    //                   bufferedBarColor: Colors.white.withOpacity(0.24),
-    //                   thumbColor: Colors.white,
-    //                   timeLabelLocation: TimeLabelLocation.sides,
-    //                   timeLabelType: TimeLabelType.totalTime,
-    //                   barHeight: 3.0,
-    //                   thumbRadius: 4.0,
-    //                   onSeek: (duration) {
-    //                     player.seek(duration);
-    //                   },
-    //                 );
-    //               },
-    //             ),
-    //           ),
-    //           PlayerControllerButtons(
-    //             player: player,
-    //           ),
-    //         ],
-    //       ),
-    //     ),
-    //     Container(
-    //       padding: const EdgeInsets.all(8),
-    //       margin: const EdgeInsets.symmetric(vertical: 10),
-    //       decoration: BoxDecoration(
-    //         color: Colors.black12,
-    //         borderRadius: BorderRadius.circular(10),
-    //       ),
-    //       child: Row(
-    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //         children: [
-    //           const Padding(
-    //             padding: EdgeInsets.all(10.0),
-    //             child: Text(
-    //               'Next Songs.',
-    //               style: TextStyle(
-    //                 fontSize: 24,
-    //                 fontWeight: FontWeight.bold,
-    //               ),
-    //             ),
-    //           ),
-    //           Wrap(
-    //             children: [
-    //               BackButton(
-    //                 onPressed: () => ref
-    //                     .watch(appScreenConfigProvider.notifier)
-    //                     .onIndex(0),
-    //               ),
-    //               IconButton(
-    //                 tooltip: "More",
-    //                 onPressed: () {},
-    //                 icon: const Icon(Icons.more_vert_rounded),
-    //               ),
-    //             ],
-    //           ),
-    //         ],
-    //       ),
-    //     ),
-    //     Container(
-    //       padding: const EdgeInsets.symmetric(vertical: 10),
-    //       child: ListView.builder(
-    //         shrinkWrap: true,
-    //         physics: const NeverScrollableScrollPhysics(),
-    //         scrollDirection: Axis.vertical,
-    //         itemCount: songs.length,
-    //         itemBuilder: (context, index) {
-    //           final s = songs[index].tag as SongModel;
-    //           return MediaCard(
-    //             onTap: () {},
-    //             onDoubleTap: () => Navigator.of(context).push(
-    //               SongView.route(s.id),
-    //             ),
-    //             image: s.images[1].url,
-    //             title: s.title,
-    //             subtitle:
-    //                 "${formatNumber(s.playCount)} listens, ${s.label}",
-    //             explicitContent: s.explicitContent,
-    //           );
-    //         },
-    //       ),
-    //     ),
-    //   ],
-    // );
-    //       },
-    //     ),
-    //     rightChild:  ),
-    // );
   }
 }
 
@@ -461,7 +286,7 @@ Widget getRightChild({
                         onTap: () => Navigator.of(context).push(
                           SongView.route(song.id),
                         ),
-                        image: song.images[0].url,
+                        image: song.images[1].url,
                         title: song.title,
                         subtitle: song.albumName,
                         badgeIcon: Icons.music_note_rounded,
@@ -473,7 +298,7 @@ Widget getRightChild({
                         onTap: () => Navigator.of(context).push(
                           AlbumView.route(album.id),
                         ),
-                        image: album.images[0].url,
+                        image: album.images[1].url,
                         title: album.title,
                         subtitle: album.artists.map((e) => e.name).join(','),
                         badgeIcon: Icons.album_rounded,
@@ -526,7 +351,7 @@ Widget getRightChild({
                       onTap: () => Navigator.of(context).push(
                         SongView.route(song.id),
                       ),
-                      image: song.images[0].url,
+                      image: song.images[1].url,
                       title: song.title,
                       subtitle: song.albumName,
                       badgeIcon: Icons.music_note_rounded,
