@@ -141,10 +141,18 @@ packages:
     dependency: transitive
     description:
       name: dio
-      sha256: "11e40df547d418cc0c4900a9318b26304e665da6fa4755399a9ff9efd09034b5"
+      sha256: "77befdddf51050e1635a04d2bcfff230089ce7294e642d00da58cd079c0de0c8"
       url: "https://pub.dev"
     source: hosted
-    version: "5.4.3+1"
+    version: "5.5.0"
+  dio_web_adapter:
+    dependency: transitive
+    description:
+      name: dio_web_adapter
+      sha256: "36c5b2d79eb17cdae41e974b7a8284fec631651d2a6f39a8a2ff22327e90aeac"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -541,7 +549,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "9e85662d7a3111d1ecfcf2b509634170a2d26340"
+      resolved-ref: ef9d3e03751a7a7a3eda402b49bbaf471038eba4
       url: "https://github.com/priyanshuverma-dev/sangeet-api"
     source: git
     version: "0.1.3"

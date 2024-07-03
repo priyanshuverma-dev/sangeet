@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       title: 'Sangeet',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorSchemeSeed: Colors.grey,
+        colorSchemeSeed: Colors.lightBlueAccent,
       ),
       darkTheme: ThemeData.dark().copyWith(
         textTheme: GoogleFonts.ubuntuTextTheme(ThemeData.dark().textTheme),
