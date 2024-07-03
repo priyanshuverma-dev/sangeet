@@ -38,7 +38,7 @@ class _CurrentPlayingViewState extends ConsumerState<CurrentPlayingView> {
         builder: (context, snapshot) {
           final state = snapshot.data;
 
-          if (state?.sequence.isEmpty ?? false) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -79,7 +79,7 @@ class _CurrentPlayingViewState extends ConsumerState<CurrentPlayingView> {
             );
           }
 
-          if (snapshot.connectionState == ConnectionState.waiting) {
+          if (state?.sequence.isEmpty ?? false) {
             return const ScreenLoading();
           }
 
