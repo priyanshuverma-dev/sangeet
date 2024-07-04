@@ -28,6 +28,6 @@ jobs:
           - name: Dependencies install
             run: flutter pub get
           - name: Test For Windows
-            run: flutter drive
+            run: flutter test -d windows integration_test\app_test.dart 
           - name: Build For Windows
             run: flutter build windows
