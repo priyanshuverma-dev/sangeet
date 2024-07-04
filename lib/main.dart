@@ -8,7 +8,7 @@ import 'package:hotkey_manager/hotkey_manager.dart';
 import 'package:sangeet/frame/home.dart';
 import 'package:sangeet/initialization.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await hotKeyManager.unregisterAll();
   await initialiseAppFunctions();

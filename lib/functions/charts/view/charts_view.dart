@@ -36,6 +36,7 @@ class ChartView extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TopDetailsContainer(
+                      key: const Key('chart_top'),
                       title: chart.title,
                       subtitle: chart.subtitle,
                       image: chart.images[2].url,
@@ -54,7 +55,9 @@ class ChartView extends ConsumerWidget {
                         children: [
                           Wrap(
                             children: [
-                              const BackButton(),
+                              const BackButton(
+                                key: Key("back_btn"),
+                              ),
                               IconButton(
                                 tooltip: "More",
                                 onPressed: () {},

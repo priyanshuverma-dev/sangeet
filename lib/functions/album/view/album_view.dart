@@ -35,6 +35,7 @@ class AlbumView extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TopDetailsContainer(
+                      key: const Key("album_top"),
                       image: album.images[2].url,
                       subtitle: album.subtitle,
                       title: album.title,
@@ -62,7 +63,9 @@ class AlbumView extends ConsumerWidget {
                         children: [
                           Wrap(
                             children: [
-                              const BackButton(),
+                              const BackButton(
+                                key: Key("back_btn"),
+                              ),
                               IconButton(
                                 tooltip: "More",
                                 onPressed: () {},
