@@ -36,6 +36,7 @@ class PlaylistView extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TopDetailsContainer(
+                      key: const Key("playlist_top"),
                       image: playlist.images[2].url,
                       subtitle: playlist.subtitle,
                       title: playlist.title,
@@ -53,7 +54,9 @@ class PlaylistView extends ConsumerWidget {
                         children: [
                           Wrap(
                             children: [
-                              const BackButton(),
+                              const BackButton(
+                                key: Key("back_btn"),
+                              ),
                               IconButton(
                                 tooltip: "More",
                                 onPressed: () {},

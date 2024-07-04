@@ -27,6 +27,7 @@ class ExploreList extends ConsumerWidget {
             final albums = data.albums;
             final playlists = data.topPlaylists;
             final trendings = data.trending;
+
             return SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Column(
@@ -54,7 +55,7 @@ class ExploreList extends ConsumerWidget {
                       children: trendings
                           .map(
                             (item) => TrendCard(
-                              key: Key(item.id),
+                              key: Key("trend_${item.id}"),
                               onPlay: () => ref
                                   .watch(playerControllerProvider.notifier)
                                   .runRadio(
@@ -131,6 +132,7 @@ class ExploreList extends ConsumerWidget {
                       itemBuilder: (context, index) {
                         final album = albums[index];
                         return BrowseCard(
+                          key: Key("album_card_$index"),
                           accentColor: album.accentColor,
                           explicitContent: album.explicitContent,
                           image: album.images[1].url,
@@ -166,6 +168,7 @@ class ExploreList extends ConsumerWidget {
                       itemBuilder: (context, index) {
                         final chart = charts[index];
                         return BrowseCard(
+                          key: Key("chart_card_$index"),
                           explicitContent: chart.explicitContent,
                           image: chart.image,
                           subtitle: chart.subtitle == ""
@@ -247,6 +250,7 @@ class ExploreList extends ConsumerWidget {
                       itemBuilder: (context, index) {
                         final playlist = playlists[index];
                         return BrowseCard(
+                          key: Key("playlist_card_$index"),
                           explicitContent: playlist.explicitContent,
                           image: playlist.images[1].url,
                           subtitle: playlist.subtitle,
