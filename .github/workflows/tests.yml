@@ -27,7 +27,7 @@ jobs:
                 flutter-version: '3.19.5'
           - name: Test Connectivity
             run: |
-              ping -c 10 jiosaavn.com
+              ping jiosaavn.com
           - name: Dependencies install
             run: flutter pub get
           - name: Test For Windows
