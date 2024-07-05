@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sangeet/core/core.dart';
 import 'package:sangeet/core/skeletions/media_loading_skeletion.dart';
 import 'package:sangeet/core/skeletions/screen_loading_skeleton.dart';
-import 'package:sangeet/core/utils.dart';
 import 'package:sangeet/core/widgets/blur_image_container.dart';
 import 'package:sangeet/core/widgets/media_card.dart';
 import 'package:sangeet/core/widgets/play_button.dart';

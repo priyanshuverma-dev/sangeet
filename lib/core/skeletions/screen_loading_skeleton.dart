@@ -74,8 +74,8 @@ class ScreenLoading extends StatelessWidget {
                       children: [
                         const BackButton(color: Colors.grey),
                         IconButton(
-                          icon:
-                              Icon(Icons.more_vert_rounded, color: Colors.grey),
+                          icon: const Icon(Icons.more_vert_rounded,
+                              color: Colors.grey),
                           onPressed: () {},
                         ),
                       ],
@@ -89,7 +89,8 @@ class ScreenLoading extends StatelessWidget {
                       ),
                     ),
                     IconButton(
-                      icon: Icon(Icons.play_arrow_rounded, color: Colors.grey),
+                      icon: const Icon(Icons.play_arrow_rounded,
+                          color: Colors.grey),
                       onPressed: () {},
                     ),
                   ],

@@ -141,10 +141,10 @@ packages:
     dependency: transitive
     description:
       name: dio
-      sha256: "77befdddf51050e1635a04d2bcfff230089ce7294e642d00da58cd079c0de0c8"
+      sha256: e17f6b3097b8c51b72c74c9f071a605c47bcc8893839bd66732457a5ebe73714
       url: "https://pub.dev"
     source: hosted
-    version: "5.5.0"
+    version: "5.5.0+1"
   dio_web_adapter:
     dependency: transitive
     description:
@@ -572,7 +572,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: ef9d3e03751a7a7a3eda402b49bbaf471038eba4
+      resolved-ref: "6a68ff6c1aa1d2f680a8949004bd822a8c6ba1f3"
       url: "https://github.com/priyanshuverma-dev/sangeet-api"
     source: git
     version: "0.1.3"

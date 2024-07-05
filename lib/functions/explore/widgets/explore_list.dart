@@ -208,7 +208,6 @@ class ExploreList extends ConsumerWidget {
                       itemBuilder: (context, index) {
                         final radio = radios[index];
                         return BrowseCard(
-                          accentColor: hexToColor(radio.accentColor),
                           explicitContent: radio.explicitContent,
                           image: radio.image,
                           subtitle: radio.subtitle,

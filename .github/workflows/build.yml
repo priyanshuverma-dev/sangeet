@@ -23,6 +23,8 @@ jobs:
                 flutter-version: '3.19.5'
           - name: Dependencies install
             run: flutter pub get
+          - name: Integration Test
+            run: flutter test -d windows integration_test\app_test.dart 
           - name: Build For Windows
             run: flutter build windows --release --build-name 1.1.${{ github.run_number }} --build-number ${{ github.run_number }}
           - name: Archive Release
