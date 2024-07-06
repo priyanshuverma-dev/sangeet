@@ -1,4 +1,7 @@
 on:
+    workflow_run:
+          workflows: ['Integration Tests']
+          types: [completed]
     push:
       branches:
         - main
