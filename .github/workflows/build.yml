@@ -37,10 +37,12 @@ jobs:
                 type: 'zip'   
                 filename: Sangeet-v1.1.${{ github.run_number }}_windows_x64.zip
                 directory: build/windows/x64/runner/Release
-                
+
           - name: Push to Releases
             uses: ncipollo/release-action@v1
             with:
                 artifacts: "build/windows/x64/runner/Release/Sangeet-v1.1.${{ github.run_number }}_windows_x64.zip"
                 tag: v1.1.${{ github.run_number }}
                 token: ${{ secrets.GITHUB_TOKEN }}
+                draft: true
+                generateReleaseNotes: true
