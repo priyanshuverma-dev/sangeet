@@ -14,7 +14,7 @@ class CurrentPlayingList extends ConsumerStatefulWidget {
 class _PlaylistViewState extends ConsumerState<CurrentPlayingList> {
   @override
   Widget build(BuildContext context) {
-    final player = ref.watch(getAudioPlayer);
+    final player = ref.watch(playerControllerProvider.notifier).getPlayer;
     final playlist = ref.watch(playerControllerProvider.notifier).playlist;
 
     return StreamBuilder<SequenceState?>(

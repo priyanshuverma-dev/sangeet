@@ -9,6 +9,7 @@ Future<void> initialiseAppFunctions() async {
   await initWindowManager();
   final session = await AudioSession.instance;
   await session.configure(const AudioSessionConfiguration.speech());
+  await session.setActive(false);
 }
 
 Future<void> initWindowManager() async {

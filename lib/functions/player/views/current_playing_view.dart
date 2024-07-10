@@ -5,7 +5,6 @@ import 'package:just_audio/just_audio.dart';
 import 'package:sangeet/core/core.dart';
 import 'package:sangeet/core/app_config.dart';
 import 'package:sangeet/core/skeletions/media_loading_skeletion.dart';
-import 'package:sangeet/core/skeletions/screen_loading_skeleton.dart';
 import 'package:sangeet/core/widgets/blur_image_container.dart';
 import 'package:sangeet/core/widgets/media_card.dart';
 import 'package:sangeet/core/widgets/split_view_container.dart';
@@ -18,83 +17,79 @@ import 'package:sangeet/functions/playlist/view/playlist_view.dart';
 import 'package:sangeet/functions/song/view/song_view.dart';
 import 'package:sangeet_api/models.dart';
 
-class CurrentPlayingView extends ConsumerStatefulWidget {
+class CurrentPlayingView extends ConsumerWidget {
   static route() => MaterialPageRoute(
         builder: (context) => const CurrentPlayingView(),
       );
   const CurrentPlayingView({super.key});
+
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _CurrentPlayingViewState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final player = ref.watch(playerControllerProvider.notifier).getPlayer;
+    final playlist = ref.watch(playerControllerProvider.notifier).playlist;
 
-class _CurrentPlayingViewState extends ConsumerState<CurrentPlayingView> {
-  @override
-  Widget build(BuildContext context) {
-    final player = ref.watch(getAudioPlayer);
-
-    return StreamBuilder<SequenceState?>(
-        stream: player.sequenceStateStream,
-        builder: (context, snapshot) {
-          final state = snapshot.data;
-
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      "Nothing To Play",
-                      style: TextStyle(
-                        fontSize: 16,
+    return BlurImageContainer(
+      child: SplitViewContainer(
+          rightChild: getRightChild(context: context, ref: ref),
+          leftChild: StreamBuilder<SequenceState?>(
+            stream: player.sequenceStateStream,
+            builder: (context, snapshot) {
+              final state = snapshot.data;
+              final sequence = state?.sequence ?? [];
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          "Nothing To Play",
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  TextButton.icon(
-                    icon: const Icon(
-                      Icons.data_usage_outlined,
-                      color: Colors.black,
-                    ),
-                    onPressed: () =>
-                        ref.watch(playerControllerProvider.notifier).runRadio(
+                      TextButton.icon(
+                        icon: const Icon(
+                          Icons.data_usage_outlined,
+                          color: Colors.black,
+                        ),
+                        onPressed: () => ref
+                            .watch(playerControllerProvider.notifier)
+                            .runRadio(
                               radioId: "uQKEtZYc",
                               type: MediaType.song,
                             ),
-                    label: const Text(
-                      "Random Song",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    style: TextButton.styleFrom(
-                      backgroundColor: Colors.white,
-                    ),
-                  )
-                ],
-              ),
-            );
-          }
+                        label: const Text(
+                          "Random Song",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }
 
-          if (state?.sequence.isEmpty ?? false) {
-            return const ScreenLoading();
-          }
+              if (state?.sequence.isEmpty ?? false) {
+                return Container();
+              }
 
-          final song = state!.currentSource!.tag as SongModel;
-          final songs = state.sequence;
+              final song = state!.currentSource!.tag as SongModel;
+              if (state.currentIndex == playlist.length - 1) {
+                ref
+                    .watch(playerControllerProvider.notifier)
+                    .loadMoreSongs(songId: song.id);
+              }
 
-          return BlurImageContainer(
-            image: song.images[2].url,
-            child: SplitViewContainer(
-              rightChild: getRightChild(
-                context: context,
-                ref: ref,
-                id: player.sequenceState?.currentSource?.tag.id ?? "",
-              ),
-              leftChild: Column(
+              return Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
@@ -105,16 +100,16 @@ class _CurrentPlayingViewState extends ConsumerState<CurrentPlayingView> {
                       borderRadius: BorderRadius.circular(10),
                       child: Image.network(
                         song.images[2].url,
-                        width: 500,
-                        height: 500,
+                        width: 400,
+                        height: 400,
                       ),
                     ),
                   ),
                   Container(
                     padding: const EdgeInsets.all(8),
-                    width: 500,
+                    width: 400,
                     height: 100,
-                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    margin: const EdgeInsets.symmetric(vertical: 12),
                     decoration: BoxDecoration(
                       color: Colors.black12,
                       borderRadius: BorderRadius.circular(10),
@@ -228,38 +223,53 @@ class _CurrentPlayingViewState extends ConsumerState<CurrentPlayingView> {
                   ),
                   Container(
                     padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: ListView.builder(
+                    child: ReorderableListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: songs.length,
-                      itemBuilder: (context, index) {
-                        final s = songs[index].tag as SongModel;
-                        return MediaCard(
-                          onTap: () {},
-                          onDoubleTap: () => Navigator.of(context).push(
-                            SongView.route(s.id),
+                      buildDefaultDragHandles: true,
+                      onReorder: (int oldIndex, int newIndex) {
+                        if (oldIndex < newIndex) newIndex--;
+                        playlist.move(oldIndex, newIndex);
+                      },
+                      scrollDirection: Axis.vertical,
+                      itemCount: sequence.length,
+                      itemBuilder: (context, i) {
+                        final song = sequence[i].tag as SongModel;
+                        return Dismissible(
+                          key: ValueKey(sequence[i]),
+                          onDismissed: (dismissDirection) {
+                            playlist.removeAt(i);
+                          },
+                          child: ListTile(
+                            splashColor: song.accentColor,
+                            title: Text(
+                                "${song.title} ${i == state.currentIndex ? "(Playing)" : ""}"),
+                            subtitle: Text(song.albumName),
+                            leading: CircleAvatar(
+                              radius: 25,
+                              backgroundColor:
+                                  Theme.of(context).primaryColorDark,
+                              foregroundImage: NetworkImage(song.images[0].url),
+                            ),
+                            onTap: () {
+                              player.seek(Duration.zero, index: i);
+                            },
                           ),
-                          image: s.images[1].url,
-                          title: s.title,
-                          subtitle:
-                              "${formatNumber(s.playCount)} listens, ${s.label}",
-                          explicitContent: s.explicitContent,
                         );
                       },
                     ),
                   ),
                 ],
-              ),
-            ),
-          );
-        });
+              );
+            },
+          )),
+    );
   }
 }
 
 Widget getRightChild({
   required BuildContext context,
   required WidgetRef ref,
-  required String id,
 }) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -321,44 +331,6 @@ Widget getRightChild({
                       ),
                     ),
                   ],
-                );
-              },
-              error: (er, st) => ErrorPage(
-                error: er.toString(),
-              ),
-              loading: () => const MediaLoader(),
-            ),
-      ),
-      const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Text(
-          'Related Songs.',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      Container(
-        child: ref.watch(getRelatedSongsProvider(id)).when(
-              data: (data) {
-                return ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: data.songs.length,
-                  itemBuilder: (context, index) {
-                    final song = data.songs[index];
-                    return MediaCard(
-                      onTap: () => Navigator.of(context).push(
-                        SongView.route(song.id),
-                      ),
-                      image: song.images[1].url,
-                      title: song.title,
-                      subtitle: song.albumName,
-                      badgeIcon: Icons.music_note_rounded,
-                      explicitContent: song.explicitContent,
-                    );
-                  },
                 );
               },
               error: (er, st) => ErrorPage(

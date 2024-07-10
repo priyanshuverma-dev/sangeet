@@ -45,7 +45,7 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
   Widget build(BuildContext context) {
     final index = ref.watch(appScreenConfigProvider);
     final config = ref.watch(appScreenConfigProvider.notifier);
-    final player = ref.watch(getAudioPlayer);
+    final player = ref.watch(playerControllerProvider.notifier).getPlayer;
 
     return Actions(
       actions: <Type, Action<Intent>>{
@@ -68,8 +68,6 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: BlurImageContainer(
-            image: 'assets/background.jpg',
-            isAsset: true,
             child: Row(
               children: [
                 NavigationRail(

@@ -14,8 +14,6 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
   @override
   Widget build(BuildContext context) {
     return const BlurImageContainer(
-      image: 'assets/background.jpg',
-      isAsset: true,
       child: ExploreList(),
     );
   }

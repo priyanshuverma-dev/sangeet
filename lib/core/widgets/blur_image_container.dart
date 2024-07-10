@@ -9,9 +9,9 @@ class BlurImageContainer extends StatelessWidget {
 
   const BlurImageContainer({
     super.key,
-    required this.image,
+    this.image = "assets/background.jpg",
     required this.child,
-    this.isAsset = false,
+    this.isAsset = true,
   });
 
   @override

@@ -30,6 +30,7 @@ class PlaylistView extends ConsumerWidget {
           data: (playlist) {
             return BlurImageContainer(
               image: playlist.images[2].url,
+              isAsset: false,
               child: SplitViewContainer(
                 leftChild: Column(
                   mainAxisAlignment: MainAxisAlignment.start,

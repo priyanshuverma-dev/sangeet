@@ -32,6 +32,7 @@ class ExploreController extends StateNotifier<bool> {
 
   Future<BrowseModel> getExploreData() async {
     final data = await _api.explore.browse();
+
     if (data == null) {
       throw Error.throwWithStackTrace(
         "Unable to fetch data!",

@@ -1,7 +1,8 @@
-import 'dart:math';
+import 'dart:developer';
 
+import 'package:audio_session/audio_session.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
@@ -20,9 +21,6 @@ final playerControllerProvider =
   );
 });
 
-final getAudioPlayer =
-    Provider((ref) => ref.watch(playerControllerProvider.notifier).getPlayer);
-
 class PlayerController extends StateNotifier<bool> {
   final SettingsController _settingsController;
   final SangeetAPI _api;
@@ -30,9 +28,6 @@ class PlayerController extends StateNotifier<bool> {
   final _player = AudioPlayer();
   final playlist = ConcatenatingAudioSource(
     useLazyPreparation: true,
-    shuffleOrder: DefaultShuffleOrder(
-      random: Random(),
-    ),
     children: [],
   );
 
@@ -61,7 +56,9 @@ class PlayerController extends StateNotifier<bool> {
     List<SongModel>? prevSongs,
     bool playCurrent = false,
   }) async {
+    final session = await AudioSession.instance;
     try {
+      await session.setActive(true);
       List<SongModel> songs = [];
 
       if (playlist.length > 0) {
@@ -77,7 +74,8 @@ class PlayerController extends StateNotifier<bool> {
         songs = songsCopy;
       } else {
         if (type == MediaType.song) {
-          final songsObjects = await _api.song.radio(songId: radioId);
+          final songsObjects =
+              await _api.song.radio(songId: radioId, limit: 12);
           final song = await _api.song.getById(songId: radioId);
           if (songsObjects == null || song == null) {
             throw Error.throwWithStackTrace(
@@ -107,7 +105,8 @@ class PlayerController extends StateNotifier<bool> {
           songs = playlistModel.songs;
         }
         if (type == MediaType.radio) {
-          final radio = await _api.song.radio(songId: radioId, featured: true);
+          final radio =
+              await _api.song.radio(songId: radioId, featured: true, limit: 12);
           if (radio == null) {
             throw Error.throwWithStackTrace(
               "Radio not found",
@@ -125,14 +124,7 @@ class PlayerController extends StateNotifier<bool> {
             .toList()[0]
             .url;
 
-        final accentColor = await ColorScheme.fromImageProvider(
-          provider: NetworkImage(songs[i].images[0].url),
-          brightness: Brightness.dark,
-        );
-
-        final song = songs[i].copyWith(
-          accentColor: accentColor.background,
-        );
+        final song = songs[i];
 
         playlist.add(AudioSource.uri(
           Uri.parse(uri),
@@ -143,19 +135,65 @@ class PlayerController extends StateNotifier<bool> {
       await _player.setAudioSource(playlist, preload: true);
 
       redirect?.call();
+
       await _player.play();
     } on PlayerException catch (e) {
       if (kDebugMode) {
         print("Error message: ${e.message}");
       }
+      BotToast.showText(text: "Error: ${e.message}");
     } on PlayerInterruptedException catch (e) {
       if (kDebugMode) {
         print("Connection aborted: ${e.message}");
+      }
+      BotToast.showText(text: "Error: ${e.message}");
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      BotToast.showText(text: "Error: ${e.toString()}");
+    } finally {
+      await session.setActive(false);
+    }
+  }
+
+  Future<void> loadMoreSongs({
+    required String songId,
+  }) async {
+    try {
+      if (playlist.length > 12) {
+        return;
+      }
+      log("CALLED ${playlist.length}");
+
+      // playlist.removeRange(0, playlist.length - 2);
+      final songsObjects = await _api.song.radio(songId: songId, limit: 10);
+      if (songsObjects == null) {
+        throw Error.throwWithStackTrace(
+          "Can't load right now",
+          StackTrace.empty,
+        );
+      }
+
+      final quality = await _settingsController.getSongQuality();
+      for (var i = 0; i < songsObjects.songs.length; i++) {
+        final uri = songsObjects.songs[i].urls
+            .where((element) => element.quality == quality.name)
+            .toList()[0]
+            .url;
+
+        final song = songsObjects.songs[i];
+
+        playlist.add(AudioSource.uri(
+          Uri.parse(uri),
+          tag: song,
+        ));
       }
     } catch (e) {
       if (kDebugMode) {
         print(e);
       }
+      BotToast.showText(text: "Error: ${e.toString()}");
     }
   }
 
