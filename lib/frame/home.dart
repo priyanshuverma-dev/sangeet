@@ -131,10 +131,7 @@ class _HomeFrameState extends ConsumerState<HomeFrame>
                           ],
                         ),
                       ),
-                      Visibility(
-                        visible: index != 2,
-                        child: const BaseAudioPlayer(),
-                      ),
+                      const BaseAudioPlayer(),
                     ],
                   ),
                 ),

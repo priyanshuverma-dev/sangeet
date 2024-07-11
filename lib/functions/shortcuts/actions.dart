@@ -29,7 +29,8 @@ class SongActions extends Action<BaseIntent> {
   @override
   void invoke(covariant BaseIntent intent) async {
     SongModel song = _player.audioSource?.sequence[_player.currentIndex!].tag;
-    SongModel nextSong = _player.audioSource?.sequence[_player.nextIndex!].tag;
+    SongModel nextSong = _player.audioSource
+        ?.sequence[_player.nextIndex ?? (_player.sequence!.length - 1)].tag;
     SongModel prevSong =
         _player.audioSource?.sequence[_player.previousIndex ?? 0].tag;
     switch (intent.key) {

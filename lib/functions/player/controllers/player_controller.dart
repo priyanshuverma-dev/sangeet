@@ -126,7 +126,7 @@ class PlayerController extends StateNotifier<bool> {
 
         final song = songs[i];
 
-        playlist.add(AudioSource.uri(
+        await playlist.add(AudioSource.uri(
           Uri.parse(uri),
           tag: song,
         ));
@@ -161,12 +161,12 @@ class PlayerController extends StateNotifier<bool> {
     required String songId,
   }) async {
     try {
-      if (playlist.length > 12) {
+      log("CALLED ${playlist.length} AT ${DateTime.timestamp()}");
+      if (playlist.length > 20) {
         return;
       }
-      log("CALLED ${playlist.length}");
+      await playlist.removeRange(0, 10);
 
-      // playlist.removeRange(0, playlist.length - 2);
       final songsObjects = await _api.song.radio(songId: songId, limit: 10);
       if (songsObjects == null) {
         throw Error.throwWithStackTrace(
@@ -184,10 +184,12 @@ class PlayerController extends StateNotifier<bool> {
 
         final song = songsObjects.songs[i];
 
-        playlist.add(AudioSource.uri(
-          Uri.parse(uri),
-          tag: song,
-        ));
+        await playlist.insert(
+            playlist.length,
+            AudioSource.uri(
+              Uri.parse(uri),
+              tag: song,
+            ));
       }
     } catch (e) {
       if (kDebugMode) {
