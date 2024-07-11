@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sangeet/core/widgets/cache_image.dart';
 
 class TopDetailsContainer extends StatelessWidget {
   final String image;
@@ -35,8 +36,8 @@ class TopDetailsContainer extends StatelessWidget {
               alignment: badgeAlign,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: Image.network(
-                  image,
+                child: CacheImage(
+                  url: image,
                   width: 200,
                   height: 200,
                 ),

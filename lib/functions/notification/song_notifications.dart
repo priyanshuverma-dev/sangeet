@@ -32,7 +32,7 @@ class SongNotifications {
     NotificationMessage message = NotificationMessage.fromPluginTemplate(
       "notify_song",
       "Playing Now ${song.title}",
-      song.subtitle,
+      "${song.albumName} - ${song.label}",
       image: imageDir,
     );
     await _winNotifyPlugin.showNotificationPluginTemplate(message);

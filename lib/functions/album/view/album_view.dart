@@ -29,6 +29,7 @@ class AlbumView extends ConsumerWidget {
           data: (album) {
             return BlurImageContainer(
               image: album.images[2].url,
+              isAsset: false,
               child: SplitViewContainer(
                 leftChild: Column(
                   mainAxisAlignment: MainAxisAlignment.start,

@@ -30,6 +30,7 @@ class ChartView extends ConsumerWidget {
           data: (chart) {
             return BlurImageContainer(
               image: chart.images[2].url,
+              isAsset: false,
               child: SplitViewContainer(
                 leftChild: Column(
                   mainAxisAlignment: MainAxisAlignment.start,

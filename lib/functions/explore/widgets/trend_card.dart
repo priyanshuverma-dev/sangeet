@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sangeet/core/widgets/cache_image.dart';
 
-class TrendCard extends StatefulWidget {
+class TrendCard extends StatelessWidget {
   final String image;
   final String title;
   final String subtitle;
@@ -24,152 +25,62 @@ class TrendCard extends StatefulWidget {
   });
 
   @override
-  State<TrendCard> createState() => _TrendCardState();
-}
-
-class _TrendCardState extends State<TrendCard>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation _animation;
-  late Animation padding;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 100),
-      vsync: this,
-    );
-    _animation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.ease,
-      reverseCurve: Curves.easeIn,
-    ));
-    _controller.addListener(() {
-      setState(() {});
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      onEnter: (value) {
-        setState(() {
-          _controller.forward();
-        });
-      },
-      onExit: (value) {
-        setState(() {
-          _controller.reverse();
-        });
-      },
       child: Card(
-        surfaceTintColor: widget.accentColor,
+        surfaceTintColor: accentColor,
         child: InkWell(
-          onTap: widget.onTap,
+          onTap: onTap,
           borderRadius: BorderRadius.circular(15),
-          child: Stack(
-            alignment: Alignment.bottomRight,
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Badge(
-                      backgroundColor: widget.explicitContent
-                          ? Colors.redAccent
-                          : Colors.teal,
-                      label: Icon(
-                        widget.badgeIcon,
-                        size: 10,
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                          widget.image,
-                          width: 50,
-                          height: 50,
-                        ),
-                      ),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Badge(
+                  backgroundColor:
+                      explicitContent ? Colors.redAccent : Colors.teal,
+                  label: Icon(
+                    badgeIcon,
+                    size: 10,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: CacheImage(
+                      url: image,
+                      width: 50,
+                      height: 50,
                     ),
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              widget.title,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                              softWrap: true,
-                            ),
-                            Text(
-                              widget.subtitle,
-                              style: const TextStyle(
-                                overflow: TextOverflow.fade,
-                              ),
-                              maxLines: 2,
-                              softWrap: true,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 5, bottom: 5),
-                child: AnimatedScale(
-                  curve: Curves.bounceOut,
-                  alignment: Alignment.bottomRight,
-                  duration: const Duration(microseconds: 100),
-                  scale: _animation.value,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: IconButton(
-                          onPressed: widget.onLike,
-                          icon: const Icon(
-                            Icons.favorite,
-                            size: 15,
-                          ),
-                          splashColor: Colors.red,
-                          constraints:
-                              const BoxConstraints(maxHeight: 35, maxWidth: 35),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red.shade400,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: IconButton(
-                          onPressed: widget.onPlay,
-                          icon: const Icon(
-                            Icons.play_arrow,
-                            size: 15,
-                          ),
-                          splashColor: Colors.teal,
-                          constraints:
-                              const BoxConstraints(maxHeight: 35, maxWidth: 35),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.teal.shade500,
-                          ),
-                        ),
-                      ),
-                    ],
                   ),
                 ),
-              ),
-            ],
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          title,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                          softWrap: true,
+                        ),
+                        Text(
+                          subtitle,
+                          style: const TextStyle(
+                            overflow: TextOverflow.fade,
+                          ),
+                          maxLines: 2,
+                          softWrap: true,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

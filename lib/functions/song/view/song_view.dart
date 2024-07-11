@@ -34,6 +34,7 @@ class _SongViewState extends ConsumerState<SongView> {
     return ref.watch(songByIdProvider(name)).when(
           data: (song) {
             return BlurImageContainer(
+              isAsset: false,
               image: song.images[2].url,
               child: SplitViewContainer(
                 leftChild: Column(

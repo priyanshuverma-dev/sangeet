@@ -22,7 +22,7 @@ class BaseAudioPlayer extends ConsumerStatefulWidget {
 class _BaseAudioPlayerState extends ConsumerState<BaseAudioPlayer> {
   @override
   Widget build(BuildContext context) {
-    final player = ref.read(getAudioPlayer);
+    final player = ref.watch(playerControllerProvider.notifier).getPlayer;
 
     return StreamBuilder<SequenceState?>(
       stream: player.sequenceStateStream,
