@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sangeet/core/widgets/cache_image.dart';
 
 class TrendCard extends StatelessWidget {
   final String image;
@@ -45,8 +46,8 @@ class TrendCard extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.network(
-                      image,
+                    child: CacheImage(
+                      url: image,
                       width: 50,
                       height: 50,
                     ),

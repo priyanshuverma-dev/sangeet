@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sangeet/core/widgets/cache_image.dart';
 
 class BrowseCard extends StatelessWidget {
   final VoidCallback onTap;
@@ -35,8 +36,8 @@ class BrowseCard extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  image,
+                child: CacheImage(
+                  url: image,
                   width: 100,
                   height: 100,
                 ),

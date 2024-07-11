@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'cache_image.dart';
+
 class MediaCard extends StatelessWidget {
   final String image;
   final String title;
@@ -54,17 +56,10 @@ class MediaCard extends StatelessWidget {
                         bottomLeft: Radius.circular(8),
                         topLeft: Radius.circular(8),
                       ),
-                      child: Image.network(
-                        image,
+                      child: CacheImage(
+                        url: image,
                         width: 60,
                         height: 60,
-                        errorBuilder: (context, error, stackTrace) {
-                          return const SizedBox(
-                            width: 60,
-                            height: 60,
-                            child: Icon(Icons.error_outline_rounded),
-                          );
-                        },
                       ),
                     ),
                   ),

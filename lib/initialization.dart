@@ -1,12 +1,19 @@
 import 'package:audio_session/audio_session.dart';
+import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:sangeet/core/constants.dart';
 import 'package:tray_manager/tray_manager.dart';
 import 'package:window_manager/window_manager.dart';
 
 Future<void> initialiseAppFunctions() async {
   await initWindowManager();
+  final tempDir = await getTemporaryDirectory();
+  await FastCachedImageConfig.init(
+    subDir: "${tempDir.path}/sangeet-cache",
+    clearCacheAfter: const Duration(days: 15),
+  );
   final session = await AudioSession.instance;
   await session.configure(const AudioSessionConfiguration.speech());
   await session.setActive(false);

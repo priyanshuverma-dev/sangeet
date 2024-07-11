@@ -39,11 +39,16 @@ class CurrentPlayingView extends ConsumerWidget {
               stream: player.sequenceStateStream,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: SizedBox(
-                      height: 400,
-                      width: 400,
-                      child: CircularProgressIndicator(),
+                  return const SizedBox(
+                    height: 400,
+                    width: 400,
+                    child: Center(
+                      child: Text(
+                        "Play Something",
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
                     ),
                   );
                 }
