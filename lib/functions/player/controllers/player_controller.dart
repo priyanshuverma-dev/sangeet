@@ -10,6 +10,7 @@ import 'package:sangeet/core/api_provider.dart';
 import 'package:sangeet/core/core.dart';
 import 'package:sangeet/functions/player/widgets/common.dart';
 import 'package:sangeet/functions/settings/controllers/settings_controller.dart';
+import 'package:sangeet_api/models.dart';
 import 'package:sangeet_api/modules/song/models/song_model.dart';
 import 'package:sangeet_api/sangeet_api.dart';
 
@@ -185,16 +186,58 @@ class PlayerController extends StateNotifier<bool> {
         final song = songsObjects.songs[i];
 
         await playlist.insert(
-            playlist.length,
-            AudioSource.uri(
-              Uri.parse(uri),
-              tag: song,
-            ));
+          playlist.length,
+          AudioSource.uri(
+            Uri.parse(uri),
+            tag: song,
+          ),
+        );
       }
     } catch (e) {
       if (kDebugMode) {
         print(e);
       }
+      BotToast.showText(text: "Error: ${e.toString()}");
+    }
+  }
+
+  Future<void> addSongToQueue({required SongModel song}) async {
+    try {
+      final quality = await _settingsController.getSongQuality();
+      final uri = song.urls
+          .where((element) => element.quality == quality.name)
+          .toList()[0]
+          .url;
+      await playlist.add(AudioSource.uri(
+        Uri.parse(uri),
+        tag: song,
+      ));
+
+      BotToast.showText(text: "Added to queue");
+    } catch (e) {
+      BotToast.showText(text: "Error: ${e.toString()}");
+    }
+  }
+
+  Future<void> addSongToNext({required SongModel song}) async {
+    try {
+      final indx = (_player.currentIndex ?? 0) + 1;
+
+      final quality = await _settingsController.getSongQuality();
+      final uri = song.urls
+          .where((element) => element.quality == quality.name)
+          .toList()[0]
+          .url;
+      await playlist.insert(
+        indx,
+        AudioSource.uri(
+          Uri.parse(uri),
+          tag: song,
+        ),
+      );
+
+      BotToast.showText(text: "Added to play next");
+    } catch (e) {
       BotToast.showText(text: "Error: ${e.toString()}");
     }
   }

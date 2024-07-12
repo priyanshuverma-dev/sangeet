@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sangeet/core/core.dart';
-import 'package:sangeet/core/skeletions/media_loading_skeletion.dart';
 import 'package:sangeet/core/skeletions/screen_loading_skeleton.dart';
 import 'package:sangeet/core/widgets/blur_image_container.dart';
 import 'package:sangeet/core/widgets/media_card.dart';
 import 'package:sangeet/core/widgets/play_button.dart';
+import 'package:sangeet/core/widgets/related_songs_list.dart';
 import 'package:sangeet/core/widgets/split_view_container.dart';
 import 'package:sangeet/core/widgets/top_details.dart';
 import 'package:sangeet/functions/artist/view/artist_view.dart';
-import 'package:sangeet/functions/explore/controllers/explore_controller.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
 import 'package:sangeet/functions/song/controllers/song_controller.dart';
 
@@ -105,44 +104,7 @@ class _SongViewState extends ConsumerState<SongView> {
                         ),
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: ref.watch(getRelatedSongsProvider(song.id)).when(
-                            data: (sug) {
-                              return ListView.builder(
-                                shrinkWrap: true,
-                                physics: const BouncingScrollPhysics(),
-                                scrollDirection: Axis.vertical,
-                                itemCount: sug.songs.length,
-                                itemBuilder: (context, index) {
-                                  final song = sug.songs[index];
-                                  return MediaCard(
-                                    onTap: () => ref
-                                        .watch(
-                                            playerControllerProvider.notifier)
-                                        .runRadio(
-                                          radioId: song.id,
-                                          type: MediaType.song,
-                                          prevSongs: sug.songs,
-                                          playCurrent: true,
-                                        ),
-                                    onDoubleTap: () =>
-                                        Navigator.of(context).push(
-                                      SongView.route(song.id),
-                                    ),
-                                    image: song.images[1].url,
-                                    title: song.title,
-                                    subtitle:
-                                        "${formatNumber(song.playCount)} listens, ${song.label}",
-                                    explicitContent: song.explicitContent,
-                                  );
-                                },
-                              );
-                            },
-                            error: (er, st) => ErrorPage(error: er.toString()),
-                            loading: () => const MediaLoader(),
-                          ),
-                    ),
+                    RelatedSongsList(songId: song.id),
                   ],
                 ),
                 rightChild: Column(
