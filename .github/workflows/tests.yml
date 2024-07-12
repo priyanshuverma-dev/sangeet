@@ -3,10 +3,12 @@ on:
         branches:
           - main
           - master
+          - dev
     push:
       branches:
         - main
         - master
+        - dev
 
 
 name: "Integration Tests"
