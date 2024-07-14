@@ -1,3 +1,4 @@
+import 'package:context_menus/context_menus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sangeet/core/core.dart';
@@ -10,6 +11,7 @@ import 'package:sangeet/core/widgets/top_details.dart';
 import 'package:sangeet/functions/album/view/album_view.dart';
 import 'package:sangeet/functions/artist/controller/artist_controller.dart';
 import 'package:sangeet/functions/player/controllers/player_controller.dart';
+import 'package:sangeet/functions/song/view/song_view.dart';
 
 class ArtistView extends ConsumerWidget {
   static route(String id) => MaterialPageRoute(
@@ -24,6 +26,7 @@ class ArtistView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final name = ModalRoute.of(context)?.settings.name ?? artistId;
+    final controller = ref.watch(playerControllerProvider.notifier);
 
     return ref.watch(artistByIdProvider(name)).when(
           data: (artist) {
@@ -61,13 +64,11 @@ class ArtistView extends ConsumerWidget {
                             ],
                           ),
                           PlayButton(
-                            onPressed: () => ref
-                                .watch(playerControllerProvider.notifier)
-                                .runRadio(
-                                  radioId: artist.id,
-                                  type: MediaType.artist,
-                                  prevSongs: artist.topSongs,
-                                ),
+                            onPressed: () => controller.runRadio(
+                              radioId: artist.id,
+                              type: MediaType.artist,
+                              prevSongs: artist.topSongs,
+                            ),
                           )
                         ],
                       ),
@@ -82,19 +83,35 @@ class ArtistView extends ConsumerWidget {
                         itemBuilder: (context, index) {
                           final song = artist.topSongs[index];
                           return MediaCard(
-                            onTap: () => ref
-                                .watch(playerControllerProvider.notifier)
-                                .runRadio(
-                                  radioId: song.id,
-                                  type: MediaType.song,
-                                  prevSongs: artist.topSongs,
-                                  playCurrent: true,
-                                ),
+                            onDoubleTap: () => controller.runRadio(
+                              radioId: song.id,
+                              type: MediaType.song,
+                              prevSongs: artist.topSongs,
+                              playCurrent: true,
+                            ),
+                            onTap: () => Navigator.of(context).push(
+                              SongView.route(song.id),
+                            ),
                             image: song.images[1].url,
                             title: song.title,
                             subtitle:
                                 "${song.label}, ${formatDuration(song.duration)}",
                             explicitContent: song.explicitContent,
+                            contextMenu: [
+                              ContextMenuButtonConfig(
+                                icon: const Icon(Icons.queue_music_rounded),
+                                "Add in Queue",
+                                onPressed: () =>
+                                    controller.addSongToQueue(song: song),
+                              ),
+                              ContextMenuButtonConfig(
+                                icon: const Icon(
+                                    Icons.play_circle_filled_rounded),
+                                "Play Next",
+                                onPressed: () =>
+                                    controller.addSongToNext(song: song),
+                              )
+                            ],
                           );
                         },
                       ),

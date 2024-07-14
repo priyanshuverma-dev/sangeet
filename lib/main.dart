@@ -1,3 +1,4 @@
+import 'package:context_menus/context_menus.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bot_toast/bot_toast.dart';
@@ -25,29 +26,31 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Sangeet',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorSchemeSeed: Colors.lightBlueAccent,
-      ),
-      darkTheme: ThemeData.dark().copyWith(
-        textTheme: GoogleFonts.ubuntuTextTheme(ThemeData.dark().textTheme),
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.lightBlueAccent,
-          brightness: Brightness.dark,
+    return ContextMenuOverlay(
+      child: MaterialApp(
+        title: 'Sangeet',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorSchemeSeed: Colors.lightBlueAccent,
         ),
-        cardTheme: const CardTheme(
-          color: Colors.transparent,
-          elevation: .5,
+        darkTheme: ThemeData.dark().copyWith(
+          textTheme: GoogleFonts.ubuntuTextTheme(ThemeData.dark().textTheme),
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.lightBlueAccent,
+            brightness: Brightness.dark,
+          ),
+          cardTheme: const CardTheme(
+            color: Colors.transparent,
+            elevation: .5,
+          ),
         ),
+        themeMode: ThemeMode.dark,
+        home: const HomeFrame(),
+        builder: BotToastInit(),
+        navigatorObservers: [
+          BotToastNavigatorObserver(),
+        ],
       ),
-      themeMode: ThemeMode.dark,
-      home: const HomeFrame(),
-      builder: BotToastInit(),
-      navigatorObservers: [
-        BotToastNavigatorObserver(),
-      ],
     );
   }
 }
