@@ -1,3 +1,4 @@
+import 'package:context_menus/context_menus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sangeet/core/core.dart';
@@ -25,6 +26,7 @@ class ChartView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final name = ModalRoute.of(context)?.settings.name ?? chartId;
+    final controller = ref.watch(playerControllerProvider.notifier);
 
     return ref.watch(chartByIdProvider(name)).when(
           data: (chart) {
@@ -74,12 +76,10 @@ class ChartView extends ConsumerWidget {
                             ),
                           ),
                           PlayButton(
-                            onPressed: () => ref
-                                .watch(playerControllerProvider.notifier)
-                                .runRadio(
-                                  radioId: chart.id,
-                                  type: MediaType.playlist,
-                                ),
+                            onPressed: () => controller.runRadio(
+                              radioId: chart.id,
+                              type: MediaType.playlist,
+                            ),
                           )
                         ],
                       ),
@@ -94,17 +94,30 @@ class ChartView extends ConsumerWidget {
                         itemBuilder: (context, index) {
                           final song = chart.songs[index];
                           return MediaCard(
-                            onTap: () => ref
-                                .watch(playerControllerProvider.notifier)
-                                .runRadio(
-                                  radioId: song.id,
-                                  type: MediaType.song,
-                                  prevSongs: chart.songs,
-                                  playCurrent: true,
-                                ),
-                            onDoubleTap: () => Navigator.of(context).push(
+                            onDoubleTap: () => controller.runRadio(
+                              radioId: song.id,
+                              type: MediaType.song,
+                              prevSongs: chart.songs,
+                              playCurrent: true,
+                            ),
+                            onTap: () => Navigator.of(context).push(
                               SongView.route(song.id),
                             ),
+                            contextMenu: [
+                              ContextMenuButtonConfig(
+                                icon: const Icon(Icons.queue_music_rounded),
+                                "Add in Queue",
+                                onPressed: () =>
+                                    controller.addSongToQueue(song: song),
+                              ),
+                              ContextMenuButtonConfig(
+                                icon: const Icon(
+                                    Icons.play_circle_filled_rounded),
+                                "Play Next",
+                                onPressed: () =>
+                                    controller.addSongToNext(song: song),
+                              )
+                            ],
                             image: song.images[1].url,
                             title: song.title,
                             subtitle:
